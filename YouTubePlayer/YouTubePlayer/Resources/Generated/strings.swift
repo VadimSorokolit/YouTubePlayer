@@ -10,6 +10,13 @@ import Foundation
 // swiftlint:disable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
 internal enum L10n {
+  /// Localizable.strings
+  ///   YouTubePlayer
+  /// 
+  ///   Created by Vadim  on 27.08.2025.
+  internal static let helloWorld = L10n.tr("Localizable", "hello_world", fallback: "Hello, World!2")
+  /// Hello, World!3
+  internal static let helloWorld1 = L10n.tr("Localizable", "hello_world1", fallback: "Hello, World!3")
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:enable nesting type_body_length type_name vertical_whitespace_opening_braces

@@ -390,8 +390,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "
-";
+			shellScript = "export PATH=\"/opt/homebrew/bin:/usr/local/bin:$PATH\"\nmkdir -p \"${SRCROOT}/Resources/Generated\"\nif which swiftgen >/dev/null; then\n  swiftgen config run --config \"${SRCROOT}/swiftgen.yml\"\nelse\n  echo \"warning: swiftgen not found\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -581,6 +580,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = D28SS25G7Y;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = YouTubePlayer/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -610,6 +610,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = D28SS25G7Y;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = YouTubePlayer/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
