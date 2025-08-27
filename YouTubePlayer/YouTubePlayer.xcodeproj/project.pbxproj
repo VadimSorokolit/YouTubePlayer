@@ -12,6 +12,8 @@
 		DD7AAC232E5C44D8005AE888 /* YouTubePlayerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7AAC1F2E5C44D8005AE888 /* YouTubePlayerApp.swift */; };
 		DD7AAC262E5C44DD005AE888 /* YouTubePlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7AAC242E5C44DD005AE888 /* YouTubePlayerTests.swift */; };
 		DD9EEDB62E5EF69A0090E848 /* ApiKey.json in Resources */ = {isa = PBXBuildFile; fileRef = DD9EEDB52E5EF69A0090E848 /* ApiKey.json */; };
+		DD9EEDB82E5EF73E0090E848 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9EEDB72E5EF7370090E848 /* GlobalConstants.swift */; };
+		DD9EEDBA2E5EF7B40090E848 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9EEDB92E5EF7B20090E848 /* AppConfig.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,8 @@
 		DD7AAC1F2E5C44D8005AE888 /* YouTubePlayerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubePlayerApp.swift; sourceTree = "<group>"; };
 		DD7AAC242E5C44DD005AE888 /* YouTubePlayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubePlayerTests.swift; sourceTree = "<group>"; };
 		DD9EEDB52E5EF69A0090E848 /* ApiKey.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = ApiKey.json; path = ../Secrets/ApiKey.json; sourceTree = SOURCE_ROOT; };
+		DD9EEDB72E5EF7370090E848 /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
+		DD9EEDB92E5EF7B20090E848 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +127,7 @@
 		DD7AAC2C2E5C4B2F005AE888 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DD9EEDB72E5EF7370090E848 /* GlobalConstants.swift */,
 				DD7AAC1D2E5C44D8005AE888 /* Assets.xcassets */,
 				DD9EEDB52E5EF69A0090E848 /* ApiKey.json */,
 			);
@@ -142,6 +147,7 @@
 		DD7AAC2E2E5C4BD9005AE888 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				DD9EEDB92E5EF7B20090E848 /* AppConfig.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -301,6 +307,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD7AAC222E5C44D8005AE888 /* ContentView.swift in Sources */,
+				DD9EEDB82E5EF73E0090E848 /* GlobalConstants.swift in Sources */,
+				DD9EEDBA2E5EF7B40090E848 /* AppConfig.swift in Sources */,
 				DD7AAC232E5C44D8005AE888 /* YouTubePlayerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
