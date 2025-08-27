@@ -87,9 +87,10 @@
 		DD7AAC202E5C44D8005AE888 /* YouTubePlayer */ = {
 			isa = PBXGroup;
 			children = (
-				DD7AAC1D2E5C44D8005AE888 /* Assets.xcassets */,
-				DD7AAC1E2E5C44D8005AE888 /* ContentView.swift */,
-				DD7AAC1F2E5C44D8005AE888 /* YouTubePlayerApp.swift */,
+				DD7AAC2B2E5C4B2A005AE888 /* AppMainView */,
+				DD7AAC272E5C4A3D005AE888 /* API */,
+				DD7AAC2D2E5C4BBE005AE888 /* MVVM */,
+				DD7AAC2C2E5C4B2F005AE888 /* Resources */,
 			);
 			path = YouTubePlayer;
 			sourceTree = "<group>";
@@ -100,6 +101,61 @@
 				DD7AAC242E5C44DD005AE888 /* YouTubePlayerTests.swift */,
 			);
 			path = YouTubePlayerTests;
+			sourceTree = "<group>";
+		};
+		DD7AAC272E5C4A3D005AE888 /* API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		DD7AAC2B2E5C4B2A005AE888 /* AppMainView */ = {
+			isa = PBXGroup;
+			children = (
+				DD7AAC1F2E5C44D8005AE888 /* YouTubePlayerApp.swift */,
+			);
+			path = AppMainView;
+			sourceTree = "<group>";
+		};
+		DD7AAC2C2E5C4B2F005AE888 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DD7AAC1D2E5C44D8005AE888 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		DD7AAC2D2E5C4BBE005AE888 /* MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				DD7AAC302E5C4BEF005AE888 /* ViewModel */,
+				DD7AAC2F2E5C4BE4005AE888 /* Views */,
+				DD7AAC2E2E5C4BD9005AE888 /* Model */,
+			);
+			path = MVVM;
+			sourceTree = "<group>";
+		};
+		DD7AAC2E2E5C4BD9005AE888 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		DD7AAC2F2E5C4BE4005AE888 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DD7AAC1E2E5C44D8005AE888 /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		DD7AAC302E5C4BEF005AE888 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -196,6 +252,8 @@
 			);
 			mainGroup = DD7AABE22E5C446F005AE888;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = DD7AABEC2E5C446F005AE888 /* Products */;
 			projectDirPath = "";
