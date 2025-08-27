@@ -17,6 +17,11 @@
 		DD9EEDBC2E5F13DB0090E848 /* YouTubePlayerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9EEDBB2E5F13DA0090E848 /* YouTubePlayerRouter.swift */; };
 		DD9EEDC42E5F19EF0090E848 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9EEDC32E5F19ED0090E848 /* Secrets.swift */; };
 		DD9EEDC72E5F25D50090E848 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = DD9EEDC62E5F25D50090E848 /* Moya */; };
+		DD9EEDD12E5F49570090E848 /* SFProDisplay-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD9EEDCD2E5F49570090E848 /* SFProDisplay-Bold.ttf */; };
+		DD9EEDD22E5F49570090E848 /* SFProText-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD9EEDCF2E5F49570090E848 /* SFProText-Regular.ttf */; };
+		DD9EEDD32E5F49570090E848 /* SFProText-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD9EEDD02E5F49570090E848 /* SFProText-Semibold.ttf */; };
+		DD9EEDD42E5F49570090E848 /* SFProText-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD9EEDCE2E5F49570090E848 /* SFProText-Medium.ttf */; };
+		DDFFD86B2E5F6D9A0085298B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DDFFD8692E5F6D9A0085298B /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,7 +54,22 @@
 		DD9EEDB92E5EF7B20090E848 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		DD9EEDBB2E5F13DA0090E848 /* YouTubePlayerRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubePlayerRouter.swift; sourceTree = "<group>"; };
 		DD9EEDC32E5F19ED0090E848 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		DD9EEDCD2E5F49570090E848 /* SFProDisplay-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Bold.ttf"; sourceTree = "<group>"; };
+		DD9EEDCE2E5F49570090E848 /* SFProText-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Medium.ttf"; sourceTree = "<group>"; };
+		DD9EEDCF2E5F49570090E848 /* SFProText-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Regular.ttf"; sourceTree = "<group>"; };
+		DD9EEDD02E5F49570090E848 /* SFProText-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Semibold.ttf"; sourceTree = "<group>"; };
+		DD9EEDD52E5F4BA00090E848 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DD9EEDDA2E5F5AEE0090E848 /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
+		DDFFD86A2E5F6D9A0085298B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		DDFFD86C2E5F6E230085298B /* Generated */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Generated;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		DD7AABE82E5C446F005AE888 /* Frameworks */ = {
@@ -80,6 +100,7 @@
 		DD7AABE22E5C446F005AE888 = {
 			isa = PBXGroup;
 			children = (
+				DD9EEDDA2E5F5AEE0090E848 /* swiftgen.yml */,
 				DD7AAC202E5C44D8005AE888 /* YouTubePlayer */,
 				DD7AAC252E5C44DD005AE888 /* YouTubePlayerTests */,
 				DD7AABEC2E5C446F005AE888 /* Products */,
@@ -102,6 +123,7 @@
 				DD7AAC2B2E5C4B2A005AE888 /* AppMainView */,
 				DD7AAC272E5C4A3D005AE888 /* API */,
 				DD9EEDBE2E5F19B30090E848 /* Config */,
+				DD9EEDD52E5F4BA00090E848 /* Info.plist */,
 				DD7AAC2D2E5C4BBE005AE888 /* MVVM */,
 				DD7AAC2C2E5C4B2F005AE888 /* Resources */,
 			);
@@ -135,8 +157,9 @@
 		DD7AAC2C2E5C4B2F005AE888 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DD9EEDCA2E5F483D0090E848 /* Input */,
+				DDFFD86C2E5F6E230085298B /* Generated */,
 				DD9EEDB72E5EF7370090E848 /* GlobalConstants.swift */,
-				DD7AAC1D2E5C44D8005AE888 /* Assets.xcassets */,
 				DD9EEDB52E5EF69A0090E848 /* ApiKey.json */,
 			);
 			path = Resources;
@@ -183,6 +206,27 @@
 			path = Config;
 			sourceTree = "<group>";
 		};
+		DD9EEDCA2E5F483D0090E848 /* Input */ = {
+			isa = PBXGroup;
+			children = (
+				DD9EEDCC2E5F48AF0090E848 /* Fonts */,
+				DD7AAC1D2E5C44D8005AE888 /* Assets.xcassets */,
+				DDFFD8692E5F6D9A0085298B /* Localizable.strings */,
+			);
+			path = Input;
+			sourceTree = "<group>";
+		};
+		DD9EEDCC2E5F48AF0090E848 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				DD9EEDCD2E5F49570090E848 /* SFProDisplay-Bold.ttf */,
+				DD9EEDD02E5F49570090E848 /* SFProText-Semibold.ttf */,
+				DD9EEDCE2E5F49570090E848 /* SFProText-Medium.ttf */,
+				DD9EEDCF2E5F49570090E848 /* SFProText-Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -190,6 +234,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DD7AAC0C2E5C4470005AE888 /* Build configuration list for PBXNativeTarget "YouTubePlayer" */;
 			buildPhases = (
+				DD9EEDD62E5F4E7C0090E848 /* SwiftGen */,
 				DD7AABE72E5C446F005AE888 /* Sources */,
 				DD7AABE82E5C446F005AE888 /* Frameworks */,
 				DD7AABE92E5C446F005AE888 /* Resources */,
@@ -197,6 +242,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				DDFFD86C2E5F6E230085298B /* Generated */,
 			);
 			name = YouTubePlayer;
 			packageProductDependencies = (
@@ -280,6 +328,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				DD9EEDC52E5F25D50090E848 /* XCRemoteSwiftPackageReference "Moya" */,
+				DD9EEDC82E5F3AEC0090E848 /* XCRemoteSwiftPackageReference "SwiftGen" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = DD7AABEC2E5C446F005AE888 /* Products */;
@@ -298,6 +347,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD9EEDD12E5F49570090E848 /* SFProDisplay-Bold.ttf in Resources */,
+				DD9EEDD22E5F49570090E848 /* SFProText-Regular.ttf in Resources */,
+				DD9EEDD32E5F49570090E848 /* SFProText-Semibold.ttf in Resources */,
+				DDFFD86B2E5F6D9A0085298B /* Localizable.strings in Resources */,
+				DD9EEDD42E5F49570090E848 /* SFProText-Medium.ttf in Resources */,
 				DD9EEDB62E5EF69A0090E848 /* ApiKey.json in Resources */,
 				DD7AAC212E5C44D8005AE888 /* Assets.xcassets in Resources */,
 			);
@@ -318,6 +372,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		DD9EEDD62E5F4E7C0090E848 /* SwiftGen */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftGen;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "
+";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DD7AABE72E5C446F005AE888 /* Sources */ = {
@@ -362,6 +438,17 @@
 			targetProxy = DD7AAC032E5C4470005AE888 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DDFFD8692E5F6D9A0085298B /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DDFFD86A2E5F6D9A0085298B /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		DD7AAC0A2E5C4470005AE888 /* Debug */ = {
@@ -495,6 +582,7 @@
 				DEVELOPMENT_TEAM = D28SS25G7Y;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = YouTubePlayer/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -523,6 +611,7 @@
 				DEVELOPMENT_TEAM = D28SS25G7Y;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = YouTubePlayer/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -661,6 +750,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 15.0.3;
+			};
+		};
+		DD9EEDC82E5F3AEC0090E848 /* XCRemoteSwiftPackageReference "SwiftGen" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftGen/SwiftGen";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.6.3;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
