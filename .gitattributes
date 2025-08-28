@@ -1,2 +1,1 @@
 Secrets/** filter=git-crypt diff=git-crypt
-YouTubePlayer/Secrets/ApiKey.json filter=git-crypt diff=git-crypt
