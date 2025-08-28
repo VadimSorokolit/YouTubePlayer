@@ -11,6 +11,7 @@
 		DD3C1BB72E60636B00FF3953 /* assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3C1BB32E60636B00FF3953 /* assets.swift */; };
 		DD3C1BB82E60636B00FF3953 /* fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3C1BB42E60636B00FF3953 /* fonts.swift */; };
 		DD3C1BB92E60636B00FF3953 /* strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3C1BB52E60636B00FF3953 /* strings.swift */; };
+		DD3C1BBC2E606A0100FF3953 /* YouTubePlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3C1BBB2E606A0000FF3953 /* YouTubePlayerService.swift */; };
 		DD7AAC212E5C44D8005AE888 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD7AAC1D2E5C44D8005AE888 /* Assets.xcassets */; };
 		DD7AAC222E5C44D8005AE888 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7AAC1E2E5C44D8005AE888 /* ContentView.swift */; };
 		DD7AAC232E5C44D8005AE888 /* YouTubePlayerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7AAC1F2E5C44D8005AE888 /* YouTubePlayerApp.swift */; };
@@ -49,6 +50,7 @@
 		DD3C1BB32E60636B00FF3953 /* assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = assets.swift; sourceTree = "<group>"; };
 		DD3C1BB42E60636B00FF3953 /* fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fonts.swift; sourceTree = "<group>"; };
 		DD3C1BB52E60636B00FF3953 /* strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = strings.swift; sourceTree = "<group>"; };
+		DD3C1BBB2E606A0000FF3953 /* YouTubePlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubePlayerService.swift; sourceTree = "<group>"; };
 		DD7AABEB2E5C446F005AE888 /* YouTubePlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YouTubePlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD7AABF82E5C4470005AE888 /* YouTubePlayerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YouTubePlayerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD7AAC022E5C4470005AE888 /* YouTubePlayerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YouTubePlayerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -105,6 +107,14 @@
 			path = Generated;
 			sourceTree = "<group>";
 		};
+		DD3C1BBA2E60697400FF3953 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				DD3C1BBB2E606A0000FF3953 /* YouTubePlayerService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		DD7AABE22E5C446F005AE888 = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +143,7 @@
 				DD9EEDBE2E5F19B30090E848 /* Config */,
 				DD9EEDD52E5F4BA00090E848 /* Info.plist */,
 				DD7AAC2D2E5C4BBE005AE888 /* MVVM */,
+				DD3C1BBA2E60697400FF3953 /* Services */,
 				DD7AAC2C2E5C4B2F005AE888 /* Resources */,
 			);
 			path = YouTubePlayer;
@@ -411,6 +422,7 @@
 				DD9EEDBC2E5F13DB0090E848 /* YouTubePlayerRouter.swift in Sources */,
 				DD3C1BB72E60636B00FF3953 /* assets.swift in Sources */,
 				DD3C1BB82E60636B00FF3953 /* fonts.swift in Sources */,
+				DD3C1BBC2E606A0100FF3953 /* YouTubePlayerService.swift in Sources */,
 				DD3C1BB92E60636B00FF3953 /* strings.swift in Sources */,
 				DD9EEDBA2E5EF7B40090E848 /* AppConfig.swift in Sources */,
 				DD7AAC232E5C44D8005AE888 /* YouTubePlayerApp.swift in Sources */,
