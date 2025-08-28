@@ -56,7 +56,7 @@ extension YouTubeRouter: TargetType {
         switch self {
             case let .getChannels(id):
                 return [
-                    L10n.parameterPart: L10n.valueBrandingSettings,
+                    L10n.parameterPart: "\(L10n.valueBrandingSettings),\(L10n.valueStatistics)",
                     L10n.parameterKey: Constants.apiKey,
                     L10n.parameterId: "\(id)",
                 ]
