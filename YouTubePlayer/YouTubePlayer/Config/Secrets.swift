@@ -10,8 +10,8 @@ import Foundation
 enum Secrets {
     static let apiKey: String? = {
         guard let url = Bundle.main.url(
-            forResource: GlobalConstants.apiKeyFileName,
-            withExtension: GlobalConstants.apiKeyFileExtension
+            forResource: L10n.apiKeyFileName,
+            withExtension: L10n.apiKeyFileExtension
         ) else {
             print("ApiKey.json not found")
             return nil

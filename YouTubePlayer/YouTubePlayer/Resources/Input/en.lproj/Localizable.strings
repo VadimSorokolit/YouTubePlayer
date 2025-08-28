@@ -5,3 +5,47 @@
   Created by Vadim  on 27.08.2025.
   
 */
+
+// API key
+
+"apiKeyFileName" = "ApiKey";
+"apiKeyFileExtension" = "json";
+
+// URLs
+
+"baseURL" = "https://www.googleapis.com";
+"defaultURL" = "https://www.google.com";
+
+// Paths
+
+"channelsPath" = "youtube/v3/channels";
+"playlistsPath" = "youtube/v3//playlists";
+"playlistItemsPath" = "youtube/v3//playlistItems";
+"videosPath" = "youtube/v3//videos";
+
+// Parameters
+
+"parameterPart" = "part";
+"parameterKey" = "key";
+"parameterId" = "id";
+"parameterPlaylistId" = "playlistId";
+"parameterChannelId" = "channelId";
+"parameterMaxResults" = "maxResults";
+
+// Values
+
+"valueBrandingSettings"= "brandingSettings";
+"valueSnippet" = "snippet";
+"valueStatistics" = "statistics";
+
+// Error Messages
+
+"invalidURLErrorMessage" = "URL is invalid";
+"invalidAPIkeyErrorMessage" = "Missing API Key. Add ApiKey.json to bundle and unlock git-crypt";
+
+// Channel ids
+
+"channelId1" = "UCiMhD4jzUqG-IgPzUmmytRQ";
+"channelId2" = "UC5OrDvL9DscpcAstz7JnQGA";
+"channelId3" = "UCb3tJ5NKw7mDxyaQ73mwbRg";
+"channelId4" = "UCansLl8T6imFHqOhfXoAHmg";
