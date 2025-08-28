@@ -1,5 +1,5 @@
 //
-//  YouTubePlayerRouter.swift
+//  YouTubeRouter.swift
 //  YouTubePlayer
 //
 //  Created by Vadim Sorokolit on 27.08.2025.
@@ -17,7 +17,7 @@ private struct Constants {
     }
 }
 
-enum YouTubePlayerRouter {
+enum YouTubeRouter {
     case getChannels(id: String)
     case getPlaylists(channelId: String, max: Int)
     case getPlaylistItems(playlistId: String, max: Int)
@@ -26,7 +26,7 @@ enum YouTubePlayerRouter {
 
 // MARK: - TargetType Protocol
 
-extension YouTubePlayerRouter: TargetType {
+extension YouTubeRouter: TargetType {
     
     var baseURL: URL {
         guard let url = URL(string: L10n.baseURL) ?? URL(string: L10n.defaultURL) else {
