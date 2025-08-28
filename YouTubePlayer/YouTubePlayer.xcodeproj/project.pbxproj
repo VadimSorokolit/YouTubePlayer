@@ -12,6 +12,7 @@
 		DD3C1BB82E60636B00FF3953 /* fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3C1BB42E60636B00FF3953 /* fonts.swift */; };
 		DD3C1BB92E60636B00FF3953 /* strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3C1BB52E60636B00FF3953 /* strings.swift */; };
 		DD3C1BBC2E606A0100FF3953 /* YouTubePlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3C1BBB2E606A0000FF3953 /* YouTubePlayerService.swift */; };
+		DD3C1BBF2E60774600FF3953 /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = DD3C1BBE2E60774600FF3953 /* Factory */; };
 		DD7AAC212E5C44D8005AE888 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD7AAC1D2E5C44D8005AE888 /* Assets.xcassets */; };
 		DD7AAC222E5C44D8005AE888 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7AAC1E2E5C44D8005AE888 /* ContentView.swift */; };
 		DD7AAC232E5C44D8005AE888 /* YouTubePlayerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7AAC1F2E5C44D8005AE888 /* YouTubePlayerApp.swift */; };
@@ -77,6 +78,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD9EEDC72E5F25D50090E848 /* Moya in Frameworks */,
+				DD3C1BBF2E60774600FF3953 /* Factory in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,6 +267,7 @@
 			name = YouTubePlayer;
 			packageProductDependencies = (
 				DD9EEDC62E5F25D50090E848 /* Moya */,
+				DD3C1BBE2E60774600FF3953 /* Factory */,
 			);
 			productName = YouTubePlayer;
 			productReference = DD7AABEB2E5C446F005AE888 /* YouTubePlayer.app */;
@@ -345,6 +348,7 @@
 			packageReferences = (
 				DD9EEDC52E5F25D50090E848 /* XCRemoteSwiftPackageReference "Moya" */,
 				DD9EEDC82E5F3AEC0090E848 /* XCRemoteSwiftPackageReference "SwiftGen" */,
+				DD3C1BBD2E60774600FF3953 /* XCRemoteSwiftPackageReference "Factory" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = DD7AABEC2E5C446F005AE888 /* Products */;
@@ -766,6 +770,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		DD3C1BBD2E60774600FF3953 /* XCRemoteSwiftPackageReference "Factory" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pilmen/Factory";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		DD9EEDC52E5F25D50090E848 /* XCRemoteSwiftPackageReference "Moya" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Moya/Moya.git";
@@ -785,6 +797,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		DD3C1BBE2E60774600FF3953 /* Factory */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DD3C1BBD2E60774600FF3953 /* XCRemoteSwiftPackageReference "Factory" */;
+			productName = Factory;
+		};
 		DD9EEDC62E5F25D50090E848 /* Moya */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DD9EEDC52E5F25D50090E848 /* XCRemoteSwiftPackageReference "Moya" */;
