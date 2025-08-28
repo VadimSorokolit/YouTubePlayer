@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD3C1B582E60482800FF3953 /* YouTubePlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3C1B572E60482400FF3953 /* YouTubePlayerViewModel.swift */; };
 		DD7AAC212E5C44D8005AE888 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD7AAC1D2E5C44D8005AE888 /* Assets.xcassets */; };
 		DD7AAC222E5C44D8005AE888 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7AAC1E2E5C44D8005AE888 /* ContentView.swift */; };
 		DD7AAC232E5C44D8005AE888 /* YouTubePlayerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7AAC1F2E5C44D8005AE888 /* YouTubePlayerApp.swift */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DD3C1B572E60482400FF3953 /* YouTubePlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubePlayerViewModel.swift; sourceTree = "<group>"; };
 		DD7AABEB2E5C446F005AE888 /* YouTubePlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YouTubePlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD7AABF82E5C4470005AE888 /* YouTubePlayerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YouTubePlayerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD7AAC022E5C4470005AE888 /* YouTubePlayerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YouTubePlayerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -191,6 +193,7 @@
 		DD7AAC302E5C4BEF005AE888 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				DD3C1B572E60482400FF3953 /* YouTubePlayerViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -397,6 +400,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD3C1B582E60482800FF3953 /* YouTubePlayerViewModel.swift in Sources */,
 				DD9EEDC42E5F19EF0090E848 /* Secrets.swift in Sources */,
 				DD7AAC222E5C44D8005AE888 /* ContentView.swift in Sources */,
 				DD9EEDBC2E5F13DB0090E848 /* YouTubePlayerRouter.swift in Sources */,
