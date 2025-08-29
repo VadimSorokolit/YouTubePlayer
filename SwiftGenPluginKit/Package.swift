@@ -5,17 +5,23 @@ import PackageDescription
 
 let package = Package(
     name: "SwiftGenPluginKit",
+    defaultLocalization: "en",
+    platforms: [.iOS(.v17)],
     products: [
-        // Products define the executables and libraries a package produces, making them visible to other packages.
-        .library(
-            name: "SwiftGenPluginKit",
-            targets: ["SwiftGenPluginKit"]),
+        .library(name: "SwiftGenPluginKit", targets: ["SwiftGenPluginKit"])
+    ],
+    dependencies: [
+        .package(url: "https://github.com/SwiftGen/SwiftGenPlugin", from: "6.6.0")
     ],
     targets: [
-        // Targets are the basic building blocks of a package, defining a module or a test suite.
-        // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "SwiftGenPluginKit"),
-
+            name: "SwiftGenPluginKit",
+            path: ".",
+            sources: ["Sources/SwiftGenPluginKit"],
+            resources: [.process("Resources")],
+            plugins: [
+                .plugin(name: "SwiftGenPlugin", package: "SwiftGenPlugin")
+            ]
+        )
     ]
 )
