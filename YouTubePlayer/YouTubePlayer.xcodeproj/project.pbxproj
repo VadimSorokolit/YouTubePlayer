@@ -16,6 +16,7 @@
 		DD3C1BC22E607A4D00FF3953 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3C1BC12E607A4C00FF3953 /* Container.swift */; };
 		DD3C1BC42E60804F00FF3953 /* ChannelsDataWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3C1BC32E60804200FF3953 /* ChannelsDataWrapper.swift */; };
 		DD46CDC52E6094E1009B25CB /* MoyaProvider+MoyaConcurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD46CDC42E6094E0009B25CB /* MoyaProvider+MoyaConcurrency.swift */; };
+		DD68D3E02E61A599004EE7EF /* SwiftGenPluginKit in Frameworks */ = {isa = PBXBuildFile; productRef = DD68D3DF2E61A599004EE7EF /* SwiftGenPluginKit */; };
 		DD7AAC212E5C44D8005AE888 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD7AAC1D2E5C44D8005AE888 /* Assets.xcassets */; };
 		DD7AAC222E5C44D8005AE888 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7AAC1E2E5C44D8005AE888 /* ContentView.swift */; };
 		DD7AAC232E5C44D8005AE888 /* YouTubePlayerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7AAC1F2E5C44D8005AE888 /* YouTubePlayerApp.swift */; };
@@ -74,7 +75,6 @@
 		DD9EEDCF2E5F49570090E848 /* SFProText-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Regular.ttf"; sourceTree = "<group>"; };
 		DD9EEDD02E5F49570090E848 /* SFProText-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Semibold.ttf"; sourceTree = "<group>"; };
 		DD9EEDD52E5F4BA00090E848 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DD9EEDDA2E5F5AEE0090E848 /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
 		DDFFD86A2E5F6D9A0085298B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -85,6 +85,7 @@
 			files = (
 				DD9EEDC72E5F25D50090E848 /* Moya in Frameworks */,
 				DD3C1BBF2E60774600FF3953 /* Factory in Frameworks */,
+				DD68D3E02E61A599004EE7EF /* SwiftGenPluginKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,7 +143,6 @@
 		DD7AABE22E5C446F005AE888 = {
 			isa = PBXGroup;
 			children = (
-				DD9EEDDA2E5F5AEE0090E848 /* swiftgen.yml */,
 				DD7AAC202E5C44D8005AE888 /* YouTubePlayer */,
 				DD7AAC252E5C44DD005AE888 /* YouTubePlayerTests */,
 				DD7AABEC2E5C446F005AE888 /* Products */,
@@ -293,6 +293,7 @@
 			packageProductDependencies = (
 				DD9EEDC62E5F25D50090E848 /* Moya */,
 				DD3C1BBE2E60774600FF3953 /* Factory */,
+				DD68D3DF2E61A599004EE7EF /* SwiftGenPluginKit */,
 			);
 			productName = YouTubePlayer;
 			productReference = DD7AABEB2E5C446F005AE888 /* YouTubePlayer.app */;
@@ -374,6 +375,7 @@
 				DD9EEDC52E5F25D50090E848 /* XCRemoteSwiftPackageReference "Moya" */,
 				DD9EEDC82E5F3AEC0090E848 /* XCRemoteSwiftPackageReference "SwiftGen" */,
 				DD3C1BBD2E60774600FF3953 /* XCRemoteSwiftPackageReference "Factory" */,
+				DD68D3DE2E61A599004EE7EF /* XCLocalSwiftPackageReference "../SwiftGenPluginKit" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = DD7AABEC2E5C446F005AE888 /* Products */;
@@ -797,6 +799,13 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCLocalSwiftPackageReference section */
+		DD68D3DE2E61A599004EE7EF /* XCLocalSwiftPackageReference "../SwiftGenPluginKit" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../SwiftGenPluginKit;
+		};
+/* End XCLocalSwiftPackageReference section */
+
 /* Begin XCRemoteSwiftPackageReference section */
 		DD3C1BBD2E60774600FF3953 /* XCRemoteSwiftPackageReference "Factory" */ = {
 			isa = XCRemoteSwiftPackageReference;
@@ -829,6 +838,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DD3C1BBD2E60774600FF3953 /* XCRemoteSwiftPackageReference "Factory" */;
 			productName = Factory;
+		};
+		DD68D3DF2E61A599004EE7EF /* SwiftGenPluginKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SwiftGenPluginKit;
 		};
 		DD9EEDC62E5F25D50090E848 /* Moya */ = {
 			isa = XCSwiftPackageProductDependency;
