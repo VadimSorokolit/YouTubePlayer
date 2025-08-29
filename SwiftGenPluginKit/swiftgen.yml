@@ -8,3 +8,23 @@ strings:
         bundle: Bundle.module
         publicAccess: true
 
+fonts:
+  inputs:
+    - Resources/Inputs/Fonts
+  outputs:
+    - output: ${DERIVED_SOURCES_DIR}/Fonts+Generated.swift
+      templateName: swift5  
+      params:
+        bundle: Bundle.module
+        publicAccess: true
+        enumName: FontFamily
+
+xcassets:
+  inputs:
+    - Resources/Inputs/Media.xcassets
+  outputs:
+    - output: ${DERIVED_SOURCES_DIR}/Assets+Generated.swift
+      templateName: swift5
+      params:
+        bundle: Bundle.module
+        publicAccess: true

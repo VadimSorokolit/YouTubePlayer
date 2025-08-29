@@ -11,7 +11,7 @@ let package = Package(
         .library(name: "SwiftGenPluginKit", targets: ["SwiftGenPluginKit"])
     ],
     dependencies: [
-        .package(url: "https://github.com/SwiftGen/SwiftGenPlugin", from: "6.6.0")
+        .package(url: "https://github.com/SwiftGen/SwiftGenPlugin", from: "6.6.2")
     ],
     targets: [
         .target(
@@ -19,6 +19,9 @@ let package = Package(
             path: ".",
             sources: ["Sources/SwiftGenPluginKit"],
             resources: [.process("Resources")],
+            swiftSettings: [
+              .unsafeFlags(["-Xfrontend", "-strict-concurrency=minimal"])
+            ],
             plugins: [
                 .plugin(name: "SwiftGenPlugin", package: "SwiftGenPlugin")
             ]
