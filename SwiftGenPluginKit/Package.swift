@@ -18,7 +18,6 @@ let package = Package(
             name: "SwiftGenPluginKit",
             path: ".",
             sources: ["Sources/SwiftGenPluginKit"],
-            resources: [.process("Resources")],
             swiftSettings: [
               .unsafeFlags(["-Xfrontend", "-strict-concurrency=minimal"])
             ],

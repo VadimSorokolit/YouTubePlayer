@@ -12,6 +12,11 @@
 		DD3C1BC22E607A4D00FF3953 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3C1BC12E607A4C00FF3953 /* Container.swift */; };
 		DD3C1BC42E60804F00FF3953 /* ChannelsDataWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3C1BC32E60804200FF3953 /* ChannelsDataWrapper.swift */; };
 		DD46CDC52E6094E1009B25CB /* MoyaProvider+MoyaConcurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD46CDC42E6094E0009B25CB /* MoyaProvider+MoyaConcurrency.swift */; };
+		DD654BBB2E63742F00181F1F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DD654BB92E63742F00181F1F /* Localizable.strings */; };
+		DD654BC12E63747700181F1F /* SFProText-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD654BBE2E63747700181F1F /* SFProText-Medium.ttf */; };
+		DD654BC22E63747700181F1F /* SFProText-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD654BC02E63747700181F1F /* SFProText-Semibold.ttf */; };
+		DD654BC32E63747700181F1F /* SFProText-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD654BBF2E63747700181F1F /* SFProText-Regular.ttf */; };
+		DD654BC42E63747700181F1F /* SFProDisplay-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD654BBD2E63747700181F1F /* SFProDisplay-Bold.ttf */; };
 		DD7AAC222E5C44D8005AE888 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7AAC1E2E5C44D8005AE888 /* ContentView.swift */; };
 		DD7AAC232E5C44D8005AE888 /* YouTubePlayerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7AAC1F2E5C44D8005AE888 /* YouTubePlayerApp.swift */; };
 		DD7AAC262E5C44DD005AE888 /* YouTubePlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7AAC242E5C44DD005AE888 /* YouTubePlayerTests.swift */; };
@@ -48,6 +53,11 @@
 		DD3C1BC12E607A4C00FF3953 /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
 		DD3C1BC32E60804200FF3953 /* ChannelsDataWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsDataWrapper.swift; sourceTree = "<group>"; };
 		DD46CDC42E6094E0009B25CB /* MoyaProvider+MoyaConcurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MoyaProvider+MoyaConcurrency.swift"; sourceTree = "<group>"; };
+		DD654BBA2E63742F00181F1F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DD654BBD2E63747700181F1F /* SFProDisplay-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Bold.ttf"; sourceTree = "<group>"; };
+		DD654BBE2E63747700181F1F /* SFProText-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Medium.ttf"; sourceTree = "<group>"; };
+		DD654BBF2E63747700181F1F /* SFProText-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Regular.ttf"; sourceTree = "<group>"; };
+		DD654BC02E63747700181F1F /* SFProText-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Semibold.ttf"; sourceTree = "<group>"; };
 		DD7AABEB2E5C446F005AE888 /* YouTubePlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YouTubePlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD7AABF82E5C4470005AE888 /* YouTubePlayerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YouTubePlayerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD7AAC022E5C4470005AE888 /* YouTubePlayerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YouTubePlayerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,6 +71,14 @@
 		DD9EEDD52E5F4BA00090E848 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DDB1BC4B2E62571600B42000 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		DD654BCD2E6379B600181F1F /* Generated */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Generated;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		DD7AABE82E5C446F005AE888 /* Frameworks */ = {
@@ -114,6 +132,27 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		DD654BB82E63738900181F1F /* Inputs */ = {
+			isa = PBXGroup;
+			children = (
+				DD654BBC2E63745800181F1F /* Fonts */,
+				DDB1BC4B2E62571600B42000 /* Assets.xcassets */,
+				DD654BB92E63742F00181F1F /* Localizable.strings */,
+			);
+			path = Inputs;
+			sourceTree = "<group>";
+		};
+		DD654BBC2E63745800181F1F /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				DD654BBD2E63747700181F1F /* SFProDisplay-Bold.ttf */,
+				DD654BBE2E63747700181F1F /* SFProText-Medium.ttf */,
+				DD654BBF2E63747700181F1F /* SFProText-Regular.ttf */,
+				DD654BC02E63747700181F1F /* SFProText-Semibold.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		DD7AABE22E5C446F005AE888 = {
 			isa = PBXGroup;
 			children = (
@@ -144,7 +183,7 @@
 				DD7AAC2D2E5C4BBE005AE888 /* MVVM */,
 				DD3C1BBA2E60697400FF3953 /* Services */,
 				DD46CDBD2E608FA4009B25CB /* Extensions */,
-				DDB1BC4D2E62573200B42000 /* Supporting Files */,
+				DDB1BC4D2E62573200B42000 /* Resources */,
 			);
 			path = YouTubePlayer;
 			sourceTree = "<group>";
@@ -216,13 +255,14 @@
 			path = Config;
 			sourceTree = "<group>";
 		};
-		DDB1BC4D2E62573200B42000 /* Supporting Files */ = {
+		DDB1BC4D2E62573200B42000 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				DDB1BC4B2E62571600B42000 /* Assets.xcassets */,
+				DD654BB82E63738900181F1F /* Inputs */,
+				DD654BCD2E6379B600181F1F /* Generated */,
 				DD9EEDB52E5EF69A0090E848 /* ApiKey.json */,
 			);
-			path = "Supporting Files";
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,12 +273,16 @@
 			buildConfigurationList = DD7AAC0C2E5C4470005AE888 /* Build configuration list for PBXNativeTarget "YouTubePlayer" */;
 			buildPhases = (
 				DD7AABE72E5C446F005AE888 /* Sources */,
+				DD654BB72E63733F00181F1F /* ShellScript */,
 				DD7AABE82E5C446F005AE888 /* Frameworks */,
 				DD7AABE92E5C446F005AE888 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				DD654BCD2E6379B600181F1F /* Generated */,
 			);
 			name = YouTubePlayer;
 			packageProductDependencies = (
@@ -344,7 +388,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD654BC12E63747700181F1F /* SFProText-Medium.ttf in Resources */,
+				DD654BC22E63747700181F1F /* SFProText-Semibold.ttf in Resources */,
+				DD654BC32E63747700181F1F /* SFProText-Regular.ttf in Resources */,
+				DD654BC42E63747700181F1F /* SFProDisplay-Bold.ttf in Resources */,
 				DDB1BC4C2E62571600B42000 /* Assets.xcassets in Resources */,
+				DD654BBB2E63742F00181F1F /* Localizable.strings in Resources */,
 				DD9EEDB62E5EF69A0090E848 /* ApiKey.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -364,6 +413,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		DD654BB72E63733F00181F1F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/swiftgen_link.stamp",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nDERIVED=\"$(find \"${HOME}/Library/Developer/Xcode/DerivedData\" -type d -maxdepth 1 -name \"YouTubePlayer-*\" | head -n1 || true)\"\n\nif [[ -z \"${DERIVED}\" ]]; then\n  echo \"⚠️  DerivedData for YouTubePlayer not found\"\n  exit 0  \nfi\n\nSRC=\"${DERIVED}/Build/Intermediates.noindex/BuildToolPluginIntermediates/swiftgenpluginkit.output/SwiftGenPluginKit/SwiftGenPlugin\"\n\nif [[ ! -d \"${SRC}\" ]]; then\n  echo \"⚠️  SwiftGen output folder not found yet: ${SRC}\"\n  exit 0\nfi\n\nDST=\"${SRCROOT}/YouTubePlayer/Resources/Generated\"\n\nif [[ ! -L \"${DST}\" || \"$(readlink \"${DST}\")\" != \"${SRC}\" ]]; then\n  rm -rf \"${DST}\"\n  ln -s \"${SRC}\" \"${DST}\"\n  echo \"🔗 Linked: ${SRC} → ${DST}\"\nfi\n\nSTAMP=\"${DERIVED_FILE_DIR}/swiftgen_link.stamp\"\nmkdir -p \"$(dirname \"${STAMP}\")\"\ndate > \"${STAMP}\"\necho \"Wrote stamp: ${STAMP}\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DD7AABE72E5C446F005AE888 /* Sources */ = {
@@ -412,6 +482,17 @@
 			targetProxy = DD7AAC032E5C4470005AE888 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DD654BB92E63742F00181F1F /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DD654BBA2E63742F00181F1F /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		DD7AAC0A2E5C4470005AE888 /* Debug */ = {

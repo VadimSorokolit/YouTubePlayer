@@ -1,30 +1,30 @@
 strings:
   inputs:
-    - Resources/Inputs/en.lproj/Localizable.strings
+    - ../YouTubePlayer/YouTubePlayer/Resources/Inputs//en.lproj/Localizable.strings
   outputs:
     - output: ${DERIVED_SOURCES_DIR}/Strings+Generated.swift
       templateName: structured-swift5
       params:
-        bundle: Bundle.module
+        bundle: Bundle.main
         publicAccess: true
 
 fonts:
   inputs:
-    - Resources/Inputs/Fonts
+    - ../YouTubePlayer/YouTubePlayer/Resources/Inputs/Fonts
   outputs:
     - output: ${DERIVED_SOURCES_DIR}/Fonts+Generated.swift
-      templateName: swift5  
+      templateName: swift5
       params:
-        bundle: Bundle.module
+        bundle: Bundle.main
         publicAccess: true
         enumName: FontFamily
 
 xcassets:
   inputs:
-    - Resources/Inputs/Media.xcassets
+    - ../YouTubePlayer/YouTubePlayer/Resources/Inputs/Assets.xcassets
   outputs:
     - output: ${DERIVED_SOURCES_DIR}/Assets+Generated.swift
       templateName: swift5
       params:
-        bundle: Bundle.module
+        bundle: Bundle.main
         publicAccess: true
