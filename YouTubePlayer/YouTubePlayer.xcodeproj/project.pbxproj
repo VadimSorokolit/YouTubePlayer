@@ -26,6 +26,9 @@
 		DD9EEDC42E5F19EF0090E848 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9EEDC32E5F19ED0090E848 /* Secrets.swift */; };
 		DDA0F33A2E621456002B59E4 /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = DDA0F3392E621456002B59E4 /* Factory */; };
 		DDA0F33D2E62146B002B59E4 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = DDA0F33C2E62146B002B59E4 /* Moya */; };
+		DDA802DC2E65DC66000A01C9 /* Strings+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA802DA2E65DC66000A01C9 /* Strings+Generated.swift */; };
+		DDA802DD2E65DC66000A01C9 /* Assets+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA802D82E65DC66000A01C9 /* Assets+Generated.swift */; };
+		DDA802DE2E65DC66000A01C9 /* Fonts+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA802D92E65DC66000A01C9 /* Fonts+Generated.swift */; };
 		DDB1BC4C2E62571600B42000 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDB1BC4B2E62571600B42000 /* Assets.xcassets */; };
 		DDB7195E2E621A5A00C4093D /* SwiftGenPluginKit in Frameworks */ = {isa = PBXBuildFile; productRef = DDB7195D2E621A5A00C4093D /* SwiftGenPluginKit */; };
 /* End PBXBuildFile section */
@@ -69,16 +72,11 @@
 		DD9EEDBB2E5F13DA0090E848 /* YouTubeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeRouter.swift; sourceTree = "<group>"; };
 		DD9EEDC32E5F19ED0090E848 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		DD9EEDD52E5F4BA00090E848 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DDA802D82E65DC66000A01C9 /* Assets+Generated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Assets+Generated.swift"; sourceTree = "<group>"; };
+		DDA802D92E65DC66000A01C9 /* Fonts+Generated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Fonts+Generated.swift"; sourceTree = "<group>"; };
+		DDA802DA2E65DC66000A01C9 /* Strings+Generated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+Generated.swift"; sourceTree = "<group>"; };
 		DDB1BC4B2E62571600B42000 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		DD654BCD2E6379B600181F1F /* Generated */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Generated;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		DD7AABE82E5C446F005AE888 /* Frameworks */ = {
@@ -255,11 +253,21 @@
 			path = Config;
 			sourceTree = "<group>";
 		};
+		DDA802DB2E65DC66000A01C9 /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				DDA802D82E65DC66000A01C9 /* Assets+Generated.swift */,
+				DDA802D92E65DC66000A01C9 /* Fonts+Generated.swift */,
+				DDA802DA2E65DC66000A01C9 /* Strings+Generated.swift */,
+			);
+			path = Generated;
+			sourceTree = "<group>";
+		};
 		DDB1BC4D2E62573200B42000 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 				DD654BB82E63738900181F1F /* Inputs */,
-				DD654BCD2E6379B600181F1F /* Generated */,
+				DDA802DB2E65DC66000A01C9 /* Generated */,
 				DD9EEDB52E5EF69A0090E848 /* ApiKey.json */,
 			);
 			path = Resources;
@@ -280,9 +288,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				DD654BCD2E6379B600181F1F /* Generated */,
 			);
 			name = YouTubePlayer;
 			packageProductDependencies = (
@@ -450,6 +455,9 @@
 				DD46CDC52E6094E1009B25CB /* MoyaProvider+MoyaConcurrency.swift in Sources */,
 				DD9EEDBA2E5EF7B40090E848 /* AppConfig.swift in Sources */,
 				DD7AAC232E5C44D8005AE888 /* YouTubePlayerApp.swift in Sources */,
+				DDA802DC2E65DC66000A01C9 /* Strings+Generated.swift in Sources */,
+				DDA802DD2E65DC66000A01C9 /* Assets+Generated.swift in Sources */,
+				DDA802DE2E65DC66000A01C9 /* Fonts+Generated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
