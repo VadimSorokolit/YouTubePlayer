@@ -3,21 +3,21 @@ output_dir: YouTubePlayer/Resources/Generated
 
 strings:
   inputs:
-    -  Resources/Input/en.lproj
+    -  Resources/Inputs/en.lproj
   outputs:
     - templateName: structured-swift5
       output: strings.swift
 
 xcassets:
   inputs:
-    - Resources/Input/Assets.xcassets
+    - Resources/Inputs/Assets.xcassets
   outputs:
     - templateName: swift5
       output: assets.swift
 
 fonts:
   inputs:
-    - Resources/Input/Fonts
+    - Resources/Inputs/Fonts
   outputs:
     - templateName: swift5
       output: fonts.swift

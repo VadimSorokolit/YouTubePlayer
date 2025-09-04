@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftGenPluginKit
 
 enum Secrets {
     static let apiKey: String? = {
