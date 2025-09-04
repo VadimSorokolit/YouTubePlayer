@@ -27,7 +27,7 @@ final class YouTubeViewModel {
             do {
                 let result = try await self.service.getChannels(by: id)
                 self.channels = result
-                print(channels)
+                dump(channels)
             } catch {
                 self.errorMessage = error.localizedDescription
                 print(errorMessage ?? "")
