@@ -7,6 +7,7 @@
 
 import Foundation
 import Moya
+import SwiftGenPluginKit
 
 private struct Constants {
     static var apiKey: String {

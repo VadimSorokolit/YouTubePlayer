@@ -8,9 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		DD3C1B582E60482800FF3953 /* YouTubeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3C1B572E60482400FF3953 /* YouTubeViewModel.swift */; };
-		DD3C1BB72E60636B00FF3953 /* assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3C1BB32E60636B00FF3953 /* assets.swift */; };
-		DD3C1BB82E60636B00FF3953 /* fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3C1BB42E60636B00FF3953 /* fonts.swift */; };
-		DD3C1BB92E60636B00FF3953 /* strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3C1BB52E60636B00FF3953 /* strings.swift */; };
 		DD3C1BBC2E606A0100FF3953 /* YouTubeNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3C1BBB2E606A0000FF3953 /* YouTubeNetworkService.swift */; };
 		DD3C1BBF2E60774600FF3953 /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = DD3C1BBE2E60774600FF3953 /* Factory */; };
 		DD3C1BC22E607A4D00FF3953 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3C1BC12E607A4C00FF3953 /* Container.swift */; };
@@ -20,6 +17,10 @@
 		DD7AAC222E5C44D8005AE888 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7AAC1E2E5C44D8005AE888 /* ContentView.swift */; };
 		DD7AAC232E5C44D8005AE888 /* YouTubePlayerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7AAC1F2E5C44D8005AE888 /* YouTubePlayerApp.swift */; };
 		DD7AAC262E5C44DD005AE888 /* YouTubePlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7AAC242E5C44DD005AE888 /* YouTubePlayerTests.swift */; };
+		DD98634B2E6A05F0007AA067 /* SwiftGenPluginKit in Frameworks */ = {isa = PBXBuildFile; productRef = DD98634A2E6A05F0007AA067 /* SwiftGenPluginKit */; };
+		DD9863502E6A08CD007AA067 /* Strings+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD98634E2E6A08CD007AA067 /* Strings+Generated.swift */; };
+		DD9863512E6A08CD007AA067 /* Assets+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD98634C2E6A08CD007AA067 /* Assets+Generated.swift */; };
+		DD9863522E6A08CD007AA067 /* Fonts+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD98634D2E6A08CD007AA067 /* Fonts+Generated.swift */; };
 		DD9EEDB62E5EF69A0090E848 /* ApiKey.json in Resources */ = {isa = PBXBuildFile; fileRef = DD9EEDB52E5EF69A0090E848 /* ApiKey.json */; };
 		DD9EEDBA2E5EF7B40090E848 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9EEDB92E5EF7B20090E848 /* AppConfig.swift */; };
 		DD9EEDBC2E5F13DB0090E848 /* YouTubeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9EEDBB2E5F13DA0090E848 /* YouTubeRouter.swift */; };
@@ -51,9 +52,6 @@
 
 /* Begin PBXFileReference section */
 		DD3C1B572E60482400FF3953 /* YouTubeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeViewModel.swift; sourceTree = "<group>"; };
-		DD3C1BB32E60636B00FF3953 /* assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = assets.swift; sourceTree = "<group>"; };
-		DD3C1BB42E60636B00FF3953 /* fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fonts.swift; sourceTree = "<group>"; };
-		DD3C1BB52E60636B00FF3953 /* strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = strings.swift; sourceTree = "<group>"; };
 		DD3C1BBB2E606A0000FF3953 /* YouTubeNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeNetworkService.swift; sourceTree = "<group>"; };
 		DD3C1BC12E607A4C00FF3953 /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
 		DD3C1BC32E60804200FF3953 /* ChannelsDataWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsDataWrapper.swift; sourceTree = "<group>"; };
@@ -65,6 +63,9 @@
 		DD7AAC1E2E5C44D8005AE888 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		DD7AAC1F2E5C44D8005AE888 /* YouTubePlayerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubePlayerApp.swift; sourceTree = "<group>"; };
 		DD7AAC242E5C44DD005AE888 /* YouTubePlayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubePlayerTests.swift; sourceTree = "<group>"; };
+		DD98634C2E6A08CD007AA067 /* Assets+Generated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Assets+Generated.swift"; sourceTree = "<group>"; };
+		DD98634D2E6A08CD007AA067 /* Fonts+Generated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Fonts+Generated.swift"; sourceTree = "<group>"; };
+		DD98634E2E6A08CD007AA067 /* Strings+Generated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+Generated.swift"; sourceTree = "<group>"; };
 		DD9EEDB52E5EF69A0090E848 /* ApiKey.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = ApiKey.json; path = ../Secrets/ApiKey.json; sourceTree = SOURCE_ROOT; };
 		DD9EEDB92E5EF7B20090E848 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		DD9EEDBB2E5F13DA0090E848 /* YouTubeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeRouter.swift; sourceTree = "<group>"; };
@@ -85,6 +86,7 @@
 			files = (
 				DD9EEDC72E5F25D50090E848 /* Moya in Frameworks */,
 				DD3C1BBF2E60774600FF3953 /* Factory in Frameworks */,
+				DD98634B2E6A05F0007AA067 /* SwiftGenPluginKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,16 +107,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		DD3C1BB62E60636B00FF3953 /* Generated */ = {
-			isa = PBXGroup;
-			children = (
-				DD3C1BB32E60636B00FF3953 /* assets.swift */,
-				DD3C1BB42E60636B00FF3953 /* fonts.swift */,
-				DD3C1BB52E60636B00FF3953 /* strings.swift */,
-			);
-			path = Generated;
-			sourceTree = "<group>";
-		};
 		DD3C1BBA2E60697400FF3953 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -201,8 +193,8 @@
 		DD7AAC2C2E5C4B2F005AE888 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				DD9EEDCA2E5F483D0090E848 /* Input */,
-				DD3C1BB62E60636B00FF3953 /* Generated */,
+				DD9EEDCA2E5F483D0090E848 /* Inputs */,
+				DD98634F2E6A08CD007AA067 /* Generated 2 */,
 				DD9EEDD52E5F4BA00090E848 /* Info.plist */,
 				DD9EEDB52E5EF69A0090E848 /* ApiKey.json */,
 			);
@@ -244,6 +236,16 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		DD98634F2E6A08CD007AA067 /* Generated 2 */ = {
+			isa = PBXGroup;
+			children = (
+				DD98634C2E6A08CD007AA067 /* Assets+Generated.swift */,
+				DD98634D2E6A08CD007AA067 /* Fonts+Generated.swift */,
+				DD98634E2E6A08CD007AA067 /* Strings+Generated.swift */,
+			);
+			path = "Generated 2";
+			sourceTree = "<group>";
+		};
 		DD9EEDBE2E5F19B30090E848 /* Config */ = {
 			isa = PBXGroup;
 			children = (
@@ -252,14 +254,14 @@
 			path = Config;
 			sourceTree = "<group>";
 		};
-		DD9EEDCA2E5F483D0090E848 /* Input */ = {
+		DD9EEDCA2E5F483D0090E848 /* Inputs */ = {
 			isa = PBXGroup;
 			children = (
 				DD9EEDCC2E5F48AF0090E848 /* Fonts */,
 				DD7AAC1D2E5C44D8005AE888 /* Assets.xcassets */,
 				DDFFD8692E5F6D9A0085298B /* Localizable.strings */,
 			);
-			path = Input;
+			path = Inputs;
 			sourceTree = "<group>";
 		};
 		DD9EEDCC2E5F48AF0090E848 /* Fonts */ = {
@@ -293,6 +295,7 @@
 			packageProductDependencies = (
 				DD9EEDC62E5F25D50090E848 /* Moya */,
 				DD3C1BBE2E60774600FF3953 /* Factory */,
+				DD98634A2E6A05F0007AA067 /* SwiftGenPluginKit */,
 			);
 			productName = YouTubePlayer;
 			productReference = DD7AABEB2E5C446F005AE888 /* YouTubePlayer.app */;
@@ -373,6 +376,7 @@
 			packageReferences = (
 				DD9EEDC52E5F25D50090E848 /* XCRemoteSwiftPackageReference "Moya" */,
 				DD3C1BBD2E60774600FF3953 /* XCRemoteSwiftPackageReference "Factory" */,
+				DD9863492E6A05F0007AA067 /* XCLocalSwiftPackageReference "../SwiftGenPluginKit" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = DD7AABEC2E5C446F005AE888 /* Products */;
@@ -420,7 +424,6 @@
 /* Begin PBXShellScriptBuildPhase section */
 		DD9EEDD62E5F4E7C0090E848 /* SwiftGen */ = {
 			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -432,10 +435,11 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/swiftgen_link.stamp",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export PATH=\"/opt/homebrew/bin:/usr/local/bin:$PATH\"\n\nif which swiftgen >/dev/null; then\n  swiftgen config run --config \"${SRCROOT}/swiftgen.yml\"\nelse\n  echo \"Warning: swiftgen not found\"\nfi\n";
+			shellScript = "set -euo pipefail\n\nDERIVED=\"$(find \"${HOME}/Library/Developer/Xcode/DerivedData\" -type d -maxdepth 1 -name \"YouTubePlayer-*\" | head -n1 || true)\"\n\nif [[ -z \"${DERIVED}\" ]]; then\n  echo \"⚠️  DerivedData for YouTubePlayer not found\"\n  exit 0  \nfi\n\nSRC=\"${DERIVED}/Build/Intermediates.noindex/BuildToolPluginIntermediates/swiftgenpluginkit.output/SwiftGenPluginKit/SwiftGenPlugin\"\n\nif [[ ! -d \"${SRC}\" ]]; then\n  echo \"⚠️  SwiftGen output folder not found yet: ${SRC}\"\n  exit 0\nfi\n\nDST=\"${SRCROOT}/YouTubePlayer/Resources/Generated\"\n\nif [[ ! -L \"${DST}\" || \"$(readlink \"${DST}\")\" != \"${SRC}\" ]]; then\n  rm -rf \"${DST}\"\n  ln -s \"${SRC}\" \"${DST}\"\n  echo \"🔗 Linked: ${SRC} → ${DST}\"\nfi\n\nSTAMP=\"${DERIVED_FILE_DIR}/swiftgen_link.stamp\"\nmkdir -p \"$(dirname \"${STAMP}\")\"\ndate > \"${STAMP}\"\necho \"Wrote stamp: ${STAMP}\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -448,15 +452,15 @@
 				DD9EEDC42E5F19EF0090E848 /* Secrets.swift in Sources */,
 				DD7AAC222E5C44D8005AE888 /* ContentView.swift in Sources */,
 				DD9EEDBC2E5F13DB0090E848 /* YouTubeRouter.swift in Sources */,
-				DD3C1BB72E60636B00FF3953 /* assets.swift in Sources */,
-				DD3C1BB82E60636B00FF3953 /* fonts.swift in Sources */,
 				DD3C1BC42E60804F00FF3953 /* ChannelsDataWrapper.swift in Sources */,
 				DD3C1BBC2E606A0100FF3953 /* YouTubeNetworkService.swift in Sources */,
 				DD3C1BC22E607A4D00FF3953 /* Container.swift in Sources */,
-				DD3C1BB92E60636B00FF3953 /* strings.swift in Sources */,
 				DD46CDC52E6094E1009B25CB /* MoyaProvider+MoyaConcurrency.swift in Sources */,
 				DD9EEDBA2E5EF7B40090E848 /* AppConfig.swift in Sources */,
 				DD7AAC232E5C44D8005AE888 /* YouTubePlayerApp.swift in Sources */,
+				DD9863502E6A08CD007AA067 /* Strings+Generated.swift in Sources */,
+				DD9863512E6A08CD007AA067 /* Assets+Generated.swift in Sources */,
+				DD9863522E6A08CD007AA067 /* Fonts+Generated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -800,6 +804,13 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCLocalSwiftPackageReference section */
+		DD9863492E6A05F0007AA067 /* XCLocalSwiftPackageReference "../SwiftGenPluginKit" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../SwiftGenPluginKit;
+		};
+/* End XCLocalSwiftPackageReference section */
+
 /* Begin XCRemoteSwiftPackageReference section */
 		DD3C1BBD2E60774600FF3953 /* XCRemoteSwiftPackageReference "Factory" */ = {
 			isa = XCRemoteSwiftPackageReference;
@@ -824,6 +835,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DD3C1BBD2E60774600FF3953 /* XCRemoteSwiftPackageReference "Factory" */;
 			productName = Factory;
+		};
+		DD98634A2E6A05F0007AA067 /* SwiftGenPluginKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SwiftGenPluginKit;
 		};
 		DD9EEDC62E5F25D50090E848 /* Moya */ = {
 			isa = XCSwiftPackageProductDependency;
