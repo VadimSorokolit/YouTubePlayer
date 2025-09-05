@@ -47,18 +47,18 @@ internal enum L10n {
   internal static let parameterPart = L10n.tr("Localizable", "parameterPart", fallback: "part")
   /// playlistId
   internal static let parameterPlaylistId = L10n.tr("Localizable", "parameterPlaylistId", fallback: "playlistId")
-  /// youtube/v3//playlistItems
-  internal static let playlistItemsPath = L10n.tr("Localizable", "playlistItemsPath", fallback: "youtube/v3//playlistItems")
-  /// youtube/v3//playlists
-  internal static let playlistsPath = L10n.tr("Localizable", "playlistsPath", fallback: "youtube/v3//playlists")
+  /// youtube/v3/playlistItems
+  internal static let playlistItemsPath = L10n.tr("Localizable", "playlistItemsPath", fallback: "youtube/v3/playlistItems")
+  /// youtube/v3/playlists
+  internal static let playlistsPath = L10n.tr("Localizable", "playlistsPath", fallback: "youtube/v3/playlists")
   /// brandingSettings
   internal static let valueBrandingSettings = L10n.tr("Localizable", "valueBrandingSettings", fallback: "brandingSettings")
   /// snippet
   internal static let valueSnippet = L10n.tr("Localizable", "valueSnippet", fallback: "snippet")
   /// statistics
   internal static let valueStatistics = L10n.tr("Localizable", "valueStatistics", fallback: "statistics")
-  /// youtube/v3//videos
-  internal static let videosPath = L10n.tr("Localizable", "videosPath", fallback: "youtube/v3//videos")
+  /// youtube/v3/videos
+  internal static let videosPath = L10n.tr("Localizable", "videosPath", fallback: "youtube/v3/videos")
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:enable nesting type_body_length type_name vertical_whitespace_opening_braces

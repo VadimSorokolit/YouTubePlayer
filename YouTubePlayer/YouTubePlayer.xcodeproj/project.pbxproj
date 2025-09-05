@@ -29,6 +29,9 @@
 		DDFAC63A2E6A124000A74343 /* assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFAC6362E6A124000A74343 /* assets.swift */; };
 		DDFAC63B2E6A124000A74343 /* strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFAC6382E6A124000A74343 /* strings.swift */; };
 		DDFAC63C2E6A124000A74343 /* fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFAC6372E6A124000A74343 /* fonts.swift */; };
+		DDFAC6692E6AE3C000A74343 /* VideoDataWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFAC6682E6AE3BE00A74343 /* VideoDataWrapper.swift */; };
+		DDFAC66B2E6AE3C400A74343 /* PlaylistItemsDataWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFAC66A2E6AE3C300A74343 /* PlaylistItemsDataWrapper.swift */; };
+		DDFAC66D2E6AE3CA00A74343 /* PlaylistDataWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFAC66C2E6AE3C900A74343 /* PlaylistDataWrapper.swift */; };
 		DDFFD86B2E5F6D9A0085298B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DDFFD8692E5F6D9A0085298B /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
@@ -75,6 +78,9 @@
 		DDFAC6362E6A124000A74343 /* assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = assets.swift; sourceTree = "<group>"; };
 		DDFAC6372E6A124000A74343 /* fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fonts.swift; sourceTree = "<group>"; };
 		DDFAC6382E6A124000A74343 /* strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = strings.swift; sourceTree = "<group>"; };
+		DDFAC6682E6AE3BE00A74343 /* VideoDataWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDataWrapper.swift; sourceTree = "<group>"; };
+		DDFAC66A2E6AE3C300A74343 /* PlaylistItemsDataWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistItemsDataWrapper.swift; sourceTree = "<group>"; };
+		DDFAC66C2E6AE3C900A74343 /* PlaylistDataWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistDataWrapper.swift; sourceTree = "<group>"; };
 		DDFFD86A2E5F6D9A0085298B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -204,18 +210,20 @@
 			children = (
 				DD7AAC302E5C4BEF005AE888 /* ViewModel */,
 				DD7AAC2F2E5C4BE4005AE888 /* Views */,
-				DD7AAC2E2E5C4BD9005AE888 /* Model */,
+				DD7AAC2E2E5C4BD9005AE888 /* Models */,
 			);
 			path = MVVM;
 			sourceTree = "<group>";
 		};
-		DD7AAC2E2E5C4BD9005AE888 /* Model */ = {
+		DD7AAC2E2E5C4BD9005AE888 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				DD3C1BC32E60804200FF3953 /* ChannelsDataWrapper.swift */,
-				DD9EEDB92E5EF7B20090E848 /* AppConfig.swift */,
+				DDFAC66C2E6AE3C900A74343 /* PlaylistDataWrapper.swift */,
+				DDFAC66A2E6AE3C300A74343 /* PlaylistItemsDataWrapper.swift */,
+				DDFAC6682E6AE3BE00A74343 /* VideoDataWrapper.swift */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		DD7AAC2F2E5C4BE4005AE888 /* Views */ = {
@@ -237,6 +245,7 @@
 		DD9EEDBE2E5F19B30090E848 /* Config */ = {
 			isa = PBXGroup;
 			children = (
+				DDFAC6672E6AE38E00A74343 /* Model */,
 				DD9EEDC32E5F19ED0090E848 /* Secrets.swift */,
 			);
 			path = Config;
@@ -271,6 +280,14 @@
 				DDFAC6382E6A124000A74343 /* strings.swift */,
 			);
 			path = Generated;
+			sourceTree = "<group>";
+		};
+		DDFAC6672E6AE38E00A74343 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DD9EEDB92E5EF7B20090E848 /* AppConfig.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -446,9 +463,12 @@
 			files = (
 				DD3C1B582E60482800FF3953 /* YouTubeViewModel.swift in Sources */,
 				DD9EEDC42E5F19EF0090E848 /* Secrets.swift in Sources */,
+				DDFAC66B2E6AE3C400A74343 /* PlaylistItemsDataWrapper.swift in Sources */,
+				DDFAC6692E6AE3C000A74343 /* VideoDataWrapper.swift in Sources */,
 				DD7AAC222E5C44D8005AE888 /* ContentView.swift in Sources */,
 				DD9EEDBC2E5F13DB0090E848 /* YouTubeRouter.swift in Sources */,
 				DD3C1BC42E60804F00FF3953 /* ChannelsDataWrapper.swift in Sources */,
+				DDFAC66D2E6AE3CA00A74343 /* PlaylistDataWrapper.swift in Sources */,
 				DDFAC63A2E6A124000A74343 /* assets.swift in Sources */,
 				DDFAC63B2E6A124000A74343 /* strings.swift in Sources */,
 				DDFAC63C2E6A124000A74343 /* fonts.swift in Sources */,

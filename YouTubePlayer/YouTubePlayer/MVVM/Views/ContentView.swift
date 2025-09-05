@@ -31,7 +31,6 @@ struct ContentView: View {
         func body(content: Content) -> some View {
             content
                 .onAppear {
-                    self.viewModel.loadChannels(by: L10n.channelId2)
                 }
         }
     }

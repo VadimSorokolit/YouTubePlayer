@@ -19,9 +19,9 @@
 // Paths
 
 "channelsPath" = "youtube/v3/channels";
-"playlistsPath" = "youtube/v3//playlists";
-"playlistItemsPath" = "youtube/v3//playlistItems";
-"videosPath" = "youtube/v3//videos";
+"playlistsPath" = "youtube/v3/playlists";
+"playlistItemsPath" = "youtube/v3/playlistItems";
+"videosPath" = "youtube/v3/videos";
 
 // Parameters
 
