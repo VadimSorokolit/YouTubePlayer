@@ -9,12 +9,12 @@ struct PlaylistDataWrapper: Decodable {
     let items: [Playlist]
 }
 
-struct Playlist: Decodable {
+struct Playlist: Decodable, Equatable {
     let id: String
     let snippet: Snippet
     var playlistItems: [PlaylistItem]?
     
-    struct Snippet: Decodable {
+    struct Snippet: Decodable, Equatable {
         let title: String
     }
 }

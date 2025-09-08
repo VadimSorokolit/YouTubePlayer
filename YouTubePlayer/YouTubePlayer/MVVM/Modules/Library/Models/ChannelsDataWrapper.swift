@@ -18,25 +18,25 @@ struct ChannelsDataWrapper: Decodable {
     }
 }
 
-struct Channel: Decodable {
+struct Channel: Decodable, Equatable {
     let id: String
     let statistics: Statistics
     let brandingSettings: Settings
     var playlists: [Playlist]?
     
-    struct Statistics: Decodable {
+    struct Statistics: Decodable, Equatable {
         let subscriberCount: String
     }
     
-    struct Settings: Decodable {
+    struct Settings: Decodable, Equatable {
         let channel: Setting
         let image: Image
         
-        struct Setting: Decodable {
+        struct Setting: Decodable, Equatable {
             let title: String
         }
         
-        struct Image: Decodable {
+        struct Image: Decodable, Equatable {
             let bannerExternalUrl: String
         }
     }

@@ -26,11 +26,12 @@ struct ContentView: View {
     // MARK: - Modifiers
     
     struct LoadViewModifier: ViewModifier {
-        @Environment(YouTubeViewModel.self) private var viewModel
+        @Environment(LibraryViewModel.self) private var viewModel
         
         func body(content: Content) -> some View {
             content
                 .onAppear {
+                    viewModel.startTimer()
                 }
         }
     }
