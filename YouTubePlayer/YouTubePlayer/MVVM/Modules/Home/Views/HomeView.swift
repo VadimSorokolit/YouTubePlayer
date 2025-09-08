@@ -7,7 +7,7 @@
     
 import SwiftUI
 
-struct ContentView: View {
+struct HomeView: View {
     
     // MARK: - Main body
     
@@ -30,13 +30,11 @@ struct ContentView: View {
         
         func body(content: Content) -> some View {
             content
-                .onAppear {
-                    viewModel.startTimer()
-                }
+                .onAppear {}
         }
     }
 }
 
 #Preview {
-    ContentView()
+    HomeView()
 }

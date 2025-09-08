@@ -17,7 +17,7 @@ class YouTubeViewModel {
     var errorMessage: String?
     var pagesCounter: Int = 0
     private(set) var sections: [ResourceSection] = []
-    private(set) var isLoading: Bool = false
+    var isLoading: Bool = false
     
     // MARK: - Properties. Private
     
