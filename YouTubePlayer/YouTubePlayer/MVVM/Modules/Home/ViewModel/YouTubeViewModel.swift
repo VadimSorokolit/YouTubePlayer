@@ -9,7 +9,7 @@ import Foundation
 import Factory
 
 @Observable
-final class LibraryViewModel {
+class YouTubeViewModel {
     
     // MARK: - Properties. Public
     
@@ -17,11 +17,11 @@ final class LibraryViewModel {
     var errorMessage: String?
     var pagesCounter: Int = 0
     private(set) var sections: [ResourceSection] = []
-    private(set) var isLoading = false
+    private(set) var isLoading: Bool = false
     
     // MARK: - Properties. Private
     
-    private let channelsIDs = [
+    private let channelsIDs: [String] = [
         L10n.channelId1,
         L10n.channelId2,
         L10n.channelId3,

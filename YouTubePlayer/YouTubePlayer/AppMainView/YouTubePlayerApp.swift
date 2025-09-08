@@ -12,7 +12,7 @@ struct YouTubePlayerApp: App {
     
     // MARK: - Properties. Private
     
-    @State private var viewModel = LibraryViewModel()
+    @State private var viewModel = YouTubeViewModel()
     
     // MARK: - Root Scene
     

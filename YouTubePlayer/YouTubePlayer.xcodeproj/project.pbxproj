@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DD3C1B582E60482800FF3953 /* LibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3C1B572E60482400FF3953 /* LibraryViewModel.swift */; };
+		DD3C1B582E60482800FF3953 /* YouTubeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3C1B572E60482400FF3953 /* YouTubeViewModel.swift */; };
 		DD3C1BBC2E606A0100FF3953 /* YouTubeNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3C1BBB2E606A0000FF3953 /* YouTubeNetworkService.swift */; };
 		DD3C1BBF2E60774600FF3953 /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = DD3C1BBE2E60774600FF3953 /* Factory */; };
 		DD3C1BC22E607A4D00FF3953 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3C1BC12E607A4C00FF3953 /* Container.swift */; };
@@ -27,6 +27,7 @@
 		DD9EEDD32E5F49570090E848 /* SFProText-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD9EEDD02E5F49570090E848 /* SFProText-Semibold.ttf */; };
 		DD9EEDD42E5F49570090E848 /* SFProText-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD9EEDCE2E5F49570090E848 /* SFProText-Medium.ttf */; };
 		DDD371E42E6D843C00429518 /* CellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD371E32E6D843200429518 /* CellModel.swift */; };
+		DDD371EB2E6EB8AF00429518 /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD371EA2E6EB8A800429518 /* PlayerViewModel.swift */; };
 		DDFAC63A2E6A124000A74343 /* assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFAC6362E6A124000A74343 /* assets.swift */; };
 		DDFAC63B2E6A124000A74343 /* strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFAC6382E6A124000A74343 /* strings.swift */; };
 		DDFAC63C2E6A124000A74343 /* fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFAC6372E6A124000A74343 /* fonts.swift */; };
@@ -55,7 +56,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		DD3C1B572E60482400FF3953 /* LibraryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewModel.swift; sourceTree = "<group>"; };
+		DD3C1B572E60482400FF3953 /* YouTubeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeViewModel.swift; sourceTree = "<group>"; };
 		DD3C1BBB2E606A0000FF3953 /* YouTubeNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeNetworkService.swift; sourceTree = "<group>"; };
 		DD3C1BC12E607A4C00FF3953 /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
 		DD3C1BC32E60804200FF3953 /* ChannelsDataWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsDataWrapper.swift; sourceTree = "<group>"; };
@@ -78,6 +79,7 @@
 		DD9EEDD52E5F4BA00090E848 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DD9EEDDA2E5F5AEE0090E848 /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
 		DDD371E32E6D843200429518 /* CellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellModel.swift; sourceTree = "<group>"; };
+		DDD371EA2E6EB8A800429518 /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
 		DDFAC6362E6A124000A74343 /* assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = assets.swift; sourceTree = "<group>"; };
 		DDFAC6372E6A124000A74343 /* fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fonts.swift; sourceTree = "<group>"; };
 		DDFAC6382E6A124000A74343 /* strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = strings.swift; sourceTree = "<group>"; };
@@ -240,7 +242,7 @@
 		DD7AAC302E5C4BEF005AE888 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				DD3C1B572E60482400FF3953 /* LibraryViewModel.swift */,
+				DD3C1B572E60482400FF3953 /* YouTubeViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -278,20 +280,20 @@
 		DDD371E52E6EB0C300429518 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				DDD371E62E6EB0D100429518 /* Library */,
+				DDD371E62E6EB0D100429518 /* Home */,
 				DDD371E72E6EB0F000429518 /* Player */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
 		};
-		DDD371E62E6EB0D100429518 /* Library */ = {
+		DDD371E62E6EB0D100429518 /* Home */ = {
 			isa = PBXGroup;
 			children = (
 				DD7AAC2E2E5C4BD9005AE888 /* Models */,
 				DD7AAC2F2E5C4BE4005AE888 /* Views */,
 				DD7AAC302E5C4BEF005AE888 /* ViewModel */,
 			);
-			path = Library;
+			path = Home;
 			sourceTree = "<group>";
 		};
 		DDD371E72E6EB0F000429518 /* Player */ = {
@@ -313,6 +315,7 @@
 		DDD371E92E6EB13600429518 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				DDD371EA2E6EB8A800429518 /* PlayerViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -508,7 +511,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD3C1B582E60482800FF3953 /* LibraryViewModel.swift in Sources */,
+				DD3C1B582E60482800FF3953 /* YouTubeViewModel.swift in Sources */,
 				DD9EEDC42E5F19EF0090E848 /* Secrets.swift in Sources */,
 				DDFAC66B2E6AE3C400A74343 /* PlaylistItemsDataWrapper.swift in Sources */,
 				DDFAC6692E6AE3C000A74343 /* VideoDataWrapper.swift in Sources */,
@@ -517,6 +520,7 @@
 				DD3C1BC42E60804F00FF3953 /* ChannelsDataWrapper.swift in Sources */,
 				DDFAC66D2E6AE3CA00A74343 /* PlaylistDataWrapper.swift in Sources */,
 				DDFAC63A2E6A124000A74343 /* assets.swift in Sources */,
+				DDD371EB2E6EB8AF00429518 /* PlayerViewModel.swift in Sources */,
 				DDFAC63B2E6A124000A74343 /* strings.swift in Sources */,
 				DDFAC63C2E6A124000A74343 /* fonts.swift in Sources */,
 				DD3C1BBC2E606A0100FF3953 /* YouTubeNetworkService.swift in Sources */,

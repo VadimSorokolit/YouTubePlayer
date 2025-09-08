@@ -26,7 +26,7 @@ struct ContentView: View {
     // MARK: - Modifiers
     
     struct LoadViewModifier: ViewModifier {
-        @Environment(LibraryViewModel.self) private var viewModel
+        @Environment(YouTubeViewModel.self) private var viewModel
         
         func body(content: Content) -> some View {
             content
