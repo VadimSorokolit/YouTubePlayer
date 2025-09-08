@@ -12,14 +12,21 @@ struct HomeView: View {
     // MARK: - Main body
     
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        ZStack {
+            Asset.customBackground.swiftUIColor.ignoresSafeArea()
         }
-        .padding()
-        .modifier(LoadViewModifier())
+        .safeAreaInset(edge: .top) {
+            HStack {
+                Text("YouTube Player")
+                    .foregroundColor(.white)
+                    .font(.custom(FontFamily.SFProDisplay.bold, size: 34.0))
+                    .frame(maxWidth: UIScreen.main.bounds.width * 0.7)
+                    .lineLimit(1)
+                    .padding(.leading, 24.0)
+                
+                Spacer()
+            }
+        }
     }
     
     
@@ -33,8 +40,4 @@ struct HomeView: View {
                 .onAppear {}
         }
     }
-}
-
-#Preview {
-    HomeView()
 }

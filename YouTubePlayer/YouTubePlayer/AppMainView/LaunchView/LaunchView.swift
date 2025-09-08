@@ -11,7 +11,8 @@ struct LaunchView: View {
     
     var body: some View {
         ZStack {
-            Color(asset: Asset.launchBackgroundColor).ignoresSafeArea()
+            Asset.launchBackgroundColor.swiftUIColor
+                .ignoresSafeArea()
             Image(Asset.launchIcon.name)
                 .resizable()
                 .scaledToFit()

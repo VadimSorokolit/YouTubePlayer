@@ -40,7 +40,7 @@ struct YouTubePlayerApp: App {
         func body(content: Content) -> some View {
             content
                 .onAppear {
-                    self.isShowingLaunchView = true
+//                    self.isShowingLaunchView = true
                 }
                 .onChange(of: viewModel.isLoading) {
                     if !self.viewModel.isLoading {

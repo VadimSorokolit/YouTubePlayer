@@ -4,10 +4,10 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string>SFProDisplay-Bold.ttf</string>
 		<string>SFProText-Semibold.ttf</string>
 		<string>SFProText-Medium.ttf</string>
 		<string>SFProText-Regular.ttf</string>
+		<string>SFProDisplay-Bold.ttf</string>
 	</array>
 </dict>
 </plist>
