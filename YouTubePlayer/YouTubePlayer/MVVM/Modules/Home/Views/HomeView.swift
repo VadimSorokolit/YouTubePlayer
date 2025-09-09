@@ -121,14 +121,13 @@ struct HomeView: View {
                     viewModel.updateData(for: currentPage)
                 }
                 .onChange(of: viewModel.pagesCounter) { _, _ in
-                    guard !channels.isEmpty else { return }
-                    withAnimation(.easeInOut) {
-                        currentPage = (currentPage + 1) % channels.count
+                    guard !channels.isEmpty else {
+                        return
                     }
-                    viewModel.updateData(for: currentPage)
-                }
-                .onChange(of: currentPage) { _, newValue in
-                    viewModel.updateData(for: newValue)
+                    currentPage = (currentPage + 1) % channels.count
+                    withAnimation(.easeInOut) {
+                        viewModel.updateData(for: currentPage)
+                    }
                 }
                 .onAppear {
                     viewModel.updateData(for: currentPage)
