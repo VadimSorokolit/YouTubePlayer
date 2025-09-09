@@ -17,20 +17,29 @@ struct HomeView: View {
             
             ContentView()
         }
-        .background(Asset.customBackground.swiftUIColor.ignoresSafeArea())
+        .background(
+            Asset.customBackground.swiftUIColor
+                .ignoresSafeArea()
+        )
     }
     
     private struct HeaderView: View {
         
         var body: some View {
-            HStack {
-                Text(L10n.homeScreenTitle)
-                    .foregroundColor(Asset.headerTitleTextColor.swiftUIColor)
-                    .font(.custom(FontFamily.SFProDisplay.bold, size: 34.0))
-                    .lineLimit(1)
-                    .padding(.leading, 24.0)
+            ZStack(alignment: .bottom) {
+                Rectangle()
+                    .frame(height: 41.0)
+                    .foregroundColor(.clear)
                 
-                Spacer()
+                HStack {
+                    Text(L10n.homeScreenTitle)
+                        .foregroundColor(Asset.headerTitleTextColor.swiftUIColor)
+                        .font(.custom(FontFamily.SFProDisplay.bold, size: 34.0))
+                        .lineLimit(1)
+                        .padding(.leading, 24.0)
+                    
+                    Spacer()
+                }
             }
         }
         
