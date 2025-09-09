@@ -47,5 +47,14 @@
 
 "channelId1" = "UCiMhD4jzUqG-IgPzUmmytRQ";
 "channelId2" = "UC5OrDvL9DscpcAstz7JnQGA";
-"channelId3" = "UCb3tJ5NKw7mDxyaQ73mwbRg";
-"channelId4" = "UCansLl8T6imFHqOhfXoAHmg";
+"channelId3" = "UCmvtGezn6LpfUN1QW0aEaTg";
+"channelId4" = "UC7fzrpTArAqDHuB3Hbmd_CQ";
+
+// Screen titles
+
+"homeScreenTitle" = "YouTube Player";
+"playerScreenTitle" = "My Music";
+
+// Common
+
+"subscribers" = "subscribers";

@@ -15,6 +15,13 @@ struct YouTubePlayerApp: App {
     @State private var isShowingLaunchView: Bool = false
     @State private var viewModel = YouTubeViewModel()
     
+    // MARK: - Initializer
+    
+    init() {
+        UIPageControl.appearance().currentPageIndicatorTintColor = UIColor(Asset.pagerActiveDotColor.swiftUIColor)
+        UIPageControl.appearance().pageIndicatorTintColor = UIColor(Asset.pagerInactiveDotColor.swiftUIColor)
+    }
+    
     // MARK: - Root Scene
     
     var body: some Scene {
@@ -40,7 +47,7 @@ struct YouTubePlayerApp: App {
         func body(content: Content) -> some View {
             content
                 .onAppear {
-//                    self.isShowingLaunchView = true
+                    self.isShowingLaunchView = true
                 }
                 .onChange(of: viewModel.isLoading) {
                     if !self.viewModel.isLoading {
@@ -49,6 +56,7 @@ struct YouTubePlayerApp: App {
                 }
                 .task {
                     try? await Task.sleep(nanoseconds: 2_000_000_000)
+                    self.viewModel.getChannels()
                 }
                 .overlay {
                     if self.viewModel.isLoading {

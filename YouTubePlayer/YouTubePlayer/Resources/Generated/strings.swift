@@ -23,14 +23,16 @@ internal enum L10n {
   internal static let channelId1 = L10n.tr("Localizable", "channelId1", fallback: "UCiMhD4jzUqG-IgPzUmmytRQ")
   /// UC5OrDvL9DscpcAstz7JnQGA
   internal static let channelId2 = L10n.tr("Localizable", "channelId2", fallback: "UC5OrDvL9DscpcAstz7JnQGA")
-  /// UCb3tJ5NKw7mDxyaQ73mwbRg
-  internal static let channelId3 = L10n.tr("Localizable", "channelId3", fallback: "UCb3tJ5NKw7mDxyaQ73mwbRg")
-  /// UCansLl8T6imFHqOhfXoAHmg
-  internal static let channelId4 = L10n.tr("Localizable", "channelId4", fallback: "UCansLl8T6imFHqOhfXoAHmg")
+  /// UCmvtGezn6LpfUN1QW0aEaTg
+  internal static let channelId3 = L10n.tr("Localizable", "channelId3", fallback: "UCmvtGezn6LpfUN1QW0aEaTg")
+  /// UC7fzrpTArAqDHuB3Hbmd_CQ
+  internal static let channelId4 = L10n.tr("Localizable", "channelId4", fallback: "UC7fzrpTArAqDHuB3Hbmd_CQ")
   /// youtube/v3/channels
   internal static let channelsPath = L10n.tr("Localizable", "channelsPath", fallback: "youtube/v3/channels")
   /// https://www.google.com
   internal static let defaultURL = L10n.tr("Localizable", "defaultURL", fallback: "https://www.google.com")
+  /// YouTube Player
+  internal static let homeScreenTitle = L10n.tr("Localizable", "homeScreenTitle", fallback: "YouTube Player")
   /// Missing API Key. Add ApiKey.json to bundle and unlock git-crypt
   internal static let invalidAPIkeyErrorMessage = L10n.tr("Localizable", "invalidAPIkeyErrorMessage", fallback: "Missing API Key. Add ApiKey.json to bundle and unlock git-crypt")
   /// URL is invalid
@@ -47,10 +49,14 @@ internal enum L10n {
   internal static let parameterPart = L10n.tr("Localizable", "parameterPart", fallback: "part")
   /// playlistId
   internal static let parameterPlaylistId = L10n.tr("Localizable", "parameterPlaylistId", fallback: "playlistId")
+  /// My Music
+  internal static let playerScreenTitle = L10n.tr("Localizable", "playerScreenTitle", fallback: "My Music")
   /// youtube/v3/playlistItems
   internal static let playlistItemsPath = L10n.tr("Localizable", "playlistItemsPath", fallback: "youtube/v3/playlistItems")
   /// youtube/v3/playlists
   internal static let playlistsPath = L10n.tr("Localizable", "playlistsPath", fallback: "youtube/v3/playlists")
+  /// subscribers
+  internal static let subscribers = L10n.tr("Localizable", "subscribers", fallback: "subscribers")
   /// brandingSettings
   internal static let valueBrandingSettings = L10n.tr("Localizable", "valueBrandingSettings", fallback: "brandingSettings")
   /// snippet

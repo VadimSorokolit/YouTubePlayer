@@ -71,7 +71,7 @@ class YouTubeViewModel {
                 for id in self.channelsIDs {
                     guard let channels = await self.getChannels(by: id), channels.isEmpty == false else { continue }
                     
-                    let playlists = try await self.getPlaylists(by: id, max: 4)
+                    let playlists = try await self.getPlaylists(by: id, max: 2)
                     var updatedPlaylists: [Playlist] = []
                     
                     for var playlist in playlists {

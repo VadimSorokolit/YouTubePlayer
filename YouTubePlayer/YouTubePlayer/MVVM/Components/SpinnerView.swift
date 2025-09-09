@@ -29,7 +29,7 @@ struct SpinnerView: View {
                 }
             }
             .padding(.trailing, 20.0)
-            .padding(.top, topInset + 30.0)
+            .padding(.top, topInset + 50.0)
             .padding(.bottom, 8.0)
             .background(.clear)
             .onAppear {

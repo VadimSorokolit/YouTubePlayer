@@ -25,10 +25,15 @@ internal typealias AssetImageTypeAlias = ImageAsset.Image
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
 internal enum Asset {
   internal static let accentColor = ColorAsset(name: "AccentColor")
-  internal static let color = ColorAsset(name: "Color")
+  internal static let channelSubtitleTextColor = ColorAsset(name: "ChannelSubtitleTextColor")
+  internal static let channelTitleTextColor = ColorAsset(name: "ChannelTitleTextColor")
   internal static let customBackground = ColorAsset(name: "CustomBackground")
+  internal static let headerTitleTextColor = ColorAsset(name: "HeaderTitleTextColor")
   internal static let launchBackgroundColor = ColorAsset(name: "LaunchBackgroundColor")
   internal static let launchIcon = ImageAsset(name: "LaunchIcon")
+  internal static let pagerActiveDotColor = ColorAsset(name: "PagerActiveDotColor")
+  internal static let pagerInactiveDotColor = ColorAsset(name: "PagerInactiveDotColor")
+  internal static let placeholder = ImageAsset(name: "Placeholder")
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
 
