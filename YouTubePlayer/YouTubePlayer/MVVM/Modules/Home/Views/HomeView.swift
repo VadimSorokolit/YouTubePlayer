@@ -11,7 +11,6 @@ struct HomeView: View {
     
     // MARK: - Properties. Private
     
-    @State private var playerState: PlayerState = .collapsed
     private let topOffSet: CGFloat = 52.0
     
     // MARK: - Main body
@@ -20,7 +19,7 @@ struct HomeView: View {
         ZStack {
             HomeBodyView(topOffSet: topOffSet)
             
-            PlayerBottomSheet(state: $playerState, topOffset: topOffSet)
+            PlayerView(topOffset: topOffSet)
         }
     }
     
@@ -141,6 +140,13 @@ struct HomeView: View {
                     .onChange(of: channels.count) { _, _ in
                         currentPage = min(currentPage, max(channels.count - 1, 0))
                         viewModel.updateData(for: currentPage)
+                    }
+                    .onChange(of: viewModel.isPlayerOpen) {
+                        if viewModel.isPlayerOpen {
+                            viewModel.stopTimer()
+                        } else {
+                            viewModel.startTimer()
+                        }
                     }
                     .onChange(of: viewModel.pagesCounter) { _, _ in
                         guard !channels.isEmpty else {

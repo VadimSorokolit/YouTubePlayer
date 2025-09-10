@@ -13,6 +13,7 @@ class YouTubeViewModel {
     
     // MARK: - Properties. Public
     
+    var isPlayerOpen: Bool = false
     var channels: [Channel] = []
     var errorMessage: String?
     var pagesCounter: Int = 0
@@ -37,10 +38,14 @@ class YouTubeViewModel {
     func startTimer() {
         self.stopTimer()
         self.timerTask = Task {
-            while Task.isCancelled == false {
-                try? await Task.sleep(nanoseconds: 5_000_000_000)
-                self.pagesCounter += 1
+            do {
+                for try await _ in AsyncThrowingStream.every(seconds: 5.0) {
+                    if self.isPlayerOpen == false {
+                        pagesCounter += 1
+                    }
+                }
             }
+            catch {}
         }
     }
     

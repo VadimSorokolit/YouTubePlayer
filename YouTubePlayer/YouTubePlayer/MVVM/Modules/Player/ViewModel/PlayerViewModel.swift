@@ -10,7 +10,11 @@ import Foundation
 @Observable
 class PlayerViewModel {
     
-    // MARK: - Properties
+    // MARK: - Properties. Public
+    
+    var isPlayerOpen: Bool = false
+    
+    // MARK: - Properties. Private
     
     private let secondsInHour: Int = 60 * 60
     
