@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD12119D2E713C18006D8960 /* View+cornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD12119C2E713C17006D8960 /* View+cornerRadius.swift */; };
 		DD3C1B582E60482800FF3953 /* YouTubeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3C1B572E60482400FF3953 /* YouTubeViewModel.swift */; };
 		DD3C1BBC2E606A0100FF3953 /* YouTubeNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3C1BBB2E606A0000FF3953 /* YouTubeNetworkService.swift */; };
 		DD3C1BBF2E60774600FF3953 /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = DD3C1BBE2E60774600FF3953 /* Factory */; };
 		DD3C1BC22E607A4D00FF3953 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3C1BC12E607A4C00FF3953 /* Container.swift */; };
 		DD3C1BC42E60804F00FF3953 /* ChannelsDataWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3C1BC32E60804200FF3953 /* ChannelsDataWrapper.swift */; };
 		DD46CDC52E6094E1009B25CB /* MoyaProvider+MoyaConcurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD46CDC42E6094E0009B25CB /* MoyaProvider+MoyaConcurrency.swift */; };
+		DD6C481E2E70487800042D13 /* PlayerBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6C481D2E70487700042D13 /* PlayerBottomSheet.swift */; };
 		DD7AAC212E5C44D8005AE888 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD7AAC1D2E5C44D8005AE888 /* Assets.xcassets */; };
 		DD7AAC222E5C44D8005AE888 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7AAC1E2E5C44D8005AE888 /* HomeView.swift */; };
 		DD7AAC232E5C44D8005AE888 /* YouTubePlayerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7AAC1F2E5C44D8005AE888 /* YouTubePlayerApp.swift */; };
@@ -58,11 +60,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DD12119C2E713C17006D8960 /* View+cornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+cornerRadius.swift"; sourceTree = "<group>"; };
 		DD3C1B572E60482400FF3953 /* YouTubeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeViewModel.swift; sourceTree = "<group>"; };
 		DD3C1BBB2E606A0000FF3953 /* YouTubeNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeNetworkService.swift; sourceTree = "<group>"; };
 		DD3C1BC12E607A4C00FF3953 /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
 		DD3C1BC32E60804200FF3953 /* ChannelsDataWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsDataWrapper.swift; sourceTree = "<group>"; };
 		DD46CDC42E6094E0009B25CB /* MoyaProvider+MoyaConcurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MoyaProvider+MoyaConcurrency.swift"; sourceTree = "<group>"; };
+		DD6C481D2E70487700042D13 /* PlayerBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerBottomSheet.swift; sourceTree = "<group>"; };
 		DD7AABEB2E5C446F005AE888 /* YouTubePlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YouTubePlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD7AABF82E5C4470005AE888 /* YouTubePlayerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YouTubePlayerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD7AAC022E5C4470005AE888 /* YouTubePlayerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YouTubePlayerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -140,6 +144,7 @@
 		DD46CDBD2E608FA4009B25CB /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				DD12119C2E713C17006D8960 /* View+cornerRadius.swift */,
 				DD46CDC42E6094E0009B25CB /* MoyaProvider+MoyaConcurrency.swift */,
 			);
 			path = Extensions;
@@ -314,6 +319,7 @@
 		DDD371E82E6EB11500429518 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DD6C481D2E70487700042D13 /* PlayerBottomSheet.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -542,6 +548,7 @@
 				DDEF61B52E6ED71B00D514FC /* SpinnerView.swift in Sources */,
 				DD3C1BC42E60804F00FF3953 /* ChannelsDataWrapper.swift in Sources */,
 				DDFAC66D2E6AE3CA00A74343 /* PlaylistDataWrapper.swift in Sources */,
+				DD6C481E2E70487800042D13 /* PlayerBottomSheet.swift in Sources */,
 				DDFAC63A2E6A124000A74343 /* assets.swift in Sources */,
 				DDEF61B22E6ECB1A00D514FC /* LaunchView.swift in Sources */,
 				DDD371EB2E6EB8AF00429518 /* PlayerViewModel.swift in Sources */,
@@ -550,6 +557,7 @@
 				DD3C1BBC2E606A0100FF3953 /* YouTubeNetworkService.swift in Sources */,
 				DD3C1BC22E607A4D00FF3953 /* Container.swift in Sources */,
 				DD46CDC52E6094E1009B25CB /* MoyaProvider+MoyaConcurrency.swift in Sources */,
+				DD12119D2E713C18006D8960 /* View+cornerRadius.swift in Sources */,
 				DD9EEDBA2E5EF7B40090E848 /* AppConfig.swift in Sources */,
 				DD7AAC232E5C44D8005AE888 /* YouTubePlayerApp.swift in Sources */,
 				DDD371E42E6D843C00429518 /* CellModel.swift in Sources */,

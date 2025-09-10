@@ -31,9 +31,19 @@ internal enum Asset {
   internal static let headerTitleTextColor = ColorAsset(name: "HeaderTitleTextColor")
   internal static let launchBackgroundColor = ColorAsset(name: "LaunchBackgroundColor")
   internal static let launchIcon = ImageAsset(name: "LaunchIcon")
+  internal static let next = ImageAsset(name: "Next")
+  internal static let openClose = ImageAsset(name: "Open&Close")
   internal static let pagerActiveDotColor = ColorAsset(name: "PagerActiveDotColor")
   internal static let pagerInactiveDotColor = ColorAsset(name: "PagerInactiveDotColor")
+  internal static let pause = ImageAsset(name: "Pause")
   internal static let placeholder = ImageAsset(name: "Placeholder")
+  internal static let play = ImageAsset(name: "Play")
+  internal static let playerLowerBoundGradient = ColorAsset(name: "PlayerLowerBoundGradient")
+  internal static let playerTransparentWhite35 = ColorAsset(name: "PlayerTransparentWhite35")
+  internal static let playerTransparentWhite70 = ColorAsset(name: "PlayerTransparentWhite70")
+  internal static let playerUpperBoundGradient = ColorAsset(name: "PlayerUpperBoundGradient")
+  internal static let soundMax = ImageAsset(name: "SoundMax")
+  internal static let soundMin = ImageAsset(name: "SoundMin")
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
 
