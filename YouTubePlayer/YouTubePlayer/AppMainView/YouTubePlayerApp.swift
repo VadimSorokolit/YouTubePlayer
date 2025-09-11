@@ -13,7 +13,7 @@ struct YouTubePlayerApp: App {
     // MARK: - Properties. Private
     
     @State private var isShowingLaunchView: Bool = false
-    @State private var viewModel = YouTubeViewModel()
+    @State private var viewModel = HomeViewModel()
     
     // MARK: - Initializer
     
@@ -42,7 +42,7 @@ struct YouTubePlayerApp: App {
     
     struct LoadViewModifier: ViewModifier {
         @Binding var isShowingLaunchView: Bool
-        @Binding var viewModel: YouTubeViewModel
+        @Binding var viewModel: HomeViewModel
         
         func body(content: Content) -> some View {
             content

@@ -11,7 +11,7 @@ struct HomeView: View {
     
     // MARK: - Properties. Private
     
-    private let topOffSet: CGFloat = 52.0
+    private let topOffSet: CGFloat = 50.0
     
     // MARK: - Main body
     
@@ -39,6 +39,7 @@ struct HomeView: View {
         }
         
         private struct HeaderView: View {
+            @Environment(HomeViewModel.self) private var viewModel
             let topOffSet: CGFloat
             
             var body: some View {
@@ -48,8 +49,8 @@ struct HomeView: View {
                         .frame(height: topOffSet)
                         .ignoresSafeArea(edges: .top)
                     
-                    Text(L10n.homeScreenTitle)
-                        .foregroundColor(Asset.headerTitleTextColor.swiftUIColor)
+                    Text(viewModel.isPlayerOpen ? L10n.playerScreenTitle : L10n.homeScreenTitle)
+                        .foregroundColor(viewModel.isPlayerOpen ? Asset.playerHeaderTitleTextColor.swiftUIColor : Asset.homeHeaderTitleTextColor.swiftUIColor)
                         .font(.custom(FontFamily.SFProDisplay.bold, size: 34.0))
                         .lineLimit(1)
                         .padding(.leading, 24.0)
@@ -58,22 +59,23 @@ struct HomeView: View {
         }
         
         private struct ContentView: View {
-            @Environment(YouTubeViewModel.self) private var viewModel
+            @Environment(HomeViewModel.self) private var viewModel
             
             var body: some View {
                 ScrollView {
                     LazyVStack(alignment: .leading, spacing: 0.0) {
                         if let firstSection = viewModel.sections.first,
                            case .pageControl(let channels) = firstSection.items.first?.typeOfCell {
-                            ChannelPagerView(channels: channels)
-                                .padding(.bottom, 4.0)
+                            ChannelPagerView(channels: channels, onChannelTap: { channel in
+                                viewModel.selectChannel(channel)
+                            })
+                            .padding(.bottom, 4.0)
                         }
-                        
                         ForEach(Array(viewModel.sections.dropFirst().enumerated()), id: \.element.id) { sectionIndex, section in
                             VStack(alignment: .leading, spacing: sectionIndex % 2 == 0 ? 20.0 : 13.0) {
                                 Text(section.title)
                                     .font(.custom(FontFamily.SFProDisplay.bold, size: 23.0))
-                                    .foregroundStyle(Asset.headerTitleTextColor.swiftUIColor)
+                                    .foregroundStyle(Asset.homeHeaderTitleTextColor.swiftUIColor)
                                     .lineLimit(2)
                                     .padding(.horizontal, 18.0)
                                 
@@ -91,11 +93,12 @@ struct HomeView: View {
             }
             
             private struct ChannelPagerView: View {
-                @Environment(YouTubeViewModel.self) private var viewModel
+                @Environment(HomeViewModel.self) private var viewModel
                 @State private var currentPage = 0
                 let channels: [Channel]
                 private let imageHeight: CGFloat = 199.0
                 private let dotsReserve: CGFloat = 44.0
+                var onChannelTap: (Channel) -> Void
                 
                 var body: some View {
                     TabView(selection: $currentPage) {
@@ -114,6 +117,9 @@ struct HomeView: View {
                                     .frame(height: imageHeight)
                                     .frame(maxWidth: .infinity)
                                     .cornerRadius(6.0)
+                                    .onTapGesture {
+                                        onChannelTap(channel)
+                                    }
                                     
                                     VStack(alignment: .leading, spacing: 4.0) {
                                         Text(channel.brandingSettings.channel.title)
@@ -207,14 +213,14 @@ struct HomeView: View {
                         VStack(alignment: .leading, spacing: 4.0) {
                             Text(item.snippet.title)
                                 .font(.custom(FontFamily.SFProText.medium, size: 17.0))
-                                .foregroundColor(Asset.headerTitleTextColor.swiftUIColor)
+                                .foregroundColor(Asset.homeHeaderTitleTextColor.swiftUIColor)
                                 .lineLimit(1)
                                 .foregroundColor(.white)
                             
                             if let views = item.snippet.viewCount {
                                 Text("\(views) \(L10n.subscribers)")
                                     .font(.custom(FontFamily.SFProText.medium, size: 12.0))
-                                    .foregroundColor(Asset.headerTitleTextColor.swiftUIColor)
+                                    .foregroundColor(Asset.homeHeaderTitleTextColor.swiftUIColor)
                                     .opacity(0.42)
                             }
                         }
@@ -244,14 +250,14 @@ struct HomeView: View {
                         VStack(alignment: .leading, spacing: 4.0) {
                             Text(item.snippet.title)
                                 .font(.custom(FontFamily.SFProText.medium, size: 17.0))
-                                .foregroundColor(Asset.headerTitleTextColor.swiftUIColor)
+                                .foregroundColor(Asset.homeHeaderTitleTextColor.swiftUIColor)
                                 .lineLimit(1)
                                 .frame(width: 135, alignment: .leading)
                             
                             if let views = item.snippet.viewCount {
                                 Text("\(views) \(L10n.subscribers)")
                                     .font(.custom(FontFamily.SFProText.medium, size: 12.0))
-                                    .foregroundColor(Asset.headerTitleTextColor.swiftUIColor)
+                                    .foregroundColor(Asset.homeHeaderTitleTextColor.swiftUIColor)
                                     .opacity(0.42)
                             }
                         }

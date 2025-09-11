@@ -9,7 +9,8 @@
 /* Begin PBXBuildFile section */
 		DD12119D2E713C18006D8960 /* View+cornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD12119C2E713C17006D8960 /* View+cornerRadius.swift */; };
 		DD1211A32E71A27D006D8960 /* AsyncThrowingStream+every.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1211A22E71A27C006D8960 /* AsyncThrowingStream+every.swift */; };
-		DD3C1B582E60482800FF3953 /* YouTubeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3C1B572E60482400FF3953 /* YouTubeViewModel.swift */; };
+		DD1211A62E72B35C006D8960 /* CustomAlerts in Frameworks */ = {isa = PBXBuildFile; productRef = DD1211A52E72B35C006D8960 /* CustomAlerts */; };
+		DD3C1B582E60482800FF3953 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3C1B572E60482400FF3953 /* HomeViewModel.swift */; };
 		DD3C1BBC2E606A0100FF3953 /* YouTubeNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3C1BBB2E606A0000FF3953 /* YouTubeNetworkService.swift */; };
 		DD3C1BBF2E60774600FF3953 /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = DD3C1BBE2E60774600FF3953 /* Factory */; };
 		DD3C1BC22E607A4D00FF3953 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3C1BC12E607A4C00FF3953 /* Container.swift */; };
@@ -63,7 +64,7 @@
 /* Begin PBXFileReference section */
 		DD12119C2E713C17006D8960 /* View+cornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+cornerRadius.swift"; sourceTree = "<group>"; };
 		DD1211A22E71A27C006D8960 /* AsyncThrowingStream+every.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AsyncThrowingStream+every.swift"; sourceTree = "<group>"; };
-		DD3C1B572E60482400FF3953 /* YouTubeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeViewModel.swift; sourceTree = "<group>"; };
+		DD3C1B572E60482400FF3953 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		DD3C1BBB2E606A0000FF3953 /* YouTubeNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeNetworkService.swift; sourceTree = "<group>"; };
 		DD3C1BC12E607A4C00FF3953 /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
 		DD3C1BC32E60804200FF3953 /* ChannelsDataWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsDataWrapper.swift; sourceTree = "<group>"; };
@@ -106,6 +107,7 @@
 			files = (
 				DD9EEDC72E5F25D50090E848 /* Moya in Frameworks */,
 				DD3C1BBF2E60774600FF3953 /* Factory in Frameworks */,
+				DD1211A62E72B35C006D8960 /* CustomAlerts in Frameworks */,
 				DDFAC6772E6B10EC00A74343 /* YouTubePlayerKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -256,7 +258,7 @@
 		DD7AAC302E5C4BEF005AE888 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				DD3C1B572E60482400FF3953 /* YouTubeViewModel.swift */,
+				DD3C1B572E60482400FF3953 /* HomeViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -390,6 +392,7 @@
 				DD9EEDC62E5F25D50090E848 /* Moya */,
 				DD3C1BBE2E60774600FF3953 /* Factory */,
 				DDFAC6762E6B10EC00A74343 /* YouTubePlayerKit */,
+				DD1211A52E72B35C006D8960 /* CustomAlerts */,
 			);
 			productName = YouTubePlayer;
 			productReference = DD7AABEB2E5C446F005AE888 /* YouTubePlayer.app */;
@@ -471,6 +474,7 @@
 				DD9EEDC52E5F25D50090E848 /* XCRemoteSwiftPackageReference "Moya" */,
 				DD3C1BBD2E60774600FF3953 /* XCRemoteSwiftPackageReference "Factory" */,
 				DDFAC6752E6B10EC00A74343 /* XCRemoteSwiftPackageReference "YouTubePlayerKit" */,
+				DD1211A42E72B35C006D8960 /* XCRemoteSwiftPackageReference "CustomAlerts" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = DD7AABEC2E5C446F005AE888 /* Products */;
@@ -542,7 +546,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD3C1B582E60482800FF3953 /* YouTubeViewModel.swift in Sources */,
+				DD3C1B582E60482800FF3953 /* HomeViewModel.swift in Sources */,
 				DD9EEDC42E5F19EF0090E848 /* Secrets.swift in Sources */,
 				DDFAC66B2E6AE3C400A74343 /* PlaylistItemsDataWrapper.swift in Sources */,
 				DDFAC6692E6AE3C000A74343 /* VideoDataWrapper.swift in Sources */,
@@ -739,7 +743,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = D28SS25G7Y;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -754,7 +758,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.YouTubePlayer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.YouTubePlayer1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -771,7 +775,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = D28SS25G7Y;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -786,7 +790,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.YouTubePlayer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.YouTubePlayer1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -909,6 +913,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		DD1211A42E72B35C006D8960 /* XCRemoteSwiftPackageReference "CustomAlerts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/VadimSorokolit/CustomAlerts";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.17;
+			};
+		};
 		DD3C1BBD2E60774600FF3953 /* XCRemoteSwiftPackageReference "Factory" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pilmen/Factory";
@@ -936,6 +948,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		DD1211A52E72B35C006D8960 /* CustomAlerts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DD1211A42E72B35C006D8960 /* XCRemoteSwiftPackageReference "CustomAlerts" */;
+			productName = CustomAlerts;
+		};
 		DD3C1BBE2E60774600FF3953 /* Factory */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DD3C1BBD2E60774600FF3953 /* XCRemoteSwiftPackageReference "Factory" */;

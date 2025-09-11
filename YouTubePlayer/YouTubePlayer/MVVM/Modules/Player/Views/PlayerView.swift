@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import YouTubePlayerKit
 
 enum PlayerState {
     case collapsed
@@ -13,18 +14,21 @@ enum PlayerState {
 }
 
 struct PlayerView: View {
-    @Environment(YouTubeViewModel.self) private var youTubeViewModel
+    @Environment(HomeViewModel.self) private var youTubeViewModel
     @State private var playerViewModel = PlayerViewModel()
+    @State private var player = YouTubePlayer()
     @State private var dragOffset: CGFloat = 0.0
     @State private var state: PlayerState = .collapsed
-    var collapsedHeight: CGFloat = 50.0
+    let collapsedHeight: CGFloat = 50.0
+    let topGap: CGFloat = 4.0
     let topOffset: CGFloat
     
     var body: some View {
         GeometryReader { geo in
             let totalHeight = geo.size.height
+            let topExpanded = topOffset + topGap
             let topCollapsed = totalHeight - collapsedHeight
-            let expandedHeight = totalHeight - topOffset
+            let expandedHeight = totalHeight - topExpanded
             
             ZStack {
                 GradientBackgroundView()
@@ -33,16 +37,43 @@ struct PlayerView: View {
                     ZStack {
                         Rectangle()
                             .fill(Color.clear)
-                            .frame(height: 50.0)
+                            .frame(height: collapsedHeight)
                         
                         Image(asset: Asset.openClose)
                             .renderingMode(.original)
                             .rotationEffect(playerViewModel.isPlayerOpen ? .degrees(180.0) : .degrees(0.0))
                     }
                     
-                    Rectangle()
-                        .fill(Color.black)
-                        .frame(height: 235.0)
+                    YouTubePlayerView(player) { state in
+                        switch state {
+                        case .idle:
+                            ProgressView()
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                .background(Color.black)
+                        case .ready:
+                            EmptyView()
+                        case .error(let error):
+                            Text("Error: \(error.localizedDescription)")
+                                .foregroundColor(.red)
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                .background(Color.black)
+                        }
+                    }
+                    .background(Color.black)
+                    .onAppear {
+                        Task {
+                            if let id = youTubeViewModel.currentItem?.snippet.resourceId.videoId {
+                                try? await player.load(source: .video(id: id))
+                            }
+                        }
+                    }
+                    .onChange(of: youTubeViewModel.currentItem?.snippet.resourceId.videoId) { _, newId in
+                        guard let newId else { return }
+                        Task {
+                            try? await player.load(source: .video(id: newId))
+                        }
+                    }
+                    .frame(height: 235.0)
                     
                     Rectangle()
                         .fill(Color.clear)
@@ -56,11 +87,49 @@ struct PlayerView: View {
                         .padding(.horizontal, 53.5)
                         .padding(.top, 17.0)
                     
-                    Rectangle()
-                        .fill(Color.clear)
-                        .frame(height: 30.0)
-                        .padding(.horizontal, 94.5)
-                        .padding(.top, 41.0)
+                    HStack {
+                        Button(action: {
+                            guard !youTubeViewModel.currentPlaylistItems.isEmpty else {
+                                return
+                            }
+                            youTubeViewModel.currentTrackIndex = max(
+                                0,
+                                youTubeViewModel.currentTrackIndex - 1
+                            )
+                        }) {
+                            Image(asset: Asset.next)
+                                .renderingMode(.original)
+                                .rotationEffect(.degrees(180.0))
+                            
+                        }
+                        
+                        Spacer()
+                        
+                        Button(action: {
+                            
+                        }) {
+                            Image(asset: Asset.play)
+                                .renderingMode(.original)
+                        }
+                        
+                        Spacer()
+                        
+                        Button(action: {
+                            guard youTubeViewModel.currentPlaylistItems.isEmpty == false else {
+                                return
+                            }
+                            youTubeViewModel.currentTrackIndex = min(
+                                youTubeViewModel.currentPlaylistItems.count - 1,
+                                youTubeViewModel.currentTrackIndex + 1
+                            )
+                        }) {
+                            Image(asset: Asset.next)
+                                .renderingMode(.original)
+                        }
+                    }
+                    .frame(height: 30.0)
+                    .padding(.horizontal, 94.5)
+                    .padding(.top, 41.0)
                     
                     Rectangle()
                         .fill(Color.clear)
@@ -73,13 +142,14 @@ struct PlayerView: View {
                         .frame(maxHeight: .infinity)
                 }
             }
+            .padding(.horizontal, 6.0)
             .frame(width: geo.size.width, height: expandedHeight, alignment: .top)
             .offset(
                 y: {
                     let base = (state == .expanded) ? topOffset : topCollapsed
                     let current = base + dragOffset
                     
-                    return min(max(current, topOffset), topCollapsed)
+                    return min(max(current, topExpanded), topCollapsed)
                 }()
             )
             .gesture(
@@ -93,7 +163,7 @@ struct PlayerView: View {
                         }
                     }
                     .onEnded { value in
-                        let travel = (topCollapsed - topOffset)
+                        let travel = (topCollapsed - topExpanded)
                         let trigger = travel * 0.10
                         
                         let dy = value.translation.height
@@ -103,13 +173,11 @@ struct PlayerView: View {
                                 case .collapsed:
                                     if (-dy >= trigger) || (-dyEnd >= trigger) {
                                         state = .expanded
-                                        playerViewModel.isPlayerOpen = true
                                         youTubeViewModel.isPlayerOpen = true
                                     }
                                 case .expanded:
                                     if (dy >= trigger) || (dyEnd >= trigger) {
                                         state = .collapsed
-                                        playerViewModel.isPlayerOpen = false
                                         youTubeViewModel.isPlayerOpen = false
                                     }
                             }
@@ -117,6 +185,28 @@ struct PlayerView: View {
                         }
                     }
             )
+        }
+        .onChange(of: youTubeViewModel.isPlayerOpen) {
+            if youTubeViewModel.isPlayerOpen {
+                playerViewModel.isPlayerOpen = true
+                state = .expanded
+                let index = youTubeViewModel.currentTrackIndex
+                guard youTubeViewModel.currentPlaylistItems.indices.contains(index) else {
+                    return
+                }
+                let id = youTubeViewModel.currentPlaylistItems[index].snippet.resourceId.videoId
+                Task {
+                    try? await player.load(source: .video(id: id),
+                                           startTime: .init(value: 0, unit: .seconds))
+                    try? await player.play()
+                }
+            } else {
+                playerViewModel.isPlayerOpen = false
+                state = .collapsed
+                Task {
+                    try? await player.pause()
+                }
+            }
         }
         .ignoresSafeArea(edges: .bottom)
     }
