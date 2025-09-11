@@ -75,53 +75,62 @@ class HomeViewModel {
         self.sections = self.createSections(for: channelIndex)
     }
     
-    func getChannels() {
-        Task {
-            self.isLoading = true
-            defer { self.isLoading = false }
-            do {
-                var loadedChannels: [Channel] = []
+    func getChannels() async throws {
+        self.isLoading = true
+        defer { self.isLoading = false }
+        
+        do {
+            var loadedChannels: [Channel] = []
+            
+            for id in self.channelsIDs {
+                guard let channels = await self.getChannels(by: id), channels.isEmpty == false else { continue }
                 
-                for id in self.channelsIDs {
-                    guard let channels = await self.getChannels(by: id), channels.isEmpty == false else { continue }
+                let playlists = try await self.getPlaylists(by: id, max: 2)
+                var updatedPlaylists: [Playlist] = []
+                
+                for var playlist in playlists {
+                    let items = try await self.getPlaylistItems(playlistId: playlist.id, max: 8)
+                    var itemsWithViewCount: [PlaylistItem] = []
                     
-                    let playlists = try await self.getPlaylists(by: id, max: 2)
-                    var updatedPlaylists: [Playlist] = []
-                    
-                    for var playlist in playlists {
-                        let items = try await self.getPlaylistItems(playlistId: playlist.id, max: 8)
-                        var itemsWithViewCount: [PlaylistItem] = []
+                    for var item in items {
+                        let videos = try await self.getVideos(by: item.snippet.resourceId.videoId)
                         
-                        for var item in items {
-                            let videos = try await self.getVideos(by: item.snippet.resourceId.videoId)
-                            
-                            if let video = videos.first {
-                                item.snippet.viewCount = video.statistics.viewCount
-                            }
-                            itemsWithViewCount.append(item)
+                        if let video = videos.first {
+                            item.snippet.viewCount = video.statistics.viewCount
                         }
-                        playlist.playlistItems = itemsWithViewCount
-                        updatedPlaylists.append(playlist)
+                        itemsWithViewCount.append(item)
                     }
-                    guard var channel = channels.first else {
-                        return
-                    }
-                    channel.playlists = updatedPlaylists
-                    loadedChannels.append(channel)
+                    playlist.playlistItems = itemsWithViewCount
+                    updatedPlaylists.append(playlist)
                 }
-                self.channels = loadedChannels
-                self.sections = self.createSections(for: 0)
-            } catch {
-                self.errorMessage = error.localizedDescription
+                guard var channel = channels.first else {
+                    return
+                }
+                channel.playlists = updatedPlaylists
+                loadedChannels.append(channel)
             }
+            self.channels = loadedChannels
+            self.sections = self.createSections(for: 0)
+        } catch {
+            self.errorMessage = error.localizedDescription
         }
     }
     
     func selectChannel(_ channel: Channel) {
-        selectedChannel = channel
-        currentPlaylistItems = joinedPlaylistsItems(from: channel.playlists)
-        currentTrackIndex = 0
-        isPlayerOpen = true
+        self.selectedChannel = channel
+        self.currentPlaylistItems = joinedPlaylistsItems(from: channel.playlists)
+        self.currentTrackIndex = 0
+        self.isPlayerOpen = true
+    }
+    
+    func openPlayer(items: [PlaylistItem], startAt index: Int) {
+        guard items.isEmpty == false else {
+            return
+        }
+        let safeIndex = max(0, min(index, items.count - 1))
+        self.currentPlaylistItems = items
+        self.currentTrackIndex = safeIndex
+        self.isPlayerOpen = true
     }
     
     // Methods. Private
@@ -191,7 +200,6 @@ class HomeViewModel {
         guard let lists = playlists?.compactMap(\.playlistItems) else {
             return []
         }
-        
         return Array(lists.joined())
     }
     

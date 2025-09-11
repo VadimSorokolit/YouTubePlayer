@@ -71,6 +71,7 @@ struct HomeView: View {
                             })
                             .padding(.bottom, 4.0)
                         }
+                        
                         ForEach(Array(viewModel.sections.dropFirst().enumerated()), id: \.element.id) { sectionIndex, section in
                             VStack(alignment: .leading, spacing: sectionIndex % 2 == 0 ? 20.0 : 13.0) {
                                 Text(section.title)
@@ -82,7 +83,32 @@ struct HomeView: View {
                                 if let cell = section.items.first,
                                    case .playlist(let playlist) = cell.typeOfCell {
                                     let isAltCardStyle = (sectionIndex % 2 == 1)
-                                    PlaylistView(playlist: playlist, isAltCardStyle: isAltCardStyle)
+                                    let offset = viewModel.sections
+                                        .dropFirst()
+                                        .prefix(sectionIndex)
+                                        .reduce(0) { itemCount, section in
+                                            if case .playlist(let playlist) = section.items.first?.typeOfCell {
+                                                return itemCount + (playlist.playlistItems?.count ?? 0)
+                                            }
+                                            return itemCount
+                                        }
+                                    let allItems: [PlaylistItem] = viewModel.sections
+                                        .dropFirst()
+                                        .compactMap { section -> Playlist? in
+                                            if case .playlist(let playlist) = section.items.first?.typeOfCell { return playlist }
+                                            return nil
+                                        }
+                                        .flatMap { $0.playlistItems ?? [] }
+                                    
+                                    PlaylistView(
+                                        playlist: playlist,
+                                        isAltCardStyle: isAltCardStyle,
+                                        onItemTap: { index in
+                                            let globalIndex = offset + index
+                                            viewModel.openPlayer(items: allItems, startAt: globalIndex)
+                                        
+                                        }
+                                    )
                                 }
                             }
                             .padding(.top, sectionIndex == 0 ? 0.0 : 32.0)
@@ -174,17 +200,23 @@ struct HomeView: View {
             struct PlaylistView: View {
                 let playlist: Playlist
                 let isAltCardStyle: Bool
+                let onItemTap: (Int) -> Void
                 
                 var body: some View {
                     ScrollView(.horizontal, showsIndicators: false) {
                         LazyHStack(spacing: 10.0) {
                             let items = playlist.playlistItems ?? []
                             
-                            ForEach(Array(items.enumerated()), id: \.element.id) { idx, item in
-                                if isAltCardStyle {
-                                    VideoCardAlt(item: item)
-                                } else {
-                                    VideoCard(item: item)
+                            ForEach(Array(items.enumerated()), id: \.element.id) { index, item in
+                                Group {
+                                    if isAltCardStyle {
+                                        VideoCardAlt(item: item)
+                                    } else {
+                                        VideoCard(item: item)
+                                    }
+                                }
+                                .onTapGesture {
+                                    onItemTap(index)
                                 }
                             }
                         }

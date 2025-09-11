@@ -6,6 +6,7 @@
 //
     
 import SwiftUI
+import CustomAlerts
 
 @main
 struct YouTubePlayerApp: App {
@@ -14,6 +15,7 @@ struct YouTubePlayerApp: App {
     
     @State private var isShowingLaunchView: Bool = false
     @State private var viewModel = HomeViewModel()
+    @State private var appAlert: AlertNotice?
     
     // MARK: - Initializer
     
@@ -34,6 +36,7 @@ struct YouTubePlayerApp: App {
                 }
             }
             .modifier(LoadViewModifier(isShowingLaunchView: $isShowingLaunchView, viewModel: $viewModel))
+            .environmentAlert($appAlert)
         }
         .environment(self.viewModel)
     }
@@ -41,6 +44,7 @@ struct YouTubePlayerApp: App {
     // MARK: - Modifiers
     
     struct LoadViewModifier: ViewModifier {
+        @Environment(\.appAlert) private var appAlert
         @Binding var isShowingLaunchView: Bool
         @Binding var viewModel: HomeViewModel
         
@@ -50,13 +54,20 @@ struct YouTubePlayerApp: App {
                     self.isShowingLaunchView = true
                 }
                 .onChange(of: viewModel.isLoading) {
-                    if !self.viewModel.isLoading {
+                    if self.viewModel.isLoading == false {
                         self.isShowingLaunchView = false
                     }
                 }
                 .task {
-                    try? await Task.sleep(nanoseconds: 2_000_000_000)
-                    self.viewModel.getChannels()
+                    do {
+                        try await Task.sleep(nanoseconds: 2_000_000_000)
+                        try await self.viewModel.getChannels()
+                    } catch {
+                        self.viewModel.errorMessage = error.localizedDescription
+                    }
+                }
+                .onChange(of: viewModel.errorMessage) {
+                    self.appAlert.error(Text(self.viewModel.errorMessage ?? ""))
                 }
                 .overlay {
                     if self.viewModel.isLoading {
