@@ -226,16 +226,30 @@ struct HomeView: View {
                 
                 var body: some View {
                     VStack(spacing: 9.0) {
-                        AsyncImage(url: URL(string: item.snippet.thumbnails?.high?.url ?? "")) { image in
-                            image
-                                .resizable()
-                                .scaledToFill()
-                        } placeholder: {
+                        if let urlString = item.snippet.thumbnails?.high?.url,
+                           let url = URL(string: urlString) {
+                            AsyncImage(url: url) { phase in
+                                if let image = phase.image {
+                                    image
+                                        .resizable()
+                                        .scaledToFill()
+                                } else if phase.error != nil {
+                                    Image(Asset.placeholder.name)
+                                        .resizable()
+                                        .scaledToFill()
+                                } else {
+                                    ProgressView()
+                                }
+                            }
+                            .frame(width: 160.0, height: 70.0)
+                            .cornerRadius(6.0)
+                        } else {
                             Image(Asset.placeholder.name)
                                 .resizable()
                                 .scaledToFill()
-                        }                    .frame(width: 160.0, height: 70.0)
-                            .cornerRadius(6.0)
+                                .frame(width: 160.0, height: 70.0)
+                                .cornerRadius(6.0)
+                        }
                         
                         VStack(alignment: .leading, spacing: 4.0) {
                             Text(item.snippet.title)
@@ -262,18 +276,31 @@ struct HomeView: View {
                 
                 var body: some View {
                     VStack(alignment: .leading, spacing: 8) {
-                        AsyncImage(url: URL(string: item.snippet.thumbnails?.high?.url ?? "")) { image in
-                            image
-                                .resizable()
-                                .scaledToFill()
-                        } placeholder: {
+                        if let urlString = item.snippet.thumbnails?.high?.url,
+                           let url = URL(string: urlString) {
+                            AsyncImage(url: url) { phase in
+                                if let image = phase.image {
+                                    image
+                                        .resizable()
+                                        .scaledToFill()
+                                } else if phase.error != nil {
+                                    Image(Asset.placeholder.name)
+                                        .resizable()
+                                        .scaledToFill()
+                                } else {
+                                    ProgressView()
+                                }
+                            }
+                            .frame(width: 135.0, height: 135.0)
+                            .cornerRadius(6.0)
+                        } else {
                             Image(Asset.placeholder.name)
                                 .resizable()
                                 .scaledToFill()
+                                .frame(width: 135.0, height: 135.0)
+                                .cornerRadius(6.0)
                         }
-                        .frame(width: 135.0, height: 135.0)
-                        .cornerRadius(6.0)
-                        
+
                         VStack(alignment: .leading, spacing: 4.0) {
                             Text(item.snippet.title)
                                 .font(.custom(FontFamily.SFProText.medium, size: 17.0))
