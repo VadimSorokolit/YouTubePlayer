@@ -169,10 +169,6 @@ struct HomeView: View {
                     }
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
                     .frame(height: imageHeight + dotsReserve)
-                    .onChange(of: channels.count) { _, _ in
-                        currentPage = min(currentPage, max(channels.count - 1, 0))
-                        viewModel.updateData(for: currentPage)
-                    }
                     .onChange(of: viewModel.isPlayerOpen) {
                         if viewModel.isPlayerOpen {
                             viewModel.stopTimer()
@@ -180,17 +176,16 @@ struct HomeView: View {
                             viewModel.startTimer()
                         }
                     }
+                    .onChange(of: currentPage) { _, newPage in
+                        viewModel.updateData(for: currentPage)
+                    }
                     .onChange(of: viewModel.pagesCounter) { _, _ in
                         guard !channels.isEmpty else {
                             return
                         }
                         currentPage = (currentPage + 1) % channels.count
-                        withAnimation(.easeInOut) {
-                            viewModel.updateData(for: currentPage)
-                        }
                     }
                     .onAppear {
-                        viewModel.updateData(for: currentPage)
                         viewModel.startTimer()
                     }
                 }
@@ -204,7 +199,7 @@ struct HomeView: View {
                 
                 var body: some View {
                     ScrollView(.horizontal, showsIndicators: false) {
-                        LazyHStack(spacing: 10.0) {
+                        LazyHStack(alignment: .top, spacing: 10.0) {
                             let items = playlist.playlistItems ?? []
                             
                             ForEach(Array(items.enumerated()), id: \.element.id) { index, item in
