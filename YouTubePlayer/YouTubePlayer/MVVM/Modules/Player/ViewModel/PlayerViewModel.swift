@@ -13,6 +13,7 @@ class PlayerViewModel {
     // MARK: - Properties. Public
     
     var isPlayerOpen: Bool = false
+    var isPlaying: Bool = false
     
     // MARK: - Properties. Private
     

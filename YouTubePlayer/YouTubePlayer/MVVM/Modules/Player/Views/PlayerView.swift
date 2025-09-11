@@ -46,17 +46,17 @@ struct PlayerView: View {
                     
                     YouTubePlayerView(player) { state in
                         switch state {
-                        case .idle:
-                            ProgressView()
-                                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                .background(Color.black)
-                        case .ready:
-                            EmptyView()
-                        case .error(let error):
-                            Text("Error: \(error.localizedDescription)")
-                                .foregroundColor(.red)
-                                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                .background(Color.black)
+                            case .idle:
+                                ProgressView()
+                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                    .background(Color.black)
+                            case .ready:
+                                EmptyView()
+                            case .error(let error):
+                                Text("Error: \(error.localizedDescription)")
+                                    .foregroundColor(.red)
+                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                    .background(Color.black)
                         }
                     }
                     .background(Color.black)
@@ -106,9 +106,17 @@ struct PlayerView: View {
                         Spacer()
                         
                         Button(action: {
-                            
+                            Task {
+                                if playerViewModel.isPlaying {
+                                    try? await player.pause()
+                                    playerViewModel.isPlaying = false
+                                } else {
+                                    try? await player.play()
+                                    playerViewModel.isPlaying = true
+                                }
+                            }
                         }) {
-                            Image(asset: Asset.play)
+                            Image(asset: playerViewModel.isPlayerOpen ? Asset.pause : Asset.play)
                                 .renderingMode(.original)
                         }
                         
@@ -136,7 +144,7 @@ struct PlayerView: View {
                         .frame(height: 21.0)
                         .padding(.horizontal, 18.0)
                         .padding(.top, 46.0)
-
+                    
                     Rectangle()
                         .fill(Color.clear)
                         .frame(maxHeight: .infinity)
@@ -164,7 +172,7 @@ struct PlayerView: View {
                     }
                     .onEnded { value in
                         let travel = (topCollapsed - topExpanded)
-                        let trigger = travel * 0.10
+                        let trigger = travel * 0.20
                         
                         let dy = value.translation.height
                         let dyEnd = value.predictedEndTranslation.height
@@ -189,6 +197,7 @@ struct PlayerView: View {
         .onChange(of: youTubeViewModel.isPlayerOpen) {
             if youTubeViewModel.isPlayerOpen {
                 playerViewModel.isPlayerOpen = true
+                playerViewModel.isPlaying = true
                 state = .expanded
                 let index = youTubeViewModel.currentTrackIndex
                 guard youTubeViewModel.currentPlaylistItems.indices.contains(index) else {
@@ -202,6 +211,7 @@ struct PlayerView: View {
                 }
             } else {
                 playerViewModel.isPlayerOpen = false
+                playerViewModel.isPlaying = false
                 state = .collapsed
                 Task {
                     try? await player.pause()
