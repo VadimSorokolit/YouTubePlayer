@@ -38,9 +38,9 @@ struct PlayerView: View {
                 GradientBackgroundView()
                 
                 VStack(spacing: .zero) {
-                    CustomHeaderView(playerViewModel: $playerViewModel, collapsedHeight: collapsedHeight)
+                    HeaderView(playerViewModel: $playerViewModel, collapsedHeight: collapsedHeight)
                     
-                    CustomYouTubePlayerView(playerViewModel: $playerViewModel)
+                    CustomPlayerView(playerViewModel: $playerViewModel)
                     
                     CustomProgressView(playerViewModel: $playerViewModel, progress: $progress, durationSec: $durationSec)
                     
@@ -48,10 +48,10 @@ struct PlayerView: View {
                     
                     CustomVolumeView()
                     
-                    CustomBottomView()
+                    BottomView()
                 }
             }
-            .modifier(LoadViewModifier(state: $state, dragOffset: $dragOffset, topOffset: topOffset, expandedHeight: expandedHeight, topExpanded: topExpanded, topCollapsed: topCollapsed, geo: geo))
+            .modifier(LoadViewModifier(playerViewModel: $playerViewModel, state: $state, dragOffset: $dragOffset, topOffset: topOffset, expandedHeight: expandedHeight, topExpanded: topExpanded, topCollapsed: topCollapsed, geo: geo))
             .modifier(PlayerViewModifier(state: $state, playerViewModel: $playerViewModel))
         }
         .ignoresSafeArea(edges: .bottom)
@@ -73,72 +73,7 @@ struct PlayerView: View {
         
     }
     
-    private struct CustomSlider: View {
-        @Binding var value: Double
-        var trackHeight: CGFloat = 4.0
-        var minTrack: Color = Asset.homeHeaderTitleTextColor.swiftUIColor
-        var maxTrack: Color = Asset.playerTransparentWhite35.swiftUIColor
-        var thumbWidth: CGFloat = 2.0
-        var thumbHeight: CGFloat = 12.0
-        var thumbColor: Color = .white
-        
-        var onEditingChanged: ((Bool) -> Void)? = nil
-        var onChange: ((Double) -> Void)? = nil
-        var onEnded: ((Double) -> Void)? = nil
-        
-        var body: some View {
-            GeometryReader { geo in
-                let width = geo.size.width
-                let height = max(trackHeight, thumbHeight)
-                let progress = CGFloat(value.clamped(to: 0...1))
-                let position = progress * width
-                let centerY = height / 2.0
-                
-                ZStack {
-                    Capsule()
-                        .fill(maxTrack)
-                        .frame(height: trackHeight)
-                        .position(x: width / 2.0, y: centerY)
-                    
-                    Capsule()
-                        .fill(minTrack)
-                        .frame(width: max(0.0, position), height: trackHeight)
-                        .position(x: max(0.0, position) / 2.0, y: centerY)
-                    
-                    Rectangle()
-                        .fill(thumbColor)
-                        .frame(width: thumbWidth, height: thumbHeight)
-                        .position(x: position, y: centerY)
-                }
-                .contentShape(Rectangle())
-                .highPriorityGesture(
-                    DragGesture(minimumDistance: .zero)
-                        .onChanged { geo in
-                            let clampedX = min(max(.zero, geo.location.x), width)
-                            let newValue = Double(clampedX / width)
-                            if newValue != value {
-                                if onEditingChanged != nil && (geo.startLocation == geo.location) {
-                                    onEditingChanged?(true)
-                                }
-                                value = newValue
-                                onChange?(newValue)
-                            }
-                        }
-                        .onEnded { g in
-                            let clampedX = min(max(.zero, g.location.x), width)
-                            let newValue = Double(clampedX / width)
-                            value = newValue
-                            onEnded?(newValue)
-                            onEditingChanged?(false)
-                        }
-                )
-            }
-            .frame(height: max(trackHeight, thumbHeight))
-        }
-
-    }
-    
-    private struct CustomHeaderView: View {
+    private struct HeaderView: View {
         @Binding var playerViewModel: PlayerViewModel
         let collapsedHeight: CGFloat
         
@@ -209,7 +144,7 @@ struct PlayerView: View {
                     
                     Spacer()
                     
-                    Text(playerViewModel.videoSnippet?.viewCount ?? "")
+                    Text("\(playerViewModel.videoSnippet?.viewCount ?? "") \(L10n.views)")
                         .font(.custom(FontFamily.SFProText.regular, size: 16.0))
                         .foregroundStyle(Asset.playerTransparentWhite70.swiftUIColor)
                         .lineLimit(1)
@@ -221,9 +156,73 @@ struct PlayerView: View {
             .padding(.top, 19.0)
         }
         
+        private struct CustomSlider: View {
+            @Binding var value: Double
+            var trackHeight: CGFloat = 4.0
+            var minTrack: Color = Asset.homeHeaderTitleTextColor.swiftUIColor
+            var maxTrack: Color = Asset.playerTransparentWhite35.swiftUIColor
+            var thumbWidth: CGFloat = 2.0
+            var thumbHeight: CGFloat = 12.0
+            var thumbColor: Color = Asset.homeHeaderTitleTextColor.swiftUIColor
+            
+            var onEditingChanged: ((Bool) -> Void)? = nil
+            var onChange: ((Double) -> Void)? = nil
+            var onEnded: ((Double) -> Void)? = nil
+            
+            var body: some View {
+                GeometryReader { geo in
+                    let width = geo.size.width
+                    let height = max(trackHeight, thumbHeight)
+                    let progress = CGFloat(value.clamped(to: 0...1))
+                    let position = progress * width
+                    let centerY = height / 2.0
+                    
+                    ZStack {
+                        Capsule()
+                            .fill(maxTrack)
+                            .frame(height: trackHeight)
+                            .position(x: width / 2.0, y: centerY)
+                        
+                        Capsule()
+                            .fill(minTrack)
+                            .frame(width: max(0.0, position), height: trackHeight)
+                            .position(x: max(0.0, position) / 2.0, y: centerY)
+                        
+                        Rectangle()
+                            .fill(thumbColor)
+                            .frame(width: thumbWidth, height: thumbHeight)
+                            .position(x: position, y: centerY)
+                    }
+                    .contentShape(Rectangle())
+                    .highPriorityGesture(
+                        DragGesture(minimumDistance: .zero)
+                            .onChanged { geo in
+                                let clampedX = min(max(.zero, geo.location.x), width)
+                                let newValue = Double(clampedX / width)
+                                if newValue != value {
+                                    if onEditingChanged != nil && (geo.startLocation == geo.location) {
+                                        onEditingChanged?(true)
+                                    }
+                                    value = newValue
+                                    onChange?(newValue)
+                                }
+                            }
+                            .onEnded { geo in
+                                let clampedX = min(max(.zero, geo.location.x), width)
+                                let newValue = Double(clampedX / width)
+                                value = newValue
+                                onEnded?(newValue)
+                                onEditingChanged?(false)
+                            }
+                    )
+                }
+                .frame(height: max(trackHeight, thumbHeight))
+            }
+
+        }
     }
     
-    private struct CustomYouTubePlayerView: View {
+    private struct CustomPlayerView: View {
         @Environment(HomeViewModel.self) private var youTubeViewModel
         @Binding var playerViewModel: PlayerViewModel
         @Injected(\.youTubePlayer) private var player
@@ -297,7 +296,7 @@ struct PlayerView: View {
                         }
                     }
                 }) {
-                    Image(asset: playerViewModel.isPlayerOpen ? Asset.pause : Asset.play)
+                    Image(asset: playerViewModel.isPlaying ? Asset.pause : Asset.play)
                         .renderingMode(.original)
                 }
                 
@@ -346,7 +345,7 @@ struct PlayerView: View {
         
     }
     
-    private struct CustomBottomView: View {
+    private struct BottomView: View {
         
         var body: some View {
             Rectangle()
@@ -358,6 +357,7 @@ struct PlayerView: View {
     
     private struct LoadViewModifier: ViewModifier {
         @Environment(HomeViewModel.self) private var youTubeViewModel
+        @Binding var playerViewModel: PlayerViewModel
         @Binding var state: PlayerState
         @Binding var dragOffset: CGFloat
         let topOffset: CGFloat
@@ -399,11 +399,13 @@ struct PlayerView: View {
                                         if (-dy >= trigger) || (-dyEnd >= trigger) {
                                             state = .expanded
                                             youTubeViewModel.isPlayerOpen = true
+                                            playerViewModel.isPlaying = true
                                         }
                                     case .expanded:
                                         if (dy >= trigger) || (dyEnd >= trigger) {
                                             state = .collapsed
                                             youTubeViewModel.isPlayerOpen = false
+                                            playerViewModel.isPlaying = true
                                         }
                                 }
                                 dragOffset = .zero

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct HomeView: View {
     
@@ -131,7 +132,7 @@ struct HomeView: View {
                         ForEach(Array(channels.enumerated()), id: \.element.id) { index, channel in
                             VStack(spacing: 0.0) {
                                 ZStack(alignment: .bottomLeading) {
-                                    AsyncImage(url: URL(string: channel.brandingSettings.image.bannerExternalUrl)) { image in
+                                    WebImage(url: URL(string: channel.brandingSettings.image.bannerExternalUrl)) { image in
                                         image
                                             .resizable()
                                             .scaledToFill()
@@ -228,7 +229,7 @@ struct HomeView: View {
                     VStack(spacing: 9.0) {
                         if let urlString = item.snippet.thumbnails?.high?.url,
                            let url = URL(string: urlString) {
-                            AsyncImage(url: url) { phase in
+                            WebImage(url: url) { phase in
                                 if let image = phase.image {
                                     image
                                         .resizable()
@@ -278,7 +279,7 @@ struct HomeView: View {
                     VStack(alignment: .leading, spacing: 8) {
                         if let urlString = item.snippet.thumbnails?.high?.url,
                            let url = URL(string: urlString) {
-                            AsyncImage(url: url) { phase in
+                            WebImage (url: url) { phase in
                                 if let image = phase.image {
                                     image
                                         .resizable()

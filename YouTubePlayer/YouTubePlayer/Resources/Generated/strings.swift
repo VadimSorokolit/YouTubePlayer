@@ -65,6 +65,8 @@ internal enum L10n {
   internal static let valueStatistics = L10n.tr("Localizable", "valueStatistics", fallback: "statistics")
   /// youtube/v3/videos
   internal static let videosPath = L10n.tr("Localizable", "videosPath", fallback: "youtube/v3/videos")
+  /// views
+  internal static let views = L10n.tr("Localizable", "views", fallback: "views")
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:enable nesting type_body_length type_name vertical_whitespace_opening_braces
