@@ -6,6 +6,7 @@
 //
 
 import Moya
+import YouTubePlayerKit
 import Factory
 
 extension Container {
@@ -16,6 +17,11 @@ extension Container {
     
     var youTubeNetworkService: Factory<YouTubeNetworkService> {
         self { YouTubeNetworkService(provider: self.youTubeProvider()) }
+    }
+    
+    var youTubePlayer: Factory<YouTubePlayer> {
+        self { YouTubePlayer() }
+            .scope(.shared)
     }
     
 }

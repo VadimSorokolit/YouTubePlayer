@@ -6,20 +6,61 @@
 //
 
 import Foundation
+import Factory
 
 @Observable
 class PlayerViewModel {
     
     // MARK: - Properties. Public
     
+    var videoSnippet: PlaylistItem.Snippet?
     var isPlayerOpen: Bool = false
     var isPlaying: Bool = false
+    var duration: String?
+    var currentTime: String?
+    var currentDuration: String?
     
     // MARK: - Properties. Private
     
+    @ObservationIgnored
+    @Injected(\.youTubePlayer) private var player
     private let secondsInHour: Int = 60 * 60
     
-    // MARK: - Methods
+    // MARK: - Methods. Public
+    
+    func startTrackingCurrentTime() {
+        Task {
+            while !Task.isCancelled {
+                do {
+                    let currentTime = try await player.getCurrentTime()
+                    await MainActor.run {
+                        let seconds = currentTime.converted(to: .seconds).value
+                        let convert = self.formattedTime(by: seconds)
+                        self.currentTime = convert
+                    }
+                } catch {
+                    print("Error: \(error)")
+                }
+                try? await Task.sleep(nanoseconds: 500_000_000)
+            }
+        }
+    }
+    
+    func getDuration() {
+        Task {
+            do {
+                try await Task.sleep(nanoseconds: 999_000_000)
+                let duration = try await self.player.getDuration()
+                let seconds = duration.converted(to: .seconds).value
+                let convert = self.formattedTime(by: seconds)
+                self.duration = convert
+            } catch {
+                print("Error: \(error)")
+            }
+        }
+    }
+    
+    // MARK: - Methods. Private
     
     private func formattedTime(by seconds: Double) -> String {
         let (hours, minutes, seconds) = self.convertToHoursMinutesSeconds(from: Int(seconds))
@@ -43,5 +84,5 @@ class PlayerViewModel {
             return String(format: "%01i:%02i", minutes, seconds)
         }
     }
-
+    
 }
