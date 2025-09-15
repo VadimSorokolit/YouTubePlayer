@@ -42,7 +42,7 @@ struct PlayerView: View {
                     
                     CustomPlayerView(playerViewModel: $playerViewModel)
                     
-                    CustomProgressView(playerViewModel: $playerViewModel, progress: $progress, durationSec: $durationSec)
+                    CustomProgressView(playerViewModel: $playerViewModel, durationSec: $durationSec)
                     
                     ControlPanelView(playerViewModel: $playerViewModel)
                     
@@ -74,6 +74,7 @@ struct PlayerView: View {
     }
     
     private struct HeaderView: View {
+        @Environment(HomeViewModel.self) private var youTubeViewModel
         @Binding var playerViewModel: PlayerViewModel
         let collapsedHeight: CGFloat
         
@@ -83,9 +84,16 @@ struct PlayerView: View {
                     .fill(Color.clear)
                     .frame(height: collapsedHeight)
                 
-                Image(asset: Asset.openClose)
-                    .renderingMode(.original)
-                    .rotationEffect(playerViewModel.isPlayerOpen ? .degrees(180.0) : .degrees(.zero))
+                Button(action: {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                        youTubeViewModel.isPlayerOpen = false
+                    }
+                }) {
+                    Image(asset: Asset.openClose)
+                        .renderingMode(.original)
+                        .rotationEffect(playerViewModel.isPlayerOpen ? .degrees(180.0) : .degrees(.zero))
+                }
+                .disabled(!youTubeViewModel.isPlayerOpen)
             }
         }
         
@@ -93,41 +101,48 @@ struct PlayerView: View {
     
     private struct CustomProgressView: View {
         @Binding var playerViewModel: PlayerViewModel
-        @Binding var progress: Double
+        @State var isScrubbing: Bool = false
         @Binding var durationSec: Double
         @Injected(\.youTubePlayer) private var player
         
         var body: some View {
             VStack(spacing: 17.0) {
                 VStack {
+                    Color.clear
+                        .frame(height: 0.0)
+                        .onAppear { durationSec = playerViewModel.progress }
+                        .onChange(of: playerViewModel.progress) { _, new in
+                            if !isScrubbing { durationSec = new }
+                        }
+                    
                     CustomSlider(
-                        value: $progress,
+                        value: $durationSec,
                         onEditingChanged: { began in
+                            isScrubbing = began
                             if began {
                                 Task { try? await player.pause() }
                             }
                         },
-                        onChange: { v in
+                        onChange: { _ in
                         },
-                        onEnded: { value in
-                            let target = value * durationSec
-                            Task {
-                                try? await player.seek(to: .init(value: target, unit: .seconds))
-                                try? await player.play()
-                            }
+                        onEnded: { newValue in
+                            playerViewModel.seek(to: newValue)
+                            Task { try? await player.play() }
+                            isScrubbing = false
                         }
                     )
+                    .transaction { $0.disablesAnimations = true }
                     
                     Spacer()
                     
                     HStack {
-                        Text(playerViewModel.currentTime ?? "")
+                        Text(playerViewModel.elapsedText)
                             .font(.custom(FontFamily.SFProText.regular, size: 11.0))
                             .foregroundStyle(Asset.playerTransparentWhite70.swiftUIColor)
                         
                         Spacer()
                         
-                        Text("- \(playerViewModel.duration ?? "")")
+                        Text(playerViewModel.remainingText)
                             .font(.custom(FontFamily.SFProText.regular, size: 11.0))
                             .foregroundStyle(Asset.playerTransparentWhite70.swiftUIColor)
                     }
@@ -144,7 +159,7 @@ struct PlayerView: View {
                     
                     Spacer()
                     
-                    Text("\(playerViewModel.videoSnippet?.viewCount ?? "") \(L10n.views)")
+                    Text("\(playerViewModel.videoSnippet?.viewCount?.splitIntoThounsandParts ?? "") \(L10n.views)")
                         .font(.custom(FontFamily.SFProText.regular, size: 16.0))
                         .foregroundStyle(Asset.playerTransparentWhite70.swiftUIColor)
                         .lineLimit(1)
@@ -243,6 +258,32 @@ struct PlayerView: View {
                             .background(Color.black)
                 }
             }
+            .onReceive(player.playbackStatePublisher) { state in
+                if state == .ended {
+                    let items = youTubeViewModel.currentPlaylistItems
+                    guard !items.isEmpty else {
+                        return
+                    }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                        if playerViewModel.isRepeatModeEnable == false {
+                            Task { try? await player.pause() }
+                            playerViewModel.isPlaying = false
+                        }
+                        if playerViewModel.isRepeatModeEnable {
+                            youTubeViewModel.currentTrackIndex = (youTubeViewModel.currentTrackIndex + 1) % items.count
+                        }
+                        if playerViewModel.isShuffleModeEnabled {
+                            if items.count > 1 {
+                                var randomIndex: Int
+                                repeat {
+                                    randomIndex = Int.random(in: 0 ..< items.count)
+                                } while randomIndex == youTubeViewModel.currentTrackIndex
+                                youTubeViewModel.currentTrackIndex = randomIndex
+                            }
+                        }
+                    }
+                }
+            }
             .onAppear {
                 Task {
                     if let id = youTubeViewModel.currentItem?.snippet.resourceId.videoId {
@@ -255,7 +296,7 @@ struct PlayerView: View {
                 Task {
                     try? await player.load(source: .video(id: newId))
                 }
-                playerViewModel.getDuration()
+                playerViewModel.fetchDuration()
                 playerViewModel.startTrackingCurrentTime()
 
             }
@@ -271,6 +312,17 @@ struct PlayerView: View {
         
         var body: some View {
             HStack {
+                Button(action: {
+                    playerViewModel.isRepeatModeEnable.toggle()
+                    playerViewModel.isShuffleModeEnabled = false
+                }) {
+                    Image(systemName: "repeat")
+                        .font(.system(size: 24.0))
+                        .foregroundStyle(playerViewModel.isRepeatModeEnable ? .white : Asset.playerHeaderTitleTextColor.swiftUIColor)
+                }
+                
+                Spacer()
+                
                 Button(action: {
                     guard !youTubeViewModel.currentPlaylistItems.isEmpty else {
                         return
@@ -311,9 +363,20 @@ struct PlayerView: View {
                     Image(asset: Asset.next)
                         .renderingMode(.original)
                 }
+                
+                Spacer()
+                
+                Button(action: {
+                    playerViewModel.isShuffleModeEnabled.toggle()
+                    playerViewModel.isRepeatModeEnable = false
+                }) {
+                    Image(systemName: "shuffle")
+                        .font(.system(size: 24.0))
+                        .foregroundStyle(playerViewModel.isShuffleModeEnabled ? .white : Asset.playerHeaderTitleTextColor.swiftUIColor)
+                }
             }
             .frame(height: 30.0)
-            .padding(.horizontal, 94.5)
+            .padding(.horizontal, 30.0)
             .padding(.top, 41.0)
         }
         
@@ -385,7 +448,8 @@ struct PlayerView: View {
                                 case .expanded:
                                     dragOffset = max(0.0, value.translation.height)
                                 case .collapsed:
-                                    dragOffset = min(0.0, value.translation.height)
+                                    // dragOffset = min(0.0, value.translation.height)
+                                    break
                             }
                         }
                         .onEnded { value in
@@ -395,18 +459,19 @@ struct PlayerView: View {
                             let dyEnd = value.predictedEndTranslation.height
                             withAnimation(.spring(response: 0.35, dampingFraction: 0.85)) {
                                 switch state {
-                                    case .collapsed:
-                                        if (-dy >= trigger) || (-dyEnd >= trigger) {
-                                            state = .expanded
-                                            youTubeViewModel.isPlayerOpen = true
-                                            playerViewModel.isPlaying = true
-                                        }
                                     case .expanded:
                                         if (dy >= trigger) || (dyEnd >= trigger) {
                                             state = .collapsed
                                             youTubeViewModel.isPlayerOpen = false
                                             playerViewModel.isPlaying = true
                                         }
+                                    case .collapsed:
+//                                        if (-dy >= trigger) || (-dyEnd >= trigger) {
+//                                            state = .expanded
+//                                            youTubeViewModel.isPlayerOpen = true
+//                                            playerViewModel.isPlaying = true
+//                                        }
+                                        break
                                 }
                                 dragOffset = .zero
                             }

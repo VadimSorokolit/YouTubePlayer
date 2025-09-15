@@ -8,35 +8,18 @@
 import SwiftUI
 
 struct SpinnerView: View {
-    @State private var topInset: CGFloat = 0.0
     let isLoading: Bool
+    var offsetY: CGFloat = 80.0
     
     var body: some View {
-        GeometryReader { geo in
-            HStack {
-                Spacer()
-                
-                if isLoading {
-                    ZStack {
-                        Circle()
-                            .fill(Color.black.opacity(0.5))
-                            .frame(width: 40.0, height: 40.0)
-                        
-                        ProgressView()
-                            .progressViewStyle(.circular)
-                            .tint(.white)
-                    }
-                }
-            }
-            .padding(.trailing, 20.0)
-            .padding(.top, topInset + 50.0)
-            .padding(.bottom, 8.0)
-            .background(.clear)
-            .onAppear {
-                topInset = geo.safeAreaInsets.top
-            }
+        if isLoading {
+            ProgressView()
+                .progressViewStyle(.circular)
+                .tint(.white)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(Color.clear)
+                .offset(y: offsetY)
         }
-        .frame(height: (40.0 + topInset))
     }
     
 }

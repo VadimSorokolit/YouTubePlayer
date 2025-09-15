@@ -117,6 +117,7 @@ struct HomeView: View {
                     }
                 }
                 .scrollIndicators(.hidden)
+                .contentMargins(.bottom, 80.0, for: .scrollContent)
             }
             
             private struct ChannelPagerView: View {
@@ -153,7 +154,7 @@ struct HomeView: View {
                                             .font(.custom(FontFamily.SFProText.semibold, size: 16.0))
                                             .foregroundColor(Asset.channelTitleTextColor.swiftUIColor)
                                         
-                                        Text("\(channel.statistics.subscriberCount) \(L10n.subscribers)")
+                                        Text("\(channel.statistics.subscriberCount.splitIntoThounsandParts ?? "") \(L10n.subscribers)")
                                             .font(.custom(FontFamily.SFProText.regular, size: 10.0))
                                             .foregroundColor(Asset.channelSubtitleTextColor.swiftUIColor)
                                         
@@ -259,7 +260,7 @@ struct HomeView: View {
                                 .lineLimit(1)
                                 .foregroundColor(.white)
                             
-                            if let views = item.snippet.viewCount {
+                            if let views = item.snippet.viewCount?.splitIntoThounsandParts {
                                 Text("\(views) \(L10n.subscribers)")
                                     .font(.custom(FontFamily.SFProText.medium, size: 12.0))
                                     .foregroundColor(Asset.homeHeaderTitleTextColor.swiftUIColor)
@@ -309,7 +310,7 @@ struct HomeView: View {
                                 .lineLimit(1)
                                 .frame(width: 135, alignment: .leading)
                             
-                            if let views = item.snippet.viewCount {
+                            if let views = item.snippet.viewCount?.splitIntoThounsandParts {
                                 Text("\(views) \(L10n.subscribers)")
                                     .font(.custom(FontFamily.SFProText.medium, size: 12.0))
                                     .foregroundColor(Asset.homeHeaderTitleTextColor.swiftUIColor)
