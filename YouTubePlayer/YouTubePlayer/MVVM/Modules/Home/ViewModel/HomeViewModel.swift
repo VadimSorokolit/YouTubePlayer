@@ -63,7 +63,6 @@ class HomeViewModel {
         self.timerTask = nil
     }
     
-    
     func getSectionTitle(by sectionIndex: Int) -> String {
         guard self.sections.indices.contains(sectionIndex) else {
             return ""
@@ -133,7 +132,7 @@ class HomeViewModel {
         self.isPlayerOpen = true
     }
     
-    // Methods. Private
+    // MARK: - Methods. Private
     
     private func getChannels(by id: String) async  -> [Channel]? {
         (try? await self.service.getChannels(by: id)) ?? []

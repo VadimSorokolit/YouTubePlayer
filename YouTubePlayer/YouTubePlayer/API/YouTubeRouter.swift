@@ -10,10 +10,13 @@ import Moya
 
 private struct Constants {
     static var apiKey: String {
-        guard let key = Secrets.apiKey else {
-            fatalError(L10n.invalidAPIkeyErrorMessage)
+        if let key = Secrets.apiKey {
+            return key
+        } else {
+            let mockAPIKey = L10n.mockAPIKey
+            print(L10n.invalidAPIkeyErrorMessage)
+            return mockAPIKey
         }
-        return key
     }
 }
 

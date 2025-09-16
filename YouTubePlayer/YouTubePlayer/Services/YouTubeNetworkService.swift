@@ -14,7 +14,6 @@ protocol YouTubeNetworkServiceProtocol {
 
 class YouTubeNetworkService: YouTubeNetworkServiceProtocol {
     
-    
     // MARK: - Properties. Private
     
     private let provider: MoyaProvider<YouTubeRouter>

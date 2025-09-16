@@ -8,8 +8,9 @@
 
 // API key
 
-"apiKeyFileName" = "ApiKey";
+"apiKeyFileName" = "APIKey";
 "apiKeyFileExtension" = "json";
+"mockAPIKey" = "88888888";
 
 // URLs
 
@@ -59,3 +60,5 @@
 
 "subscribers" = "subscribers";
 "views" = "views";
+"repeatImageName" = "repeat";
+"shuffleImageName" = "shuffle";

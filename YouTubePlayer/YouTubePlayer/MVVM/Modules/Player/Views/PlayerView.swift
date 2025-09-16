@@ -16,6 +16,9 @@ enum PlayerState {
 }
 
 struct PlayerView: View {
+    
+    // MARK: - Properties. Private
+    
     @Environment(HomeViewModel.self) private var youTubeViewModel
     @State private var playerViewModel = PlayerViewModel()
     @Injected(\.youTubePlayer) private var player
@@ -23,9 +26,14 @@ struct PlayerView: View {
     @State private var progress: Double = 0.0
     @State private var durationSec: Double = 0
     @State private var state: PlayerState = .collapsed
+    
+    // MARK: - Properties. Public
+    
     let collapsedHeight: CGFloat = 50.0
     let topGap: CGFloat = 4.0
     let topOffset: CGFloat
+    
+    // MARK: - Main body
     
     var body: some View {
         GeometryReader { geo in
@@ -316,7 +324,7 @@ struct PlayerView: View {
                     playerViewModel.isRepeatModeEnable.toggle()
                     playerViewModel.isShuffleModeEnabled = false
                 }) {
-                    Image(systemName: "repeat")
+                    Image(systemName: L10n.repeatImageName)
                         .font(.system(size: 24.0))
                         .foregroundStyle(playerViewModel.isRepeatModeEnable ? .white : Asset.playerHeaderTitleTextColor.swiftUIColor)
                 }
@@ -370,7 +378,7 @@ struct PlayerView: View {
                     playerViewModel.isShuffleModeEnabled.toggle()
                     playerViewModel.isRepeatModeEnable = false
                 }) {
-                    Image(systemName: "shuffle")
+                    Image(systemName: L10n.shuffleImageName)
                         .font(.system(size: 24.0))
                         .foregroundStyle(playerViewModel.isShuffleModeEnabled ? .white : Asset.playerHeaderTitleTextColor.swiftUIColor)
                 }

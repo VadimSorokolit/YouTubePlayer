@@ -16,7 +16,7 @@ internal enum L10n {
   ///   YouTubePlayer
   /// 
   ///   Created by Vadim  on 27.08.2025.
-  internal static let apiKeyFileName = L10n.tr("Localizable", "apiKeyFileName", fallback: "ApiKey")
+  internal static let apiKeyFileName = L10n.tr("Localizable", "apiKeyFileName", fallback: "APIKey")
   /// https://www.googleapis.com
   internal static let baseURL = L10n.tr("Localizable", "baseURL", fallback: "https://www.googleapis.com")
   /// UCiMhD4jzUqG-IgPzUmmytRQ
@@ -37,6 +37,8 @@ internal enum L10n {
   internal static let invalidAPIkeyErrorMessage = L10n.tr("Localizable", "invalidAPIkeyErrorMessage", fallback: "Missing API Key. Add ApiKey.json to bundle and unlock git-crypt")
   /// URL is invalid
   internal static let invalidURLErrorMessage = L10n.tr("Localizable", "invalidURLErrorMessage", fallback: "URL is invalid")
+  /// 88888888
+  internal static let mockAPIKey = L10n.tr("Localizable", "mockAPIKey", fallback: "88888888")
   /// channelId
   internal static let parameterChannelId = L10n.tr("Localizable", "parameterChannelId", fallback: "channelId")
   /// id
@@ -55,6 +57,10 @@ internal enum L10n {
   internal static let playlistItemsPath = L10n.tr("Localizable", "playlistItemsPath", fallback: "youtube/v3/playlistItems")
   /// youtube/v3/playlists
   internal static let playlistsPath = L10n.tr("Localizable", "playlistsPath", fallback: "youtube/v3/playlists")
+  /// repeat
+  internal static let repeatImageName = L10n.tr("Localizable", "repeatImageName", fallback: "repeat")
+  /// shuffle
+  internal static let shuffleImageName = L10n.tr("Localizable", "shuffleImageName", fallback: "shuffle")
   /// subscribers
   internal static let subscribers = L10n.tr("Localizable", "subscribers", fallback: "subscribers")
   /// brandingSettings

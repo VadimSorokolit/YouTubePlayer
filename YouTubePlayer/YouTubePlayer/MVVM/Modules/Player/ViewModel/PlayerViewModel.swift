@@ -18,25 +18,26 @@ class PlayerViewModel {
     var videoSnippet: PlaylistItem.Snippet?
     var isPlayerOpen: Bool = false
     var isPlaying: Bool = false
-    private(set) var currentSeconds: Double = 0.0
-    private(set) var durationSeconds: Double = 0.0
-    var elapsedText: String { self.formatTime(self.currentSeconds)
-    }
     var remainingText: String {
         let remain = max(0, self.durationSeconds - self.currentSeconds)
         return "-" + self.formatTime(remain)
     }
-
     var progress: Double {
-        guard durationSeconds > 0 else { return 0 }
-        return min(max(currentSeconds / durationSeconds, 0), 1)
+        guard durationSeconds > 0.0 else { return 0.0 }
+        return min(max(currentSeconds / durationSeconds, 0.0), 1.0)
     }
-
+    var elapsedText: String {
+        self.formatTime(self.currentSeconds)
+    }
+    
     // MARK: - Properties. Private
+    
+    private(set) var currentSeconds: Double = 0.0
+    private(set) var durationSeconds: Double = 0.0
+    private var trackerTask: Task<Void, Never>?
 
     @ObservationIgnored
     @Injected(\.youTubePlayer) private var player
-    private var trackerTask: Task<Void, Never>?
 
     // MARK: - Methods. Public
 
@@ -71,8 +72,7 @@ class PlayerViewModel {
     }
     
     func seek(to progress: Double) {
-        
-        let target = max(0, min(1, progress)) * self.durationSeconds
+        let target = max(0.0, min(1.0, progress)) * self.durationSeconds
         Task {
             try? await self.player.seek(to: .init(value: target, unit: .seconds))
         }
@@ -87,13 +87,13 @@ class PlayerViewModel {
 
     private func formatTime(_ seconds: Double) -> String {
         let total = Int(seconds.rounded(.down))
-        let h = total / 3600
-        let m = (total % 3600) / 60
-        let s = total % 60
-        if h > 0 {
-            return String(format: "%01d:%02d:%02d", h, m, s)
+        let hours = total / 3600
+        let minutes = (total % 3600) / 60
+        let seconds = total % 60
+        if hours > 0 {
+            return String(format: "%01d:%02d:%02d", hours, minutes, seconds)
         } else {
-            return String(format: "%01d:%02d", m, s)
+            return String(format: "%01d:%02d", minutes, seconds)
         }
     }
 } 

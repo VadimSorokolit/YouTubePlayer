@@ -15,10 +15,10 @@ extension View {
     
 }
 
-struct RoundedShape: Shape {
+private struct RoundedShape: Shape {
     var radius: CGFloat
     var corners: UIRectCorner
-
+    
     func path(in rect: CGRect) -> Path {
         let path = UIBezierPath(
             roundedRect: rect,

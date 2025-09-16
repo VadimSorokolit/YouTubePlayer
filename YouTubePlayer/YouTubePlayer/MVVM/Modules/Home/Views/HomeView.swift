@@ -106,8 +106,8 @@ struct HomeView: View {
                                         isAltCardStyle: isAltCardStyle,
                                         onItemTap: { index in
                                             let globalIndex = offset + index
-                                            viewModel.openPlayer(items: allItems, startAt: globalIndex)
-                                        
+                                            viewModel.openPlayer(items: allItems, startAt: globalIndex
+                                            )
                                         }
                                     )
                                 }
@@ -194,7 +194,7 @@ struct HomeView: View {
                 
             }
             
-            struct PlaylistView: View {
+            private struct PlaylistView: View {
                 let playlist: Playlist
                 let isAltCardStyle: Bool
                 let onItemTap: (Int) -> Void
@@ -223,7 +223,7 @@ struct HomeView: View {
                 
             }
             
-            struct VideoCard: View {
+            private struct VideoCard: View {
                 let item: PlaylistItem
                 
                 var body: some View {
@@ -273,7 +273,7 @@ struct HomeView: View {
                 
             }
             
-            struct VideoCardAlt: View {
+            private struct VideoCardAlt: View {
                 let item: PlaylistItem
                 
                 var body: some View {
@@ -302,7 +302,7 @@ struct HomeView: View {
                                 .frame(width: 135.0, height: 135.0)
                                 .cornerRadius(6.0)
                         }
-
+                        
                         VStack(alignment: .leading, spacing: 4.0) {
                             Text(item.snippet.title)
                                 .font(.custom(FontFamily.SFProText.medium, size: 17.0))
