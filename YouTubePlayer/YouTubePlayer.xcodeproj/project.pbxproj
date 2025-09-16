@@ -188,7 +188,7 @@
 		DD7AAC202E5C44D8005AE888 /* YouTubePlayer */ = {
 			isa = PBXGroup;
 			children = (
-				DD7AAC2B2E5C4B2A005AE888 /* AppMainView */,
+				DD7AAC2B2E5C4B2A005AE888 /* AppMain */,
 				DD7AAC272E5C4A3D005AE888 /* API */,
 				DD9EEDBE2E5F19B30090E848 /* Config */,
 				DD3C1BC02E6079A900FF3953 /* DI */,
@@ -216,13 +216,13 @@
 			path = API;
 			sourceTree = "<group>";
 		};
-		DD7AAC2B2E5C4B2A005AE888 /* AppMainView */ = {
+		DD7AAC2B2E5C4B2A005AE888 /* AppMain */ = {
 			isa = PBXGroup;
 			children = (
 				DDEF61B02E6ECAE400D514FC /* LaunchView */,
 				DD7AAC1F2E5C44D8005AE888 /* YouTubePlayerApp.swift */,
 			);
-			path = AppMainView;
+			path = AppMain;
 			sourceTree = "<group>";
 		};
 		DD7AAC2C2E5C4B2F005AE888 /* Resources */ = {
@@ -458,7 +458,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1640;
-				LastUpgradeCheck = 1640;
+				LastUpgradeCheck = 2600;
 				TargetAttributes = {
 					DD7AABEA2E5C446F005AE888 = {
 						CreatedOnToolsVersion = 16.4;
@@ -689,6 +689,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -746,6 +747,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};

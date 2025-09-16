@@ -13,7 +13,7 @@ struct YouTubePlayerApp: App {
     
     // MARK: - Properties. Private
     
-    @State private var isShowingLaunchView: Bool = false
+    @State private var isShownLaunchView: Bool = false
     @State private var viewModel = HomeViewModel()
     @State private var appAlert: AlertNotice?
     
@@ -29,34 +29,34 @@ struct YouTubePlayerApp: App {
     var body: some Scene {
         WindowGroup {
             Group {
-                if self.isShowingLaunchView {
+                if self.isShownLaunchView == false {
                     LaunchView()
                 } else {
                     HomeView()
                 }
             }
-            .modifier(LoadViewModifier(isShowingLaunchView: $isShowingLaunchView, viewModel: $viewModel))
+            .environment(self.viewModel)
             .environmentAlert($appAlert)
+            .modifier(LoadViewModifier(isShownLaunchView: $isShownLaunchView, viewModel: $viewModel))
         }
-        .environment(self.viewModel)
     }
     
     // MARK: - Modifiers
     
     struct LoadViewModifier: ViewModifier {
         @Environment(\.appAlert) private var appAlert
-        @Binding var isShowingLaunchView: Bool
+        @Binding var isShownLaunchView: Bool
         @Binding var viewModel: HomeViewModel
         
         func body(content: Content) -> some View {
             content
-                .onAppear {
-                    self.isShowingLaunchView = true
-                }
                 .onChange(of: viewModel.isLoading) {
                     if self.viewModel.isLoading == false {
-                        self.isShowingLaunchView = false
+                        self.isShownLaunchView = true
                     }
+                }
+                .onChange(of: viewModel.errorMessage) {
+                    self.appAlert.error(Text(self.viewModel.errorMessage ?? ""))
                 }
                 .task {
                     do {
@@ -65,9 +65,6 @@ struct YouTubePlayerApp: App {
                     } catch {
                         self.viewModel.errorMessage = error.localizedDescription
                     }
-                }
-                .onChange(of: viewModel.errorMessage) {
-                    self.appAlert.error(Text(self.viewModel.errorMessage ?? ""))
                 }
                 .overlay {
                     if self.viewModel.isLoading {
