@@ -122,8 +122,8 @@ struct PlayerView: View {
                             progress = playerViewModel.progress
                         }
                         .onChange(of: playerViewModel.progress) { _, newValue in
-                            if !isScrubbing && abs(newValue - progress) > 0.01 {
-                                progress = newValue
+                            if !isScrubbing {
+                                progress = newValue.clamped(to: 0...1)
                             }
                         }
                     
@@ -131,11 +131,15 @@ struct PlayerView: View {
                         value: $progress,
                         onEditingChanged: { began in
                             isScrubbing = began
+                            playerViewModel.isUserScrubbing = began
                             if began {
                                 Task { try? await player.pause() }
                             }
                         },
-                        onChange: { _ in
+                        onChange: { value in
+                            if isScrubbing {
+                                playerViewModel.previewSeek(toProgress: value)
+                            }
                         },
                         onEnded: { newValue in
                             playerViewModel.seek(to: newValue)
@@ -143,6 +147,7 @@ struct PlayerView: View {
                                 try? await player.play()
                             }
                             isScrubbing = false
+                            playerViewModel.isUserScrubbing = false
                         }
                     )
                     .transaction { $0.disablesAnimations = true }

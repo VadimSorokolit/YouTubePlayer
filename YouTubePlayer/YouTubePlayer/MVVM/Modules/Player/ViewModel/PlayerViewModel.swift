@@ -32,9 +32,11 @@ class PlayerViewModel {
     var elapsedText: String {
         self.formatTime(self.currentSeconds)
     }
+    var isUserScrubbing: Bool = false
     
     // MARK: - Properties. Private
     
+    private var previewSeekTask: Task<Void, Never>?
     private(set) var currentSeconds: Double = 0.0
     private(set) var durationSeconds: Double = 0.0
     private var trackerTask: Task<Void, Never>?
@@ -71,13 +73,35 @@ class PlayerViewModel {
                 try? await Task.sleep(nanoseconds: 999_000_000)
                 let duration = try await self.player.getDuration()
                 let seconds = duration.converted(to: .seconds).value
-                self.durationSeconds = seconds
+                await MainActor.run {
+                    if !self.isUserScrubbing {
+                        self.durationSeconds = seconds
+                    }
+                }
             } catch {}
+            try? await Task.sleep(nanoseconds: 180_000_000)
+        }
+    }
+    
+    func previewSeek(toProgress progress: Double) {
+        guard self.durationSeconds > 0 else { return }
+        let target = max(0.0, min(1.0, progress)) * self.durationSeconds
+
+        self.previewSeekTask?.cancel()
+        self.isUserScrubbing = true
+        self.currentSeconds = target
+        
+        self.previewSeekTask = Task {
+            try? await Task.sleep(nanoseconds: 120_000_000)
+            try? await self.player.seek(to: .init(value: target, unit: .seconds))
         }
     }
     
     func seek(to progress: Double) {
         let target = max(0.0, min(1.0, progress)) * self.durationSeconds
+        self.previewSeekTask?.cancel()
+        self.isUserScrubbing = true
+        self.currentSeconds = target
         Task {
             try? await self.player.seek(to: .init(value: target, unit: .seconds))
         }
