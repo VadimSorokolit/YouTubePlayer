@@ -40,7 +40,7 @@ struct HomeView: View {
         }
         
         private struct HeaderView: View {
-            @Environment(HomeViewModel.self) private var viewModel
+            @Environment(HomeViewModel.self) private var homeViewModel
             let topOffSet: CGFloat
             
             var body: some View {
@@ -50,8 +50,8 @@ struct HomeView: View {
                         .frame(height: topOffSet)
                         .ignoresSafeArea(edges: .top)
                     
-                    Text(viewModel.isPlayerOpen ? L10n.playerScreenTitle : L10n.homeScreenTitle)
-                        .foregroundColor(viewModel.isPlayerOpen ? Asset.playerHeaderTitleTextColor.swiftUIColor : Asset.homeHeaderTitleTextColor.swiftUIColor)
+                    Text(homeViewModel.isPlayerOpen ? L10n.playerScreenTitle : L10n.homeScreenTitle)
+                        .foregroundColor(homeViewModel.isPlayerOpen ? Asset.playerHeaderTitleTextColor.swiftUIColor : Asset.homeHeaderTitleTextColor.swiftUIColor)
                         .font(.custom(FontFamily.SFProDisplay.bold, size: 34.0))
                         .lineLimit(1)
                         .padding(.leading, 24.0)
@@ -60,20 +60,20 @@ struct HomeView: View {
         }
         
         private struct ContentView: View {
-            @Environment(HomeViewModel.self) private var viewModel
+            @Environment(HomeViewModel.self) private var homeViewModel
             
             var body: some View {
                 ScrollView {
                     LazyVStack(alignment: .leading, spacing: 0.0) {
-                        if let firstSection = viewModel.sections.first,
+                        if let firstSection = homeViewModel.sections.first,
                            case .pageControl(let channels) = firstSection.items.first?.typeOfCell {
                             ChannelPagerView(channels: channels, onChannelTap: { channel in
-                                viewModel.selectChannel(channel)
+                                homeViewModel.selectChannel(channel)
                             })
                             .padding(.bottom, 4.0)
                         }
                         
-                        ForEach(Array(viewModel.sections.dropFirst().enumerated()), id: \.element.id) { sectionIndex, section in
+                        ForEach(Array(homeViewModel.sections.dropFirst().enumerated()), id: \.element.id) { sectionIndex, section in
                             VStack(alignment: .leading, spacing: sectionIndex % 2 == 0 ? 20.0 : 13.0) {
                                 Text(section.title)
                                     .font(.custom(FontFamily.SFProDisplay.bold, size: 23.0))
@@ -84,7 +84,7 @@ struct HomeView: View {
                                 if let cell = section.items.first,
                                    case .playlist(let playlist) = cell.typeOfCell {
                                     let isAltCardStyle = (sectionIndex % 2 == 1)
-                                    let offset = viewModel.sections
+                                    let offset = homeViewModel.sections
                                         .dropFirst()
                                         .prefix(sectionIndex)
                                         .reduce(0) { itemCount, section in
@@ -93,7 +93,7 @@ struct HomeView: View {
                                             }
                                             return itemCount
                                         }
-                                    let allItems: [PlaylistItem] = viewModel.sections
+                                    let allItems: [PlaylistItem] = homeViewModel.sections
                                         .dropFirst()
                                         .compactMap { section -> Playlist? in
                                             if case .playlist(let playlist) = section.items.first?.typeOfCell { return playlist }
@@ -106,7 +106,7 @@ struct HomeView: View {
                                         isAltCardStyle: isAltCardStyle,
                                         onItemTap: { index in
                                             let globalIndex = offset + index
-                                            viewModel.openPlayer(items: allItems, startAt: globalIndex
+                                            homeViewModel.openPlayer(items: allItems, startAt: globalIndex
                                             )
                                         }
                                     )
@@ -121,7 +121,7 @@ struct HomeView: View {
             }
             
             private struct ChannelPagerView: View {
-                @Environment(HomeViewModel.self) private var viewModel
+                @Environment(HomeViewModel.self) private var homeViewModel
                 @State private var currentPage = 0
                 let channels: [Channel]
                 private let imageHeight: CGFloat = 199.0
@@ -171,24 +171,24 @@ struct HomeView: View {
                     }
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
                     .frame(height: imageHeight + dotsReserve)
-                    .onChange(of: viewModel.isPlayerOpen) {
-                        if viewModel.isPlayerOpen {
-                            viewModel.stopTimer()
+                    .onChange(of: homeViewModel.isPlayerOpen) {
+                        if homeViewModel.isPlayerOpen {
+                            homeViewModel.stopTimer()
                         } else {
-                            viewModel.startTimer()
+                            homeViewModel.startTimer()
                         }
                     }
                     .onChange(of: currentPage) { _, newPage in
-                        viewModel.updateData(for: currentPage)
+                        homeViewModel.updateData(for: currentPage)
                     }
-                    .onChange(of: viewModel.pagesCounter) { _, _ in
+                    .onChange(of: homeViewModel.pagesCounter) { _, _ in
                         guard !channels.isEmpty else {
                             return
                         }
                         currentPage = (currentPage + 1) % channels.count
                     }
                     .onAppear {
-                        viewModel.startTimer()
+                        homeViewModel.startTimer()
                     }
                 }
                 

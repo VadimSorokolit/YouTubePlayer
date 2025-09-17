@@ -19,8 +19,6 @@ struct PlayerView: View {
     
     // MARK: - Properties. Private
     
-    @Environment(HomeViewModel.self) private var youTubeViewModel
-    @State private var playerViewModel = PlayerViewModel()
     @Injected(\.youTubePlayer) private var player
     @State private var dragOffset: CGFloat = 0.0
     @State private var progress: Double = 0.0
@@ -46,21 +44,21 @@ struct PlayerView: View {
                 GradientBackgroundView()
                 
                 VStack(spacing: .zero) {
-                    HeaderView(playerViewModel: $playerViewModel, collapsedHeight: collapsedHeight)
+                    HeaderView(collapsedHeight: collapsedHeight)
                     
-                    CustomPlayerView(playerViewModel: $playerViewModel, isScrubbing: $isScrubbing, progress: $progress)
+                    CustomPlayerView(isScrubbing: $isScrubbing, progress: $progress)
                     
-                    CustomProgressView(playerViewModel: $playerViewModel, isScrubbing: $isScrubbing, progress: $progress)
+                    CustomProgressView(isScrubbing: $isScrubbing, progress: $progress)
                     
-                    ControlPanelView(playerViewModel: $playerViewModel)
+                    ControlPanelView()
                     
                     CustomVolumeView()
                     
                     BottomView()
                 }
             }
-            .modifier(LoadViewModifier(playerViewModel: $playerViewModel, state: $state, dragOffset: $dragOffset, topOffset: topOffset, expandedHeight: expandedHeight, topExpanded: topExpanded, topCollapsed: topCollapsed, geo: geo))
-            .modifier(PlayerViewModifier(state: $state, playerViewModel: $playerViewModel))
+            .modifier(LoadViewModifier(state: $state, dragOffset: $dragOffset, topOffset: topOffset, expandedHeight: expandedHeight, topExpanded: topExpanded, topCollapsed: topCollapsed, geo: geo))
+            .modifier(PlayerViewModifier(state: $state))
         }
         .ignoresSafeArea(edges: .bottom)
     }
@@ -82,8 +80,8 @@ struct PlayerView: View {
     }
     
     private struct HeaderView: View {
-        @Environment(HomeViewModel.self) private var youTubeViewModel
-        @Binding var playerViewModel: PlayerViewModel
+        @Environment(HomeViewModel.self) private var homeViewModel
+        @Environment(PlayerViewModel.self) private var playerViewModel
         let collapsedHeight: CGFloat
         
         var body: some View {
@@ -94,21 +92,21 @@ struct PlayerView: View {
                 
                 Button(action: {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                        youTubeViewModel.isPlayerOpen = false
+                        homeViewModel.isPlayerOpen = false
                     }
                 }) {
                     Image(asset: Asset.openClose)
                         .renderingMode(.original)
                         .rotationEffect(playerViewModel.isPlayerOpen ? .degrees(180.0) : .degrees(.zero))
                 }
-                .disabled(!youTubeViewModel.isPlayerOpen)
+                .disabled(!homeViewModel.isPlayerOpen)
             }
         }
         
     }
     
     private struct CustomProgressView: View {
-        @Binding var playerViewModel: PlayerViewModel
+        @Environment(PlayerViewModel.self) private var playerViewModel
         @Binding var isScrubbing: Bool
         @Binding var progress: Double
         @Injected(\.youTubePlayer) private var player
@@ -257,8 +255,8 @@ struct PlayerView: View {
     }
     
     private struct CustomPlayerView: View {
-        @Environment(HomeViewModel.self) private var youTubeViewModel
-        @Binding var playerViewModel: PlayerViewModel
+        @Environment(HomeViewModel.self) private var homeViewModel
+        @Environment(PlayerViewModel.self) private var playerViewModel
         @Binding var isScrubbing: Bool
         @Binding var progress: Double
         @Injected(\.youTubePlayer) private var player
@@ -281,7 +279,7 @@ struct PlayerView: View {
             }
             .onReceive(player.playbackStatePublisher) { state in
                 if state == .ended {
-                    let items = youTubeViewModel.currentPlaylistItems
+                    let items = homeViewModel.currentPlaylistItems
                     guard !items.isEmpty else {
                         return
                     }
@@ -291,15 +289,15 @@ struct PlayerView: View {
                             playerViewModel.isPlaying = false
                         }
                         if playerViewModel.isRepeatModeEnable {
-                            youTubeViewModel.currentTrackIndex = (youTubeViewModel.currentTrackIndex + 1) % items.count
+                            homeViewModel.currentTrackIndex = (homeViewModel.currentTrackIndex + 1) % items.count
                         }
                         if playerViewModel.isShuffleModeEnabled {
                             if items.count > 1 {
                                 var randomIndex: Int
                                 repeat {
                                     randomIndex = Int.random(in: 0 ..< items.count)
-                                } while randomIndex == youTubeViewModel.currentTrackIndex
-                                youTubeViewModel.currentTrackIndex = randomIndex
+                                } while randomIndex == homeViewModel.currentTrackIndex
+                                homeViewModel.currentTrackIndex = randomIndex
                             }
                         }
                     }
@@ -307,14 +305,14 @@ struct PlayerView: View {
             }
             .onAppear {
                 Task {
-                    if let id = youTubeViewModel.currentItem?.snippet.resourceId.videoId {
+                    if let id = homeViewModel.currentItem?.snippet.resourceId.videoId {
                         try? await player.load(source: .video(id: id))
                         playerViewModel.fetchDuration()
                         playerViewModel.startTrackingCurrentTime()
                     }
                 }
             }
-            .onChange(of: youTubeViewModel.currentItem?.snippet.resourceId.videoId) { _, newId in
+            .onChange(of: homeViewModel.currentItem?.snippet.resourceId.videoId) { _, newId in
                 guard let newId else {
                     return
                 }
@@ -332,8 +330,8 @@ struct PlayerView: View {
     }
     
     private struct ControlPanelView: View {
-        @Environment(HomeViewModel.self) private var youTubeViewModel
-        @Binding var playerViewModel: PlayerViewModel
+        @Environment(HomeViewModel.self) private var homeViewModel
+        @Environment(PlayerViewModel.self) private var playerViewModel
         @Injected(\.youTubePlayer) private var player
         
         var body: some View {
@@ -350,10 +348,10 @@ struct PlayerView: View {
                 Spacer()
                 
                 Button(action: {
-                    guard !youTubeViewModel.currentPlaylistItems.isEmpty else {
+                    guard !homeViewModel.currentPlaylistItems.isEmpty else {
                         return
                     }
-                    youTubeViewModel.currentTrackIndex = max(0, youTubeViewModel.currentTrackIndex - 1)
+                    homeViewModel.currentTrackIndex = max(0, homeViewModel.currentTrackIndex - 1)
                 }) {
                     Image(asset: Asset.next)
                         .renderingMode(.original)
@@ -381,10 +379,10 @@ struct PlayerView: View {
                 Spacer()
                 
                 Button(action: {
-                    guard youTubeViewModel.currentPlaylistItems.isEmpty == false else {
+                    guard homeViewModel.currentPlaylistItems.isEmpty == false else {
                         return
                     }
-                    youTubeViewModel.currentTrackIndex = min(youTubeViewModel.currentPlaylistItems.count - 1, youTubeViewModel.currentTrackIndex + 1)
+                    homeViewModel.currentTrackIndex = min(homeViewModel.currentPlaylistItems.count - 1, homeViewModel.currentTrackIndex + 1)
                 }) {
                     Image(asset: Asset.next)
                         .renderingMode(.original)
@@ -445,8 +443,8 @@ struct PlayerView: View {
     }
     
     private struct LoadViewModifier: ViewModifier {
-        @Environment(HomeViewModel.self) private var youTubeViewModel
-        @Binding var playerViewModel: PlayerViewModel
+        @Environment(HomeViewModel.self) private var homeViewModel
+        @Environment(PlayerViewModel.self) private var playerViewModel
         @Binding var state: PlayerState
         @Binding var dragOffset: CGFloat
         let topOffset: CGFloat
@@ -488,7 +486,7 @@ struct PlayerView: View {
                                     case .expanded:
                                         if (dy >= trigger) || (dyEnd >= trigger) {
                                             state = .collapsed
-                                            youTubeViewModel.isPlayerOpen = false
+                                            homeViewModel.isPlayerOpen = false
                                             playerViewModel.isPlaying = true
                                         }
                                     case .collapsed:
@@ -508,28 +506,28 @@ struct PlayerView: View {
     }
     
     private struct PlayerViewModifier: ViewModifier {
-        @Environment(HomeViewModel.self) private var youTubeViewModel
+        @Environment(HomeViewModel.self) private var homeViewModel
+        @Environment(PlayerViewModel.self) private var playerViewModel
         @Binding var state: PlayerState
-        @Binding var playerViewModel: PlayerViewModel
         @Injected(\.youTubePlayer) private var player
         
         func body(content: Content) -> some View {
             content
-                .onChange(of: youTubeViewModel.isPlayerOpen) {
-                    if youTubeViewModel.isPlayerOpen {
+                .onChange(of: homeViewModel.isPlayerOpen) {
+                    if homeViewModel.isPlayerOpen {
                         playerViewModel.isPlayerOpen = true
                         playerViewModel.isPlaying = true
                         state = .expanded
-                        let index = youTubeViewModel.currentTrackIndex
-                        guard youTubeViewModel.currentPlaylistItems.indices.contains(index) else {
+                        let index = homeViewModel.currentTrackIndex
+                        guard homeViewModel.currentPlaylistItems.indices.contains(index) else {
                             return
                         }
-                        let id = youTubeViewModel.currentPlaylistItems[index].snippet.resourceId.videoId
-                        let videoSnippet = youTubeViewModel.currentPlaylistItems[index].snippet
+                        let id = homeViewModel.currentPlaylistItems[index].snippet.resourceId.videoId
+                        let videoSnippet = homeViewModel.currentPlaylistItems[index].snippet
                         playerViewModel.videoSnippet = videoSnippet
                         Task {
                             try? await player.load(source: .video(id: id),
-                                                   startTime: .init(value: 0, unit: .seconds))
+                                                   startTime: .init(value: .zero, unit: .seconds))
                             try? await player.play()
                         }
                     } else {
@@ -541,8 +539,8 @@ struct PlayerView: View {
                         }
                     }
                 }
-                .onChange(of: youTubeViewModel.currentTrackIndex) {
-                    playerViewModel.videoSnippet = youTubeViewModel.currentPlaylistItems[youTubeViewModel.currentTrackIndex].snippet
+                .onChange(of: homeViewModel.currentTrackIndex) {
+                    playerViewModel.videoSnippet = homeViewModel.currentPlaylistItems[homeViewModel.currentTrackIndex].snippet
                 }
         }
     }
