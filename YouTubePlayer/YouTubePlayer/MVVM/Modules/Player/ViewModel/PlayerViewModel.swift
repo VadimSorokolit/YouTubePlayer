@@ -20,11 +20,14 @@ class PlayerViewModel {
     var isPlaying: Bool = false
     var remainingText: String {
         let remain = max(0, self.durationSeconds - self.currentSeconds)
+        
         return "-" + self.formatTime(remain)
     }
     var progress: Double {
-        guard durationSeconds > 0.0 else { return 0.0 }
-        return min(max(currentSeconds / durationSeconds, 0.0), 1.0)
+        guard self.durationSeconds > 0.0 else {
+            return 0.0
+        }
+        return min(max(self.currentSeconds / self.durationSeconds, 0.0), 1.0)
     }
     var elapsedText: String {
         self.formatTime(self.currentSeconds)
@@ -42,13 +45,15 @@ class PlayerViewModel {
     // MARK: - Methods. Public
 
     func startTrackingCurrentTime() {
-        stopTrackingCurrentTime()
-        trackerTask = Task {
+        self.stopTrackingCurrentTime()
+        self.trackerTask = Task {
             while !Task.isCancelled {
                 do {
-                    let t = try await player.getCurrentTime()
-                    let secs = t.converted(to: .seconds).value
-                    await MainActor.run { self.currentSeconds = secs }
+                    let time = try await player.getCurrentTime()
+                    let seconds = time.converted(to: .seconds).value
+                    await MainActor.run {
+                        self.currentSeconds = seconds
+                    }
                 } catch {}
                 try? await Task.sleep(nanoseconds: 120_000_000) 
             }
@@ -65,8 +70,8 @@ class PlayerViewModel {
             do {
                 try? await Task.sleep(nanoseconds: 999_000_000)
                 let duration = try await self.player.getDuration()
-                let secs = duration.converted(to: .seconds).value
-                self.durationSeconds = secs
+                let seconds = duration.converted(to: .seconds).value
+                self.durationSeconds = seconds
             } catch {}
         }
     }
@@ -90,6 +95,7 @@ class PlayerViewModel {
         let hours = total / 3600
         let minutes = (total % 3600) / 60
         let seconds = total % 60
+        
         if hours > 0 {
             return String(format: "%01d:%02d:%02d", hours, minutes, seconds)
         } else {

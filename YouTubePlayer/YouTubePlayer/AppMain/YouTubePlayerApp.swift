@@ -14,7 +14,8 @@ struct YouTubePlayerApp: App {
     // MARK: - Properties. Private
     
     @State private var isShownLaunchView: Bool = false
-    @State private var viewModel = HomeViewModel()
+    @State private var homeViewModel = HomeViewModel()
+    @State private var playerViewModel = PlayerViewModel()
     @State private var appAlert: AlertNotice?
     
     // MARK: - Initializer
@@ -35,9 +36,10 @@ struct YouTubePlayerApp: App {
                     HomeView()
                 }
             }
-            .environment(self.viewModel)
+            .environment(self.homeViewModel)
+            .environment(self.playerViewModel)
             .environmentAlert($appAlert)
-            .modifier(LoadViewModifier(isShownLaunchView: $isShownLaunchView, viewModel: $viewModel))
+            .modifier(LoadViewModifier(isShownLaunchView: $isShownLaunchView, homeViewModel: $homeViewModel))
         }
     }
     
@@ -46,30 +48,30 @@ struct YouTubePlayerApp: App {
     struct LoadViewModifier: ViewModifier {
         @Environment(\.appAlert) private var appAlert
         @Binding var isShownLaunchView: Bool
-        @Binding var viewModel: HomeViewModel
+        @Binding var homeViewModel: HomeViewModel
         
         func body(content: Content) -> some View {
             content
-                .onChange(of: viewModel.isLoading) {
-                    if self.viewModel.isLoading == false {
+                .onChange(of: homeViewModel.isLoading) {
+                    if self.homeViewModel.isLoading == false {
                         self.isShownLaunchView = true
                     }
                 }
-                .onChange(of: viewModel.errorMessage) {
-                    self.appAlert.error(Text(self.viewModel.errorMessage ?? ""))
+                .onChange(of: homeViewModel.errorMessage) {
+                    self.appAlert.error(Text(self.homeViewModel.errorMessage ?? ""))
                 }
                 .task {
                     do {
                         try await Task.sleep(nanoseconds: 2_000_000_000)
-                        try await self.viewModel.getChannels()
+                        try await self.homeViewModel.getChannels()
                     } catch {
-                        self.viewModel.errorMessage = error.localizedDescription
+                        self.homeViewModel.errorMessage = error.localizedDescription
                     }
                 }
                 .overlay {
-                    if self.viewModel.isLoading {
+                    if self.homeViewModel.isLoading {
                         VStack(spacing: .zero) {
-                            SpinnerView(isLoading: self.viewModel.isLoading)
+                            SpinnerView(isLoading: self.homeViewModel.isLoading)
                             
                             Spacer()
                         }

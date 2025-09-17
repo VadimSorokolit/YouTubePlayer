@@ -24,8 +24,8 @@ struct PlayerView: View {
     @Injected(\.youTubePlayer) private var player
     @State private var dragOffset: CGFloat = 0.0
     @State private var progress: Double = 0.0
-    @State private var durationSec: Double = 0
     @State private var state: PlayerState = .collapsed
+    @State private var isScrubbing: Bool = false
     
     // MARK: - Properties. Public
     
@@ -48,9 +48,9 @@ struct PlayerView: View {
                 VStack(spacing: .zero) {
                     HeaderView(playerViewModel: $playerViewModel, collapsedHeight: collapsedHeight)
                     
-                    CustomPlayerView(playerViewModel: $playerViewModel)
+                    CustomPlayerView(playerViewModel: $playerViewModel, isScrubbing: $isScrubbing, progress: $progress)
                     
-                    CustomProgressView(playerViewModel: $playerViewModel, durationSec: $durationSec)
+                    CustomProgressView(playerViewModel: $playerViewModel, isScrubbing: $isScrubbing, progress: $progress)
                     
                     ControlPanelView(playerViewModel: $playerViewModel)
                     
@@ -109,8 +109,8 @@ struct PlayerView: View {
     
     private struct CustomProgressView: View {
         @Binding var playerViewModel: PlayerViewModel
-        @State var isScrubbing: Bool = false
-        @Binding var durationSec: Double
+        @Binding var isScrubbing: Bool
+        @Binding var progress: Double
         @Injected(\.youTubePlayer) private var player
         
         var body: some View {
@@ -118,13 +118,17 @@ struct PlayerView: View {
                 VStack {
                     Color.clear
                         .frame(height: 0.0)
-                        .onAppear { durationSec = playerViewModel.progress }
-                        .onChange(of: playerViewModel.progress) { _, new in
-                            if !isScrubbing { durationSec = new }
+                        .onAppear {
+                            progress = playerViewModel.progress
+                        }
+                        .onChange(of: playerViewModel.progress) { _, newValue in
+                            if !isScrubbing && abs(newValue - progress) > 0.01 {
+                                progress = newValue
+                            }
                         }
                     
                     CustomSlider(
-                        value: $durationSec,
+                        value: $progress,
                         onEditingChanged: { began in
                             isScrubbing = began
                             if began {
@@ -135,7 +139,9 @@ struct PlayerView: View {
                         },
                         onEnded: { newValue in
                             playerViewModel.seek(to: newValue)
-                            Task { try? await player.play() }
+                            Task {
+                                try? await player.play()
+                            }
                             isScrubbing = false
                         }
                     )
@@ -194,7 +200,7 @@ struct PlayerView: View {
             
             var body: some View {
                 GeometryReader { geo in
-                    let width = geo.size.width
+                    let width = max(geo.size.width, 1.0)
                     let height = max(trackHeight, thumbHeight)
                     let progress = CGFloat(value.clamped(to: 0...1))
                     let position = progress * width
@@ -248,6 +254,8 @@ struct PlayerView: View {
     private struct CustomPlayerView: View {
         @Environment(HomeViewModel.self) private var youTubeViewModel
         @Binding var playerViewModel: PlayerViewModel
+        @Binding var isScrubbing: Bool
+        @Binding var progress: Double
         @Injected(\.youTubePlayer) private var player
         
         var body: some View {
@@ -296,17 +304,22 @@ struct PlayerView: View {
                 Task {
                     if let id = youTubeViewModel.currentItem?.snippet.resourceId.videoId {
                         try? await player.load(source: .video(id: id))
+                        playerViewModel.fetchDuration()
+                        playerViewModel.startTrackingCurrentTime()
                     }
                 }
             }
             .onChange(of: youTubeViewModel.currentItem?.snippet.resourceId.videoId) { _, newId in
-                guard let newId else { return }
+                guard let newId else {
+                    return
+                }
                 Task {
                     try? await player.load(source: .video(id: newId))
                 }
+                isScrubbing = false
+                progress = 0.0
                 playerViewModel.fetchDuration()
                 playerViewModel.startTrackingCurrentTime()
-
             }
             .frame(height: 235.0)
         }
@@ -483,7 +496,8 @@ struct PlayerView: View {
                                 }
                                 dragOffset = .zero
                             }
-                        }
+                        },
+                    including: .gesture
                 )
         }
     }
