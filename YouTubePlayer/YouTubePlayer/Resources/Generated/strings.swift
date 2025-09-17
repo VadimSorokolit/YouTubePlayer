@@ -57,6 +57,8 @@ internal enum L10n {
   internal static let playlistItemsPath = L10n.tr("Localizable", "playlistItemsPath", fallback: "youtube/v3/playlistItems")
   /// youtube/v3/playlists
   internal static let playlistsPath = L10n.tr("Localizable", "playlistsPath", fallback: "youtube/v3/playlists")
+  /// -
+  internal static let remainingTimePrefix = L10n.tr("Localizable", "remainingTimePrefix", fallback: "-")
   /// repeat
   internal static let repeatImageName = L10n.tr("Localizable", "repeatImageName", fallback: "repeat")
   /// shuffle
@@ -71,6 +73,14 @@ internal enum L10n {
   internal static let valueStatistics = L10n.tr("Localizable", "valueStatistics", fallback: "statistics")
   /// youtube/v3/videos
   internal static let videosPath = L10n.tr("Localizable", "videosPath", fallback: "youtube/v3/videos")
+  /// %01d:%02d:%02d
+  internal static func videoTimeHms(_ p1: Int, _ p2: Int, _ p3: Int) -> String {
+    return L10n.tr("Localizable", "videoTimeHms", p1, p2, p3, fallback: "%01d:%02d:%02d")
+  }
+  /// %01d:%02d
+  internal static func videoTimeMs(_ p1: Int, _ p2: Int) -> String {
+    return L10n.tr("Localizable", "videoTimeMs", p1, p2, fallback: "%01d:%02d")
+  }
   /// views
   internal static let views = L10n.tr("Localizable", "views", fallback: "views")
 }

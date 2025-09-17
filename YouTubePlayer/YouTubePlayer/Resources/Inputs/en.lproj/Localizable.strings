@@ -62,3 +62,6 @@
 "views" = "views";
 "repeatImageName" = "repeat";
 "shuffleImageName" = "shuffle";
+"videoTimeHms" = "%01d:%02d:%02d";
+"videoTimeMs" = "%01d:%02d";
+"remainingTimePrefix" = "-";

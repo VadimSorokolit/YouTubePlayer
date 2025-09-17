@@ -99,7 +99,7 @@ struct PlayerView: View {
                         .renderingMode(.original)
                         .rotationEffect(playerViewModel.isPlayerOpen ? .degrees(180.0) : .degrees(.zero))
                 }
-                .disabled(!homeViewModel.isPlayerOpen)
+                .disabled(homeViewModel.isPlayerOpen == false)
             }
         }
         

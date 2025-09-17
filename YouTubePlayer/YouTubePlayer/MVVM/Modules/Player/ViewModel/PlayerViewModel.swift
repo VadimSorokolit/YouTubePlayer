@@ -21,7 +21,7 @@ class PlayerViewModel {
     var remainingText: String {
         let remain = max(0, self.durationSeconds - self.currentSeconds)
         
-        return "-" + self.formatTime(remain)
+        return L10n.remainingTimePrefix + self.formatTime(remain)
     }
     var progress: Double {
         guard self.durationSeconds > 0.0 else {
@@ -121,9 +121,9 @@ class PlayerViewModel {
         let seconds = total % 60
         
         if hours > 0 {
-            return String(format: "%01d:%02d:%02d", hours, minutes, seconds)
+            return L10n.videoTimeHms(hours, minutes, seconds)
         } else {
-            return String(format: "%01d:%02d", minutes, seconds)
+            return L10n.videoTimeMs(minutes, seconds)
         }
     }
 } 
