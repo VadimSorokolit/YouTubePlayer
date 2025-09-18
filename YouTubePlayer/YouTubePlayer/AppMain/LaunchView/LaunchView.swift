@@ -13,6 +13,7 @@ struct LaunchView: View {
         ZStack {
             Asset.launchBackgroundColor.swiftUIColor
                 .ignoresSafeArea()
+            
             Image(Asset.launchIcon.name)
                 .resizable()
                 .scaledToFit()

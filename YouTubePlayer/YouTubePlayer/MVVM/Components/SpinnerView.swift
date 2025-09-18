@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SpinnerView: View {
     let isLoading: Bool
-    var offsetY: CGFloat = 80.0
+    var offsetY: CGFloat = 100.0
     
     var body: some View {
         if isLoading {

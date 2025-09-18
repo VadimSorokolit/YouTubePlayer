@@ -39,7 +39,7 @@ struct YouTubePlayerApp: App {
             .environment(self.homeViewModel)
             .environment(self.playerViewModel)
             .environmentAlert($appAlert)
-            .modifier(LoadViewModifier(isShownLaunchView: $isShownLaunchView, homeViewModel: $homeViewModel))
+            .modifier(LoadViewModifier(isShownLaunchView: $isShownLaunchView, homeViewModel: $homeViewModel, playerViewModel: $playerViewModel))
         }
     }
     
@@ -49,6 +49,7 @@ struct YouTubePlayerApp: App {
         @Environment(\.appAlert) private var appAlert
         @Binding var isShownLaunchView: Bool
         @Binding var homeViewModel: HomeViewModel
+        @Binding var playerViewModel: PlayerViewModel
         
         func body(content: Content) -> some View {
             content
@@ -59,6 +60,9 @@ struct YouTubePlayerApp: App {
                 }
                 .onChange(of: homeViewModel.errorMessage) {
                     self.appAlert.error(Text(self.homeViewModel.errorMessage ?? ""))
+                }
+                .onChange(of: playerViewModel.errorMessage) {
+                    self.appAlert.error(Text(self.playerViewModel.errorMessage ?? ""))
                 }
                 .task {
                     do {

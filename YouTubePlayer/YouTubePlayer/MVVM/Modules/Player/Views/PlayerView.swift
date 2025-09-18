@@ -19,9 +19,8 @@ struct PlayerView: View {
     
     // MARK: - Properties. Private
     
-    @Injected(\.youTubePlayer) private var player
-    @State private var dragOffset: CGFloat = 0.0
-    @State private var progress: Double = 0.0
+    @State private var dragOffset: CGFloat = .zero
+    @State private var progress: Double = .zero
     @State private var state: PlayerState = .collapsed
     @State private var isScrubbing: Bool = false
     
@@ -109,7 +108,6 @@ struct PlayerView: View {
         @Environment(PlayerViewModel.self) private var playerViewModel
         @Binding var isScrubbing: Bool
         @Binding var progress: Double
-        @Injected(\.youTubePlayer) private var player
         
         var body: some View {
             VStack(spacing: 17.0) {
@@ -120,8 +118,8 @@ struct PlayerView: View {
                             progress = playerViewModel.progress
                         }
                         .onChange(of: playerViewModel.progress) { _, newValue in
-                            if !isScrubbing {
-                                progress = newValue.clamped(to: 0...1)
+                            if isScrubbing == false {
+                                progress = newValue.clamped(to: 0 ... 1)
                             }
                         }
                     
@@ -131,7 +129,7 @@ struct PlayerView: View {
                             isScrubbing = began
                             playerViewModel.isUserScrubbing = began
                             if began {
-                                Task { try? await player.pause() }
+                                playerViewModel.pause()
                             }
                         },
                         onChange: { value in
@@ -141,9 +139,7 @@ struct PlayerView: View {
                         },
                         onEnded: { newValue in
                             playerViewModel.seek(to: newValue)
-                            Task {
-                                try? await player.play()
-                            }
+                            playerViewModel.play()
                             isScrubbing = false
                             playerViewModel.isUserScrubbing = false
                         }
@@ -196,18 +192,17 @@ struct PlayerView: View {
             var thumbWidth: CGFloat = 2.0
             var thumbHeight: CGFloat = 12.0
             var thumbColor: Color = Asset.homeHeaderTitleTextColor.swiftUIColor
-            
             var onEditingChanged: ((Bool) -> Void)? = nil
             var onChange: ((Double) -> Void)? = nil
             var onEnded: ((Double) -> Void)? = nil
             
             var body: some View {
                 GeometryReader { geo in
-                    let width = max(geo.size.width, 1.0)
-                    let height = max(trackHeight, thumbHeight)
-                    let progress = CGFloat(value.clamped(to: 0...1))
-                    let position = progress * width
-                    let centerY = height / 2.0
+                    let width: CGFloat = max(geo.size.width, 1.0)
+                    let height: CGFloat = max(trackHeight, thumbHeight)
+                    let progress: CGFloat = value.clamped(to: 0.0 ... 1)
+                    let position: CGFloat = progress * width
+                    let centerY: CGFloat = height / 2.0
                     
                     ZStack {
                         Capsule()
@@ -217,8 +212,8 @@ struct PlayerView: View {
                         
                         Capsule()
                             .fill(minTrack)
-                            .frame(width: max(0.0, position), height: trackHeight)
-                            .position(x: max(0.0, position) / 2.0, y: centerY)
+                            .frame(width: max(.zero, position), height: trackHeight)
+                            .position(x: max(.zero, position) / 2.0, y: centerY)
                         
                         Rectangle()
                             .fill(thumbColor)
@@ -250,7 +245,7 @@ struct PlayerView: View {
                 }
                 .frame(height: max(trackHeight, thumbHeight))
             }
-
+            
         }
     }
     
@@ -285,7 +280,7 @@ struct PlayerView: View {
                     }
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                         if playerViewModel.isRepeatModeEnable == false {
-                            Task { try? await player.pause() }
+                            playerViewModel.pause()
                             playerViewModel.isPlaying = false
                         }
                         if playerViewModel.isRepeatModeEnable {
@@ -295,7 +290,7 @@ struct PlayerView: View {
                             if items.count > 1 {
                                 var randomIndex: Int
                                 repeat {
-                                    randomIndex = Int.random(in: 0 ..< items.count)
+                                    randomIndex = Int.random(in: .zero ..< items.count)
                                 } while randomIndex == homeViewModel.currentTrackIndex
                                 homeViewModel.currentTrackIndex = randomIndex
                             }
@@ -304,23 +299,19 @@ struct PlayerView: View {
                 }
             }
             .onAppear {
-                Task {
-                    if let id = homeViewModel.currentItem?.snippet.resourceId.videoId {
-                        try? await player.load(source: .video(id: id))
-                        playerViewModel.fetchDuration()
-                        playerViewModel.startTrackingCurrentTime()
-                    }
+                if let id = homeViewModel.currentItem?.snippet.resourceId.videoId {
+                    playerViewModel.loadVideo(id: id)
+                    playerViewModel.fetchDuration()
+                    playerViewModel.startTrackingCurrentTime()
                 }
             }
             .onChange(of: homeViewModel.currentItem?.snippet.resourceId.videoId) { _, newId in
                 guard let newId else {
                     return
                 }
-                Task {
-                    try? await player.load(source: .video(id: newId))
-                }
+                playerViewModel.loadVideo(id: newId)
                 isScrubbing = false
-                progress = 0.0
+                progress = .zero
                 playerViewModel.fetchDuration()
                 playerViewModel.startTrackingCurrentTime()
             }
@@ -351,7 +342,7 @@ struct PlayerView: View {
                     guard !homeViewModel.currentPlaylistItems.isEmpty else {
                         return
                     }
-                    homeViewModel.currentTrackIndex = max(0, homeViewModel.currentTrackIndex - 1)
+                    homeViewModel.currentTrackIndex = max(.zero, homeViewModel.currentTrackIndex - 1)
                 }) {
                     Image(asset: Asset.next)
                         .renderingMode(.original)
@@ -362,14 +353,12 @@ struct PlayerView: View {
                 Spacer()
                 
                 Button(action: {
-                    Task {
-                        if playerViewModel.isPlaying {
-                            try? await player.pause()
-                            playerViewModel.isPlaying = false
-                        } else {
-                            try? await player.play()
-                            playerViewModel.isPlaying = true
-                        }
+                    if playerViewModel.isPlaying {
+                        playerViewModel.pause()
+                        playerViewModel.isPlaying = false
+                    } else {
+                        playerViewModel.play()
+                        playerViewModel.isPlaying = true
                     }
                 }) {
                     Image(asset: playerViewModel.isPlaying ? Asset.pause : Asset.play)
@@ -470,7 +459,7 @@ struct PlayerView: View {
                         .onChanged { value in
                             switch state {
                                 case .expanded:
-                                    dragOffset = max(0.0, value.translation.height)
+                                    dragOffset = max(.zero, value.translation.height)
                                 case .collapsed:
                                     // dragOffset = min(0.0, value.translation.height)
                                     break
@@ -490,11 +479,11 @@ struct PlayerView: View {
                                             playerViewModel.isPlaying = true
                                         }
                                     case .collapsed:
-//                                        if (-dy >= trigger) || (-dyEnd >= trigger) {
-//                                            state = .expanded
-//                                            youTubeViewModel.isPlayerOpen = true
-//                                            playerViewModel.isPlaying = true
-//                                        }
+                                        //                                        if (-dy >= trigger) || (-dyEnd >= trigger) {
+                                        //                                            state = .expanded
+                                        //                                            youTubeViewModel.isPlayerOpen = true
+                                        //                                            playerViewModel.isPlaying = true
+                                        //                                        }
                                         break
                                 }
                                 dragOffset = .zero
@@ -525,18 +514,13 @@ struct PlayerView: View {
                         let id = homeViewModel.currentPlaylistItems[index].snippet.resourceId.videoId
                         let videoSnippet = homeViewModel.currentPlaylistItems[index].snippet
                         playerViewModel.videoSnippet = videoSnippet
-                        Task {
-                            try? await player.load(source: .video(id: id),
-                                                   startTime: .init(value: .zero, unit: .seconds))
-                            try? await player.play()
-                        }
+                        playerViewModel.loadVideo(id: id)
+                        playerViewModel.play()
                     } else {
                         playerViewModel.isPlayerOpen = false
                         playerViewModel.isPlaying = false
                         state = .collapsed
-                        Task {
-                            try? await player.pause()
-                        }
+                        playerViewModel.pause()
                     }
                 }
                 .onChange(of: homeViewModel.currentTrackIndex) {
