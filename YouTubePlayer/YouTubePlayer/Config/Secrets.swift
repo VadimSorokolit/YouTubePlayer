@@ -13,7 +13,7 @@ enum Secrets {
             forResource: L10n.apiKeyFileName,
             withExtension: L10n.apiKeyFileExtension
         ) else {
-            print("ApiKey.json not found")
+            print("APIKey.json not found")
             return nil
         }
         do {

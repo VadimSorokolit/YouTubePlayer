@@ -10,6 +10,9 @@ import Moya
 
 protocol YouTubeNetworkServiceProtocol {
     func getChannels(by id: String) async throws -> [Channel]
+    func getPlaylists(by channelid: String, max: Int) async throws -> [Playlist]
+    func getPlaylistItems(playlistId: String, max: Int) async throws -> [PlaylistItem]
+    func getVideos(by videoId: String) async throws -> [Video]
 }
 
 class YouTubeNetworkService: YouTubeNetworkServiceProtocol {
