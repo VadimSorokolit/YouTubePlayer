@@ -150,14 +150,16 @@ struct PlayerView: View {
                     
                     HStack {
                         Text(playerViewModel.elapsedText)
-                            .font(.custom(FontFamily.SFProText.regular, size: 11.0))
+                            .font(.system(size: 11.0, weight: .regular, design: .rounded))
                             .foregroundStyle(Asset.playerTransparentWhite70.swiftUIColor)
+                            .monospaced()
                         
                         Spacer()
                         
                         Text(playerViewModel.remainingText)
-                            .font(.custom(FontFamily.SFProText.regular, size: 11.0))
+                            .font(.system(size: 11.0, weight: .regular, design: .rounded))
                             .foregroundStyle(Asset.playerTransparentWhite70.swiftUIColor)
+                            .monospaced()
                     }
                 }
                 .frame(height: 33.0)
@@ -529,3 +531,4 @@ struct PlayerView: View {
         }
     }
 }
+
