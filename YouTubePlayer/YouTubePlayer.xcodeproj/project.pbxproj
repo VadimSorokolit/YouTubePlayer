@@ -30,6 +30,7 @@
 		DD9EEDD22E5F49570090E848 /* SFProText-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD9EEDCF2E5F49570090E848 /* SFProText-Regular.ttf */; };
 		DD9EEDD32E5F49570090E848 /* SFProText-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD9EEDD02E5F49570090E848 /* SFProText-Semibold.ttf */; };
 		DD9EEDD42E5F49570090E848 /* SFProText-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD9EEDCE2E5F49570090E848 /* SFProText-Medium.ttf */; };
+		DDA1F16F2E7E918C005172FC /* YouTubePlayer.docc in Resources */ = {isa = PBXBuildFile; fileRef = DDA1F16E2E7E85FD005172FC /* YouTubePlayer.docc */; };
 		DDD371E42E6D843C00429518 /* CellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD371E32E6D843200429518 /* CellModel.swift */; };
 		DDD371EB2E6EB8AF00429518 /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD371EA2E6EB8A800429518 /* PlayerViewModel.swift */; };
 		DDE7BB4E2E733A3B003BA6E0 /* Comparable+clamped.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE7BB4D2E733A3A003BA6E0 /* Comparable+clamped.swift */; };
@@ -92,6 +93,7 @@
 		DD9EEDD02E5F49570090E848 /* SFProText-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Semibold.ttf"; sourceTree = "<group>"; };
 		DD9EEDD52E5F4BA00090E848 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DD9EEDDA2E5F5AEE0090E848 /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
+		DDA1F16E2E7E85FD005172FC /* YouTubePlayer.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = YouTubePlayer.docc; sourceTree = "<group>"; };
 		DDD371E32E6D843200429518 /* CellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellModel.swift; sourceTree = "<group>"; };
 		DDD371EA2E6EB8A800429518 /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
 		DDE7BB4D2E733A3A003BA6E0 /* Comparable+clamped.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Comparable+clamped.swift"; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 		DD7AAC202E5C44D8005AE888 /* YouTubePlayer */ = {
 			isa = PBXGroup;
 			children = (
+				DDA1F16E2E7E85FD005172FC /* YouTubePlayer.docc */,
 				DD7AAC2B2E5C4B2A005AE888 /* AppMain */,
 				DD7AAC272E5C4A3D005AE888 /* API */,
 				DD9EEDBE2E5F19B30090E848 /* Config */,
@@ -517,6 +520,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDA1F16F2E7E918C005172FC /* YouTubePlayer.docc in Resources */,
 				DD9EEDD22E5F49570090E848 /* SFProText-Regular.ttf in Resources */,
 				DD9EEDD32E5F49570090E848 /* SFProText-Semibold.ttf in Resources */,
 				DDFFD86B2E5F6D9A0085298B /* Localizable.strings in Resources */,
@@ -791,6 +795,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.YouTubePlayer1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				RUN_DOCUMENTATION_COMPILER = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -823,6 +828,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.YouTubePlayer1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				RUN_DOCUMENTATION_COMPILER = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

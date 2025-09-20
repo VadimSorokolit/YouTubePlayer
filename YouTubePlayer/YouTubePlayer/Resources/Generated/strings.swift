@@ -27,6 +27,10 @@ internal enum L10n {
   internal static let channelId3 = L10n.tr("Localizable", "channelId3", fallback: "UCmvtGezn6LpfUN1QW0aEaTg")
   /// UC7fzrpTArAqDHuB3Hbmd_CQ
   internal static let channelId4 = L10n.tr("Localizable", "channelId4", fallback: "UC7fzrpTArAqDHuB3Hbmd_CQ")
+  /// UCmoUgBTHRydApyOeqlDF1oQ
+  internal static let channelId5 = L10n.tr("Localizable", "channelId5", fallback: "UCmoUgBTHRydApyOeqlDF1oQ")
+  /// UC81VD6eeuLLSfyY_D-N8sVw
+  internal static let channelId6 = L10n.tr("Localizable", "channelId6", fallback: "UC81VD6eeuLLSfyY_D-N8sVw")
   /// youtube/v3/channels
   internal static let channelsPath = L10n.tr("Localizable", "channelsPath", fallback: "youtube/v3/channels")
   /// https://www.google.com

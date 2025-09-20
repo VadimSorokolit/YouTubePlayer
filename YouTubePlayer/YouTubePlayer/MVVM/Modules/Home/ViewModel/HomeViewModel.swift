@@ -36,6 +36,8 @@ class HomeViewModel {
         L10n.channelId2,
         L10n.channelId3,
         L10n.channelId4,
+        L10n.channelId5,
+        L10n.channelId6
     ]
     private var timerTask: Task<Void, Never>?
     
