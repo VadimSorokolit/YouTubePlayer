@@ -10,6 +10,7 @@
 * Resources – **SDWebImage**  
 * Code Generation – **SwiftGen**
 * Security – **git-crypt**
+* DI – **Factory**
 * Dependencies – **Swift Package Manager**
 * Documentation – **DocC**
 * Unit Tests — **Swift Testing**
