@@ -9,9 +9,44 @@ import Foundation
 import Moya
 
 protocol YouTubeNetworkServiceProtocol {
+    /**
+     Retrieves channel information for the specified channel identifier
+     
+     - Parameter id: The unique identifier of the channel (Channel ID)
+     - Returns: An array of `Channel` objects corresponding to the given identifier
+     - Throws: An `Error` if the network request or decoding fails
+     */
     func getChannels(by id: String) async throws -> [Channel]
+    
+    /**
+     Retrieves playlists for the specified channel.
+     
+     - Parameters:
+     - channelid: The unique identifier of the channel whose playlists should be fetched.
+     - max: The maximum number of playlists to return (subject to API limits)
+     - Returns: An array of `Playlist` objects associated with the given channel.
+     - Throws: An `Error` if the network request or decoding fails
+     */
     func getPlaylists(by channelid: String, max: Int) async throws -> [Playlist]
+    
+    /**
+     Retrieves items (videos) contained in a specific playlist.
+     
+     - Parameters:
+     - playlistId: The unique identifier of the playlist to fetch items from
+     - max: The maximum number of playlist items to return (subject to API limits)
+     - Returns: An array of `PlaylistItem` objects representing the contents of the playlist
+     - Throws: An `Error` if the network request or decoding fails
+     */
     func getPlaylistItems(playlistId: String, max: Int) async throws -> [PlaylistItem]
+    
+    /**
+     Retrieves detailed information for a specific video by its identifier.
+     
+     - Parameter videoId: The unique identifier of the video
+     - Returns: An array of `Video` objects containing detailed information about the requested video
+     - Throws: An `Error` if the network request or decoding fails
+     */
     func getVideos(by videoId: String) async throws -> [Video]
 }
 
