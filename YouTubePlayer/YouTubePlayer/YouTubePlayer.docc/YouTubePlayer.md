@@ -3,7 +3,8 @@
 A modern YouTube Player built on the YouTube Data API v3
 
 > ⚠️ **Before you start**  
-> This project requires a **YouTube Data API**  
+> This project requires a **YouTube Data API**
+> You must obtain an API key to run the project
 > 
 > - 🔑 The API key is stored in the repository **encrypted with git-crypt** 
 >   To use it, unlock the secrets firsе (see instructions below) 
