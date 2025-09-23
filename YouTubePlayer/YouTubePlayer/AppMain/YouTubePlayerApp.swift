@@ -30,16 +30,16 @@ struct YouTubePlayerApp: App {
     var body: some Scene {
         WindowGroup {
             Group {
-                if self.isShownHomeView == false {
-                    LaunchView()
-                } else {
+                if self.isShownHomeView {
                     HomeView()
+                } else {
+                    LaunchView()
                 }
             }
             .environment(self.homeViewModel)
             .environment(self.playerViewModel)
             .environmentAlert($appAlert)
-            .modifier(LoadViewModifier(isShownHomeView: $isShownHomeView, homeViewModel: homeViewModel, playerViewModel: playerViewModel))
+            .modifier(LoadViewModifier(isShownHomeView: self.$isShownHomeView, homeViewModel: self.homeViewModel, playerViewModel: self.playerViewModel))
         }
     }
     
@@ -53,16 +53,30 @@ struct YouTubePlayerApp: App {
         
         func body(content: Content) -> some View {
             content
-                .onChange(of: homeViewModel.isLoading) {
-                    if homeViewModel.isLoading == false, homeViewModel.errorMessage == nil {
-                        isShownHomeView = true
+                .onChange(of: self.homeViewModel.isLoading) { oldValue, newValue in
+                    if oldValue == true, newValue == false, self.homeViewModel.errorMessage == nil, self.isShownHomeView == false {
+                        self.isShownHomeView = true
                     }
                 }
-                .onChange(of: homeViewModel.errorMessage) {
-                    self.appAlert.error(Text(self.homeViewModel.errorMessage ?? ""))
+                .onChange(of: self.homeViewModel.errorMessage) { oldValue, newValue in
+                    if oldValue != newValue {
+                        self.appAlert.error(
+                            Text(self.homeViewModel.errorMessage ?? L10n.errorMessage),
+                            onConfirm:  {
+                                self.homeViewModel.errorMessage = nil
+                            }
+                        )
+                    }
                 }
-                .onChange(of: playerViewModel.errorMessage) {
-                    self.appAlert.error(Text(self.playerViewModel.errorMessage ?? ""))
+                .onChange(of: self.playerViewModel.errorMessage) { oldValue, newValue in
+                    if oldValue != newValue {
+                        self.appAlert.error(
+                            Text(self.playerViewModel.errorMessage ?? L10n.errorMessage),
+                            onConfirm: {
+                                self.homeViewModel.errorMessage = nil
+                            }
+                        )
+                    }
                 }
                 .task {
                     do {

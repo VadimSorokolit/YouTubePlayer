@@ -70,3 +70,4 @@
 "videoTimeHms" = "%01d:%02d:%02d";
 "videoTimeMs" = "%01d:%02d";
 "remainingTimePrefix" = "-";
+"errorMessage" = "Unknown error";

@@ -117,9 +117,11 @@ struct PlayerView: View {
                         .onAppear {
                             progress = playerViewModel.progress
                         }
-                        .onChange(of: playerViewModel.progress) { _, newValue in
-                            if isScrubbing == false {
-                                progress = newValue.clamped(to: 0 ... 1)
+                        .onChange(of: playerViewModel.progress) { oldValue, newValue in
+                            if oldValue != newValue {
+                                if isScrubbing == false {
+                                    progress = newValue.clamped(to: 0 ... 1)
+                                }
                             }
                         }
                     
@@ -307,15 +309,17 @@ struct PlayerView: View {
                     playerViewModel.startTrackingCurrentTime()
                 }
             }
-            .onChange(of: homeViewModel.currentItem?.snippet.resourceId.videoId) { _, newId in
-                guard let newId else {
-                    return
+            .onChange(of: homeViewModel.currentItem?.snippet.resourceId.videoId) { oldValue, newValue in
+                if oldValue != newValue {
+                    guard let newValue else {
+                        return
+                    }
+                    playerViewModel.loadVideo(id: newValue)
+                    isScrubbing = false
+                    progress = .zero
+                    playerViewModel.fetchDuration()
+                    playerViewModel.startTrackingCurrentTime()
                 }
-                playerViewModel.loadVideo(id: newId)
-                isScrubbing = false
-                progress = .zero
-                playerViewModel.fetchDuration()
-                playerViewModel.startTrackingCurrentTime()
             }
             .frame(height: 235.0)
         }
@@ -496,31 +500,34 @@ struct PlayerView: View {
         
         func body(content: Content) -> some View {
             content
-                .onChange(of: homeViewModel.isPlayerOpen) {
-                    if homeViewModel.isPlayerOpen {
-                        playerViewModel.isPlayerOpen = true
-                        playerViewModel.isPlaying = true
-                        state = .expanded
-                        let index = homeViewModel.currentTrackIndex
-                        guard homeViewModel.currentPlaylistItems.indices.contains(index) else {
-                            return
+                .onChange(of: homeViewModel.isPlayerOpen) { oldValue, newValue in
+                    if oldValue != newValue {
+                        if homeViewModel.isPlayerOpen {
+                            playerViewModel.isPlayerOpen = true
+                            playerViewModel.isPlaying = true
+                            state = .expanded
+                            let index = homeViewModel.currentTrackIndex
+                            guard homeViewModel.currentPlaylistItems.indices.contains(index) else {
+                                return
+                            }
+                            let id = homeViewModel.currentPlaylistItems[index].snippet.resourceId.videoId
+                            let videoSnippet = homeViewModel.currentPlaylistItems[index].snippet
+                            playerViewModel.videoSnippet = videoSnippet
+                            playerViewModel.loadVideo(id: id)
+                            playerViewModel.play()
+                        } else {
+                            playerViewModel.isPlayerOpen = false
+                            playerViewModel.isPlaying = false
+                            state = .collapsed
+                            playerViewModel.pause()
                         }
-                        let id = homeViewModel.currentPlaylistItems[index].snippet.resourceId.videoId
-                        let videoSnippet = homeViewModel.currentPlaylistItems[index].snippet
-                        playerViewModel.videoSnippet = videoSnippet
-                        playerViewModel.loadVideo(id: id)
-                        playerViewModel.play()
-                    } else {
-                        playerViewModel.isPlayerOpen = false
-                        playerViewModel.isPlaying = false
-                        state = .collapsed
-                        playerViewModel.pause()
                     }
                 }
-                .onChange(of: homeViewModel.currentTrackIndex) {
-                    playerViewModel.videoSnippet = homeViewModel.currentPlaylistItems[homeViewModel.currentTrackIndex].snippet
+                .onChange(of: homeViewModel.currentTrackIndex) { oldValue, newValue in
+                    if oldValue != newValue {
+                        playerViewModel.videoSnippet = homeViewModel.currentPlaylistItems[homeViewModel.currentTrackIndex].snippet
+                    }
                 }
         }
     }
 }
-

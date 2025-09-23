@@ -39,6 +39,8 @@ internal enum L10n {
   internal static let defaultURL = L10n.tr("Localizable", "defaultURL", fallback: "https://www.google.com")
   /// .
   internal static let dot = L10n.tr("Localizable", "dot", fallback: ".")
+  /// Unknown error
+  internal static let errorMessage = L10n.tr("Localizable", "errorMessage", fallback: "Unknown error")
   ///  not found
   internal static let fileNotFound = L10n.tr("Localizable", "fileNotFound", fallback: " not found")
   /// YouTube Player

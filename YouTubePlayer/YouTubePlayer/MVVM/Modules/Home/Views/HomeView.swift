@@ -171,21 +171,27 @@ struct HomeView: View {
                     }
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
                     .frame(height: imageHeight + dotsReserve)
-                    .onChange(of: homeViewModel.isPlayerOpen) {
-                        if homeViewModel.isPlayerOpen {
-                            homeViewModel.stopTimer()
-                        } else {
-                            homeViewModel.startTimer()
+                    .onChange(of: homeViewModel.isPlayerOpen) { oldValue, newValue in
+                        if oldValue != newValue {
+                            if homeViewModel.isPlayerOpen {
+                                homeViewModel.stopTimer()
+                            } else {
+                                homeViewModel.startTimer()
+                            }
                         }
                     }
-                    .onChange(of: currentPage) {
-                        homeViewModel.updateData(for: currentPage)
-                    }
-                    .onChange(of: homeViewModel.pagesCounter) { _, _ in
-                        guard !channels.isEmpty else {
-                            return
+                    .onChange(of: currentPage) { oldValue, newValue in
+                        if oldValue == newValue {
+                            homeViewModel.updateData(for: currentPage)
                         }
-                        currentPage = (currentPage + 1) % channels.count
+                    }
+                    .onChange(of: homeViewModel.pagesCounter) { oldValue, newValue in
+                        if oldValue != newValue {
+                            guard !channels.isEmpty else {
+                                return
+                            }
+                            currentPage = (currentPage + 1) % channels.count
+                        }
                     }
                     .onAppear {
                         homeViewModel.startTimer()
