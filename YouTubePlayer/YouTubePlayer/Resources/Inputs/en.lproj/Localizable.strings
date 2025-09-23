@@ -11,6 +11,9 @@
 "apiKeyFileName" = "APIKey";
 "apiKeyFileExtension" = "json";
 "mockAPIKey" = "88888888";
+"dot" = ".";
+"fileNotFound" = " not found";
+"apiKeyLoadFailed" = "Failed to load API key:";
 
 // URLs
 

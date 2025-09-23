@@ -16,8 +16,8 @@ struct ResourceSection: Identifiable, Equatable {
 struct CellModel: Identifiable, Equatable {
     let id = UUID()
     let title: String
-    let typeOfCell: CellType
-
+    let type: CellType
+    
     enum CellType: Equatable {
         case pageControl(model: [Channel])
         case playlist(model: Playlist)

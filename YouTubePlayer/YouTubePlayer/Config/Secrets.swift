@@ -13,7 +13,8 @@ enum Secrets {
             forResource: L10n.apiKeyFileName,
             withExtension: L10n.apiKeyFileExtension
         ) else {
-            print("APIKey.json not found")
+            let errorMessage = L10n.apiKeyFileName + L10n.dot + L10n.apiKeyFileExtension + L10n.fileNotFound
+            print(errorMessage)
             return nil
         }
         do {
@@ -21,7 +22,11 @@ enum Secrets {
             let config = try JSONDecoder().decode(AppConfig.self, from: data)
             return config.apiKey
         } catch {
-            print("Failed to load API key: \(error)")
+            let errorMessage = String(
+                format: L10n.apiKeyLoadFailed,
+                error.localizedDescription
+            )
+            print(errorMessage)
             return nil
         }
     }()

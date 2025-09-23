@@ -12,11 +12,11 @@ protocol YouTubeNetworkServiceProtocol {
     /**
      Retrieves channel information for the specified channel identifier
      
-     - Parameter id: The unique identifier of the channel (Channel ID)
+     - Parameter channelId: The unique identifier of the channel (Channel Id)
      - Returns: An array of `Channel` objects corresponding to the given identifier
      - Throws: An `Error` if the network request or decoding fails
      */
-    func getChannels(by id: String) async throws -> [Channel]
+    func getChannels(by channelId: String) async throws -> [Channel]
     
     /**
      Retrieves playlists for the specified channel.

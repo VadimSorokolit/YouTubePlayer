@@ -12,15 +12,15 @@ struct HomeView: View {
     
     // MARK: - Properties. Private
     
-    private let topOffSet: CGFloat = 50.0
+    private let topOffset: CGFloat = 50.0
     
     // MARK: - Main body
     
     var body: some View {
         ZStack {
-            HomeBodyView(topOffSet: topOffSet)
+            HomeBodyView(topOffSet: topOffset)
             
-            PlayerView(topOffset: topOffSet)
+            PlayerView(topOffset: topOffset)
         }
     }
     
@@ -66,7 +66,7 @@ struct HomeView: View {
                 ScrollView {
                     LazyVStack(alignment: .leading, spacing: 0.0) {
                         if let firstSection = homeViewModel.sections.first,
-                           case .pageControl(let channels) = firstSection.items.first?.typeOfCell {
+                           case .pageControl(let channels) = firstSection.items.first?.type {
                             ChannelPagerView(channels: channels, onChannelTap: { channel in
                                 homeViewModel.selectChannel(channel)
                             })
@@ -74,7 +74,7 @@ struct HomeView: View {
                         }
                         
                         ForEach(Array(homeViewModel.sections.dropFirst().enumerated()), id: \.element.id) { sectionIndex, section in
-                            VStack(alignment: .leading, spacing: sectionIndex % 2 == 0 ? 20.0 : 13.0) {
+                            VStack(alignment: .leading, spacing: sectionIndex.isMultiple(of: 2) ? 20.0 : 13.0) {
                                 Text(section.title)
                                     .font(.custom(FontFamily.SFProDisplay.bold, size: 23.0))
                                     .foregroundStyle(Asset.homeHeaderTitleTextColor.swiftUIColor)
@@ -82,13 +82,13 @@ struct HomeView: View {
                                     .padding(.horizontal, 18.0)
                                 
                                 if let cell = section.items.first,
-                                   case .playlist(let playlist) = cell.typeOfCell {
+                                   case .playlist(let playlist) = cell.type {
                                     let isAltCardStyle = (sectionIndex % 2 == 1)
                                     let offset = homeViewModel.sections
                                         .dropFirst()
                                         .prefix(sectionIndex)
                                         .reduce(0) { itemCount, section in
-                                            if case .playlist(let playlist) = section.items.first?.typeOfCell {
+                                            if case .playlist(let playlist) = section.items.first?.type {
                                                 return itemCount + (playlist.playlistItems?.count ?? 0)
                                             }
                                             return itemCount
@@ -96,7 +96,7 @@ struct HomeView: View {
                                     let allItems: [PlaylistItem] = homeViewModel.sections
                                         .dropFirst()
                                         .compactMap { section -> Playlist? in
-                                            if case .playlist(let playlist) = section.items.first?.typeOfCell { return playlist }
+                                            if case .playlist(let playlist) = section.items.first?.type { return playlist }
                                             return nil
                                         }
                                         .flatMap { $0.playlistItems ?? [] }
@@ -154,7 +154,7 @@ struct HomeView: View {
                                             .font(.custom(FontFamily.SFProText.semibold, size: 16.0))
                                             .foregroundColor(Asset.channelTitleTextColor.swiftUIColor)
                                         
-                                        Text("\(channel.statistics.subscriberCount.splitIntoThounsandParts ?? "") \(L10n.subscribers)")
+                                        Text("\(channel.statistics.subscriberCount.splitIntoThousandParts ?? "") \(L10n.subscribers)")
                                             .font(.custom(FontFamily.SFProText.regular, size: 10.0))
                                             .foregroundColor(Asset.channelSubtitleTextColor.swiftUIColor)
                                         
@@ -178,7 +178,7 @@ struct HomeView: View {
                             homeViewModel.startTimer()
                         }
                     }
-                    .onChange(of: currentPage) { _, newPage in
+                    .onChange(of: currentPage) {
                         homeViewModel.updateData(for: currentPage)
                     }
                     .onChange(of: homeViewModel.pagesCounter) { _, _ in
@@ -260,7 +260,7 @@ struct HomeView: View {
                                 .lineLimit(1)
                                 .foregroundColor(.white)
                             
-                            if let views = item.snippet.viewCount?.splitIntoThounsandParts {
+                            if let views = item.snippet.viewCount?.splitIntoThousandParts {
                                 Text("\(views) \(L10n.subscribers)")
                                     .font(.custom(FontFamily.SFProText.medium, size: 12.0))
                                     .foregroundColor(Asset.homeHeaderTitleTextColor.swiftUIColor)
@@ -277,7 +277,7 @@ struct HomeView: View {
                 let item: PlaylistItem
                 
                 var body: some View {
-                    VStack(alignment: .leading, spacing: 8) {
+                    VStack(alignment: .leading, spacing: 8.0) {
                         if let urlString = item.snippet.thumbnails?.high?.url,
                            let url = URL(string: urlString) {
                             WebImage (url: url) { phase in
@@ -308,9 +308,9 @@ struct HomeView: View {
                                 .font(.custom(FontFamily.SFProText.medium, size: 17.0))
                                 .foregroundColor(Asset.homeHeaderTitleTextColor.swiftUIColor)
                                 .lineLimit(1)
-                                .frame(width: 135, alignment: .leading)
+                                .frame(width: 135.0, alignment: .leading)
                             
-                            if let views = item.snippet.viewCount?.splitIntoThounsandParts {
+                            if let views = item.snippet.viewCount?.splitIntoThousandParts {
                                 Text("\(views) \(L10n.subscribers)")
                                     .font(.custom(FontFamily.SFProText.medium, size: 12.0))
                                     .foregroundColor(Asset.homeHeaderTitleTextColor.swiftUIColor)

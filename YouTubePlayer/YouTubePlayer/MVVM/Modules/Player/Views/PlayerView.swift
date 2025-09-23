@@ -174,7 +174,7 @@ struct PlayerView: View {
                     
                     Spacer()
                     
-                    Text("\(playerViewModel.videoSnippet?.viewCount?.splitIntoThounsandParts ?? "") \(L10n.views)")
+                    Text("\(playerViewModel.videoSnippet?.viewCount?.splitIntoThousandParts ?? "") \(L10n.views)")
                         .font(.custom(FontFamily.SFProText.regular, size: 16.0))
                         .foregroundStyle(Asset.playerTransparentWhite70.swiftUIColor)
                         .lineLimit(1)
@@ -202,7 +202,7 @@ struct PlayerView: View {
                 GeometryReader { geo in
                     let width: CGFloat = max(geo.size.width, 1.0)
                     let height: CGFloat = max(trackHeight, thumbHeight)
-                    let progress: CGFloat = value.clamped(to: 0.0 ... 1)
+                    let progress: CGFloat = value.clamped(to: 0.0 ... 1.0)
                     let position: CGFloat = progress * width
                     let centerY: CGFloat = height / 2.0
                     
@@ -325,7 +325,6 @@ struct PlayerView: View {
     private struct ControlPanelView: View {
         @Environment(HomeViewModel.self) private var homeViewModel
         @Environment(PlayerViewModel.self) private var playerViewModel
-        @Injected(\.youTubePlayer) private var player
         
         var body: some View {
             HStack {
@@ -463,7 +462,6 @@ struct PlayerView: View {
                                 case .expanded:
                                     dragOffset = max(.zero, value.translation.height)
                                 case .collapsed:
-                                    // dragOffset = min(0.0, value.translation.height)
                                     break
                             }
                         }
@@ -481,11 +479,6 @@ struct PlayerView: View {
                                             playerViewModel.isPlaying = true
                                         }
                                     case .collapsed:
-                                        //                                        if (-dy >= trigger) || (-dyEnd >= trigger) {
-                                        //                                            state = .expanded
-                                        //                                            youTubeViewModel.isPlayerOpen = true
-                                        //                                            playerViewModel.isPlaying = true
-                                        //                                        }
                                         break
                                 }
                                 dragOffset = .zero
@@ -500,7 +493,6 @@ struct PlayerView: View {
         @Environment(HomeViewModel.self) private var homeViewModel
         @Environment(PlayerViewModel.self) private var playerViewModel
         @Binding var state: PlayerState
-        @Injected(\.youTubePlayer) private var player
         
         func body(content: Content) -> some View {
             content

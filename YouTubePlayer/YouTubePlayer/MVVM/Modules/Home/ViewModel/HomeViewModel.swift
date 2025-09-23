@@ -177,13 +177,13 @@ class HomeViewModel {
         var sections: [ResourceSection] = []
         
         // Add first fixed section
-        let cell = CellModel(title: "", typeOfCell: .pageControl(model: channels))
+        let cell = CellModel(title: "", type: .pageControl(model: channels))
         let section = ResourceSection(title: "", items: [cell])
         sections.append(section)
         
         // Add sections depends of playlists count
         for playlist in channel.playlists ?? [] {
-            let cell = CellModel(title: "", typeOfCell: .playlist(model: playlist))
+            let cell = CellModel(title: "", type: .playlist(model: playlist))
             let section = ResourceSection(title: playlist.snippet.title, items: [cell])
             sections.append(section)
         }

@@ -17,6 +17,8 @@ internal enum L10n {
   /// 
   ///   Created by Vadim  on 27.08.2025.
   internal static let apiKeyFileName = L10n.tr("Localizable", "apiKeyFileName", fallback: "APIKey")
+  /// Failed to load API key:
+  internal static let apiKeyLoadFailed = L10n.tr("Localizable", "apiKeyLoadFailed", fallback: "Failed to load API key:")
   /// https://www.googleapis.com
   internal static let baseURL = L10n.tr("Localizable", "baseURL", fallback: "https://www.googleapis.com")
   /// UCiMhD4jzUqG-IgPzUmmytRQ
@@ -35,6 +37,10 @@ internal enum L10n {
   internal static let channelsPath = L10n.tr("Localizable", "channelsPath", fallback: "youtube/v3/channels")
   /// https://www.google.com
   internal static let defaultURL = L10n.tr("Localizable", "defaultURL", fallback: "https://www.google.com")
+  /// .
+  internal static let dot = L10n.tr("Localizable", "dot", fallback: ".")
+  ///  not found
+  internal static let fileNotFound = L10n.tr("Localizable", "fileNotFound", fallback: " not found")
   /// YouTube Player
   internal static let homeScreenTitle = L10n.tr("Localizable", "homeScreenTitle", fallback: "YouTube Player")
   /// Missing API Key. Add ApiKey.json to bundle and unlock git-crypt

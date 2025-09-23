@@ -13,7 +13,7 @@ struct YouTubePlayerApp: App {
     
     // MARK: - Properties. Private
     
-    @State private var isShownLaunchView: Bool = false
+    @State private var isShownHomeView: Bool = false
     @State private var homeViewModel = HomeViewModel()
     @State private var playerViewModel = PlayerViewModel()
     @State private var appAlert: AlertNotice?
@@ -30,7 +30,7 @@ struct YouTubePlayerApp: App {
     var body: some Scene {
         WindowGroup {
             Group {
-                if self.isShownLaunchView == false {
+                if self.isShownHomeView == false {
                     LaunchView()
                 } else {
                     HomeView()
@@ -39,7 +39,7 @@ struct YouTubePlayerApp: App {
             .environment(self.homeViewModel)
             .environment(self.playerViewModel)
             .environmentAlert($appAlert)
-            .modifier(LoadViewModifier(isShownLaunchView: $isShownLaunchView, homeViewModel: $homeViewModel, playerViewModel: $playerViewModel))
+            .modifier(LoadViewModifier(isShownHomeView: $isShownHomeView, homeViewModel: homeViewModel, playerViewModel: playerViewModel))
         }
     }
     
@@ -47,15 +47,15 @@ struct YouTubePlayerApp: App {
     
     struct LoadViewModifier: ViewModifier {
         @Environment(\.appAlert) private var appAlert
-        @Binding var isShownLaunchView: Bool
-        @Binding var homeViewModel: HomeViewModel
-        @Binding var playerViewModel: PlayerViewModel
+        @Binding var isShownHomeView: Bool
+        let homeViewModel: HomeViewModel
+        let playerViewModel: PlayerViewModel
         
         func body(content: Content) -> some View {
             content
                 .onChange(of: homeViewModel.isLoading) {
-                    if self.homeViewModel.isLoading == false {
-                        self.isShownLaunchView = true
+                    if homeViewModel.isLoading == false, homeViewModel.errorMessage == nil {
+                        isShownHomeView = true
                     }
                 }
                 .onChange(of: homeViewModel.errorMessage) {
